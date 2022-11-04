@@ -127,3 +127,15 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# IDE / Editor
+.idea
+
+# macOS
+.DS_Store
+
+# Vim swap files
+*.swp
+
+# VSCode
+.vscode
