@@ -28,6 +28,8 @@ $ python main.py
 
 Coming Soon
 
+![Screenshot](./assets/images/screenshot.png)
+
 ## License
 
 GNU General Public License v3.0 - See the [LICENSE](https://github.com/ncklinux/LocalPythonCMS/blob/main/LICENSE) file in this project for details.
