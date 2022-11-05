@@ -1,4 +1,4 @@
-from PyQt5 import QtWidgets, QtCore
+from PyQt5 import QtWidgets, QtCore, QtSvg
 from PyQt5.QtWidgets import QApplication, QMainWindow
 import sys
 
@@ -33,11 +33,17 @@ class Main(QMainWindow):
         grid = QtWidgets.QGridLayout(w)
         """
 
+        self.logo = QtSvg.QSvgWidget(self)
+        self.logo.load("./assets/svg/logo.svg")
+        self.logo.setGeometry(QtCore.QRect(0, 0, 70, 38))
+        self.logo.move(50, 50)
+        self.logo.show()
+
         self.label = QtWidgets.QLabel(self)
         self.label.setText(
             '<span style="font-size: 14pt; font-weight: 600;">LocalPythonCMS</span><br><span font-size: 12pt;>Create, edit, and publish web content!</span>'
         )
-        self.label.move(50, 50)
+        self.label.move(128, 50)
         self.label.adjustSize()
 
         self.labelForm = QtWidgets.QLabel(self)
