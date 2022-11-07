@@ -1,6 +1,7 @@
 from PyQt5 import QtWidgets, QtCore, QtSvg
 from PyQt5.QtWidgets import QApplication, QMainWindow
 import sys
+from database import Database
 
 
 class Main(QMainWindow):
@@ -26,6 +27,8 @@ class Main(QMainWindow):
         rect = screen.availableGeometry()
         self.setGeometry(50, 100, rect.width() - 200, rect.height() - 200)
         self.setWindowTitle("LocalPythonCMS - Create, edit, and publish web content")
+
+        self.db = Database()
 
         """
         w = QtWidgets.QWidget()
