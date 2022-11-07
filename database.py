@@ -1,5 +1,6 @@
 import sqlite3
 import sys, traceback
+import hashlib
 
 
 class Database(object):
@@ -32,13 +33,16 @@ class Database(object):
                     "test_lastname",
                     "test@localpythoncms.local",
                     "test",
-                    "123User.",
+                    self.sha256("123User."),
                 ),
             )
             self.__db_connection.commit()
         except sqlite3.IntegrityError as e:
             print("INTEGRITY ERROR")
             # print(traceback.print_exc())
+
+    def sha256(self, string):
+        return hashlib.sha256(string.encode("utf-8"), usedforsecurity=True).hexdigest()
 
     def __del__(self):
         self.__db_connection.close()
