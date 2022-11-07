@@ -13,10 +13,11 @@ class Database(object):
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             firstname varchar(50) NOT NULL,
             lastname varchar(50) NOT NULL,
-            email varchar(100) NOT NULL,
-            username varchar(50) NOT NULL,
+            email varchar(100) NOT NULL UNIQUE,
+            username varchar(50) NOT NULL UNIQUE,
             password varchar(128) NOT NULL)"""
         )
+
         self.cur.execute(
             "INSERT INTO users VALUES (null, ?, ?, ?, ?, ?)",
             (
