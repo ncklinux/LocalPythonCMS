@@ -1,4 +1,5 @@
 import sqlite3
+import sys, traceback
 
 
 class Database(object):
@@ -18,17 +19,21 @@ class Database(object):
             password varchar(128) NOT NULL)"""
         )
 
-        self.cur.execute(
-            "INSERT INTO users VALUES (null, ?, ?, ?, ?, ?)",
-            (
-                "test_firstname",
-                "test_lastname",
-                "test@localpythoncms.local",
-                "test",
-                "123User.",
-            ),
-        )
-        self.__db_connection.commit()
+        try:
+            self.cur.execute(
+                "INSERT INTO users VALUES (null, ?, ?, ?, ?, ?)",
+                (
+                    "test_firstname",
+                    "test_lastname",
+                    "test@localpythoncms.local",
+                    "test",
+                    "123User.",
+                ),
+            )
+            self.__db_connection.commit()
+        except sqlite3.IntegrityError as e:
+            print("INTEGRITY ERROR")
+            # print(traceback.print_exc())
 
     def __del__(self):
         self.__db_connection.close()
