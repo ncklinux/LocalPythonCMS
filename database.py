@@ -8,8 +8,12 @@ class Database(object):
 
     def __init__(self):
         self.__db_connection = sqlite3.connect(self.__DB_LOCATION)
-        self.cur = self.__db_connection.cursor()
-        self.cur.execute(
+        self.__cur = self.__db_connection.cursor()
+        self.createTable()
+        self.seeder()
+
+    def createTable(self):
+        self.__cur.execute(
             """CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             firstname varchar(50) NOT NULL,
@@ -19,8 +23,9 @@ class Database(object):
             password varchar(128) NOT NULL)"""
         )
 
+    def seeder(self):
         try:
-            self.cur.execute(
+            self.__cur.execute(
                 "INSERT INTO users VALUES (null, ?, ?, ?, ?, ?)",
                 (
                     "test_firstname",
