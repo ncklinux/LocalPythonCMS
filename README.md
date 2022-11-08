@@ -26,7 +26,8 @@ $ python main.py
 
 ## Motivation
 
-Coming Soon
+Having a local CMS that only populates the content you choose, on a remote server (securely via SSH) is great for many reasons, for example maintainability! Being able to update the CMS without hassle and without system and network administration knowledge (just like updating your web browser) makes it fun :wink:  
+Most importantly, you own your data, locally! Keeping your data stored on your local computer :computer: (including backups) makes it safe :lock: by default! Simply because, there is no reason to store sensitive data on a remote server and leave them there, without that data (in most times) even needing to be called and used on the websites.
 
 ![Screenshot](./assets/images/screenshot.png)
 
