@@ -26,7 +26,7 @@ class Main(QMainWindow):
         screen = self.app.primaryScreen()
         rect = screen.availableGeometry()
         self.setGeometry(50, 100, rect.width() - 200, rect.height() - 200)
-        self.setWindowTitle("LocalPythonCMS - Create, edit, and publish web content")
+        self.setWindowTitle("LocalPythonCMS - Create, edit, and publish web content!")
 
         self.db = Database()
 
