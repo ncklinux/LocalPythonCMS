@@ -58,11 +58,13 @@ class Main(QMainWindow):
 
         self.inputName = QtWidgets.QLineEdit(self)
         self.inputName.move(50, 200)
+        self.inputName.setPlaceholderText("Username")
         self.inputName.setFixedWidth(150)
 
         self.inputPass = QtWidgets.QLineEdit(self)
         self.inputPass.setEchoMode(QtWidgets.QLineEdit.Password)
         self.inputPass.move(50, 240)
+        self.inputPass.setPlaceholderText("Password")
         self.inputPass.setFixedWidth(150)
 
         self.btnLogin = QtWidgets.QPushButton(self)
