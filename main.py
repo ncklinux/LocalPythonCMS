@@ -30,6 +30,12 @@ class Main(QMainWindow):
 
         self.db = Database()
 
+        self.topBar = self.menuBar()
+        self.topBarFile = self.topBar.addMenu("File")
+        self.topBarFile.addAction("New")
+        self.topBarEdit = self.topBar.addMenu("Edit")
+        self.topBarHelp = self.topBar.addMenu("Help")
+
         """
         w = QtWidgets.QWidget()
         self.setCentralWidget(w)
