@@ -32,7 +32,7 @@ Most importantly, you own your data, locally! Keeping your data stored on your l
 
 John Johnson says *“First, solve the problem. Then, write the code.”*
 
-![Screenshot](./assets/images/screenshot.png)
+![Screenshot](./assets/images/screenshot.png?)
 
 ## License
 
