@@ -10,18 +10,6 @@ class Main(QMainWindow):
         self.app = app
         self.initUI()
 
-    def btnLoginEvent(self):
-        self.labelForm.setText(
-            "<span font-size: 12pt;>Use your sign in credentials</span>"
-        )
-        self.labelForm.adjustSize()
-
-    def btnRegisterEvent(self):
-        self.labelForm.setText(
-            "<span font-size: 12pt;><b>Username</b>: You can use letters, numbers & periods<br><b>Password:</b> Use 8 or more characters with a mix of letters, numbers & symbols)</span>"
-        )
-        self.labelForm.adjustSize()
-
     def initUI(self):
         screen = self.app.primaryScreen()
         rect = screen.availableGeometry()
@@ -30,11 +18,34 @@ class Main(QMainWindow):
 
         self.db = Database()
 
+        # Menu
         self.topBar = self.menuBar()
         self.topBarFile = self.topBar.addMenu("File")
-        self.topBarFile.addAction("New")
         self.topBarEdit = self.topBar.addMenu("Edit")
         self.topBarHelp = self.topBar.addMenu("Help")
+
+        # File
+        self.topBarFileManager = QtWidgets.QAction("Manager", self)
+        self.topBarFile.addAction(self.topBarFileManager)
+        self.topBarFileImport = QtWidgets.QAction("Import", self)
+        self.topBarFile.addAction(self.topBarFileImport)
+        self.topBarFileExport = QtWidgets.QAction("Export", self)
+        self.topBarFile.addAction(self.topBarFileExport)
+        self.topBarFileExit = QtWidgets.QAction("Exit", self)
+        self.topBarFile.addAction(self.topBarFileExit)
+        self.topBarFileExit.triggered.connect(self.topBarFileExitFunction)
+
+        # Edit
+        self.topBarFileSettings = QtWidgets.QAction("Settings", self)
+        self.topBarEdit.addAction(self.topBarFileSettings)
+
+        # Help
+        self.topBarHelpDocumentation = QtWidgets.QAction("Documentation", self)
+        self.topBarHelp.addAction(self.topBarHelpDocumentation)
+        self.topBarHelpUpdates = QtWidgets.QAction("Check for updates", self)
+        self.topBarHelp.addAction(self.topBarHelpUpdates)
+        self.topBarHelpBug = QtWidgets.QAction("Report a bug", self)
+        self.topBarHelp.addAction(self.topBarHelpBug)
 
         """
         w = QtWidgets.QWidget()
@@ -91,6 +102,21 @@ class Main(QMainWindow):
             self.btnRegister, 0, 1, QtCore.Qt.AlignRight | QtCore.Qt.AlignBottom
         )
         """
+
+    def btnLoginEvent(self):
+        self.labelForm.setText(
+            "<span font-size: 12pt;>Use your sign in credentials</span>"
+        )
+        self.labelForm.adjustSize()
+
+    def btnRegisterEvent(self):
+        self.labelForm.setText(
+            "<span font-size: 12pt;><b>Username</b>: You can use letters, numbers & periods<br><b>Password:</b> Use 8 or more characters with a mix of letters, numbers & symbols)</span>"
+        )
+        self.labelForm.adjustSize()
+
+    def topBarFileExitFunction(self):
+        self.close()
 
 
 def window():
