@@ -3,6 +3,7 @@ from PyQt5 import QtWidgets, QtCore, QtSvg
 from PyQt5.QtGui import QKeySequence
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from database import Database
+from popup import PopUp
 
 
 class Main(QMainWindow):
@@ -49,6 +50,9 @@ class Main(QMainWindow):
         self.topBarHelp.addAction(self.topBarHelpUpdates)
         self.topBarHelpBug = QtWidgets.QAction("Report a bug", self)
         self.topBarHelp.addAction(self.topBarHelpBug)
+        self.topBarHelpAbout = QtWidgets.QAction("About", self)
+        self.topBarHelp.addAction(self.topBarHelpAbout)
+        self.topBarHelpAbout.triggered.connect(self.topBarHelpAboutFunction)
 
         """
         w = QtWidgets.QWidget()
@@ -120,6 +124,14 @@ class Main(QMainWindow):
 
     def topBarFileExitFunction(self):
         self.close()
+
+    def topBarHelpAboutFunction(self):
+        self.about = PopUp(
+            "About",
+            '<div style="text-align: center;"><span style="font-size: 14pt; font-weight: 600;">LocalPythonCMS</span><br><span font-size: 12pt;>Create, edit, and publish web content!</span></div>',
+        )
+        self.about.setGeometry(300, 300, 500, 200)
+        self.about.show()
 
 
 def window():
