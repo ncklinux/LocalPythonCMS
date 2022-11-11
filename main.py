@@ -1,6 +1,7 @@
-from PyQt5 import QtWidgets, QtCore, QtSvg
-from PyQt5.QtWidgets import QApplication, QMainWindow
 import sys
+from PyQt5 import QtWidgets, QtCore, QtSvg
+from PyQt5.QtGui import QKeySequence
+from PyQt5.QtWidgets import QApplication, QMainWindow
 from database import Database
 
 
@@ -31,9 +32,11 @@ class Main(QMainWindow):
         self.topBarFile.addAction(self.topBarFileImport)
         self.topBarFileExport = QtWidgets.QAction("Export", self)
         self.topBarFile.addAction(self.topBarFileExport)
-        self.topBarFileExit = QtWidgets.QAction("Exit", self)
+        self.topBarFile.addSeparator()
+        self.topBarFileExit = QtWidgets.QAction("Quit", self)
         self.topBarFile.addAction(self.topBarFileExit)
         self.topBarFileExit.triggered.connect(self.topBarFileExitFunction)
+        self.topBarFileExit.setShortcut(QKeySequence.Quit)
 
         # Edit
         self.topBarFileSettings = QtWidgets.QAction("Settings", self)
