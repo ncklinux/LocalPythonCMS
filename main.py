@@ -31,6 +31,7 @@ class Main(QMainWindow):
         self.topBarFile.addAction(self.topBarFileImport)
         self.topBarFileExport = QtWidgets.QAction("Export", self)
         self.topBarFile.addAction(self.topBarFileExport)
+        self.topBarFile.addSeparator()
         self.topBarFileExit = QtWidgets.QAction("Exit", self)
         self.topBarFile.addAction(self.topBarFileExit)
         self.topBarFileExit.triggered.connect(self.topBarFileExitFunction)
