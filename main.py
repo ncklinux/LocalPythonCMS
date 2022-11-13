@@ -1,7 +1,7 @@
 import sys
 from PyQt5 import QtWidgets, QtCore, QtSvg
 from PyQt5.QtGui import QKeySequence
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QApplication, QMainWindow, QDesktopWidget
 from database import Database
 from popup import PopUp
 
@@ -125,13 +125,20 @@ class Main(QMainWindow):
     def topBarFileExitFunction(self):
         self.close()
 
+    def center(self):
+        qr = self.frameGeometry()
+        cp = QDesktopWidget().availableGeometry().center()
+        qr.moveCenter(cp)
+        self.move(qr.topLeft())
+
     def topBarHelpAboutFunction(self):
         self.about = PopUp(
             "About",
             '<div style="text-align: center;"><span style="font-size: 14pt; font-weight: 600;">LocalPythonCMS</span><br><span font-size: 12pt;>Create, edit, and publish web content!</span></div>',
         )
-        self.about.setGeometry(300, 300, 500, 200)
+        self.about.resize(500, 200)
         self.about.show()
+        self.center()
 
 
 def window():
