@@ -1,7 +1,8 @@
 import sys
 from PyQt5 import QtWidgets, QtCore, QtSvg
 from PyQt5.QtGui import QKeySequence
-from PyQt5.QtWidgets import QApplication, QMainWindow, QDesktopWidget
+from PyQt5.QtWidgets import QApplication, QMainWindow, QDesktopWidget, QStatusBar
+from datetime import datetime
 from database import Database
 from popup import PopUp
 
@@ -17,6 +18,11 @@ class Main(QMainWindow):
         rect = screen.availableGeometry()
         self.setGeometry(50, 100, rect.width() - 200, rect.height() - 200)
         self.setWindowTitle("LocalPythonCMS - Create, edit, and publish web content!")
+        self.statusBar = QStatusBar()
+        self.setStatusBar(self.statusBar)
+        self.setStatus(
+            "By logging in, you agree to the license and the disclaimer agreement."
+        )
 
         self.db = Database()
 
@@ -139,6 +145,9 @@ class Main(QMainWindow):
         self.about.resize(500, 200)
         self.about.show()
         self.center()
+
+    def setStatus(self, status=None):
+        self.statusBar.showMessage(status)
 
 
 def window():
