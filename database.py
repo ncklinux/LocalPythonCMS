@@ -29,11 +29,11 @@ class Database(object):
             self.__cur.execute(
                 "INSERT INTO users VALUES (null, ?, ?, ?, ?, ?)",
                 (
-                    "test_firstname",
-                    "test_lastname",
+                    "Firstname",
+                    "Lastname",
                     "test@localpythoncms.local",
                     "test",
-                    self.sha256("123User."),
+                    self.sha256("test"),
                 ),
             )
             self.__db_connection.commit()
