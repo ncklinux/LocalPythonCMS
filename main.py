@@ -126,10 +126,10 @@ class Main(QMainWindow):
         self.close()
 
     def center(self):
-        qr = self.frameGeometry()
-        cp = QDesktopWidget().availableGeometry().center()
-        qr.moveCenter(cp)
-        self.move(qr.topLeft())
+        frameGeo = self.frameGeometry()
+        centerPoint = QDesktopWidget().availableGeometry().center()
+        frameGeo.moveCenter(centerPoint)
+        self.move(frameGeo.topLeft())
 
     def topBarHelpAboutFunction(self):
         self.about = PopUp(
