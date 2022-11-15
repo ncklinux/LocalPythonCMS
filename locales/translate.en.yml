@@ -1,0 +1,29 @@
+en:
+  softwareName: LocalPythonCMS
+  softwareSlogan: Create, edit, and publish web content!
+  softwareTitle: LocalPythonCMS - Create, edit, and publish web content!
+  starUpStatus: By logging in, you agree to the license and the disclaimer agreement.
+  file: File
+  edit: Edit
+  help: Help
+  manager: Manager
+  import: Import
+  export: Export
+  quit: Quit
+  settings: Settings
+  documentation: Documentation
+  checkForUpdates: Check for updates
+  reportABug: Report a bug
+  about: About
+  useCredentials: Use your sign in credentials
+  username: Username
+  password: Password
+  signIn: Sign in
+  createAccount: Create account
+  usernameDPrerequisites: You can use letters, numbers & periods
+  passwordPrerequisites: Use 8 or more characters with a mix of letters, numbers & symbols)
+
+
+
+
+

@@ -9,11 +9,13 @@ A content management system (CMS) written in Python that allows you to create, e
 $ sudo pacman -Syu
 $ sudo pacman -S python-pyqt5 python-pip
 $ python -V && pip --version
+$ pip install python-i18n
 
 # Ubuntu - install packages
 $ sudo apt update
 $ sudo apt install python3-pyqt5 python3-pip
 $ python -V && pip3 --version
+$ pip3 install python-i18n
 
 # clone repository
 $ git clone git@github.com:ncklinux/LocalPythonCMS.git
@@ -32,7 +34,7 @@ Most importantly, you own your data, locally! Keeping your data stored on your l
 
 John Johnson says *“First, solve the problem. Then, write the code.”*
 
-![Screenshot](./assets/images/screenshot20221110.png)
+![Screenshot](./assets/images/screenshot20221115.png)
 
 ## License
 

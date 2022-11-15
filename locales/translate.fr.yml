@@ -1,0 +1,24 @@
+fr:
+  softwareName: LocalPythonCMS
+  softwareSlogan: Créez, éditez et publiez du contenu web!
+  softwareTitle: LocalPythonCMS - Créez, éditez et publiez du contenu web !
+  starUpStatus: En vous connectant, vous acceptez la licence et l'accord de non-responsabilité.
+  file: Fichier
+  edit: Modifier
+  help: Aide
+  manager: Directeur
+  import: Importation
+  export: Exportation
+  quit: Arrêtez
+  settings: Paramètres
+  documentation: Documentation
+  checkForUpdates: Vérifier les mises à jour
+  reportABug: Signaler un bogue
+  about: À propos de
+  useCredentials: Utilisez vos identifiants de connexion
+  username: Nom d'utilisateur
+  password: Mot de passe
+  signIn: Se connecter
+  createAccount: Créer un compte
+  usernameDPrerequisites: Vous pouvez utiliser des lettres, des chiffres et des points
+  passwordPrerequisites: Utilisez 8 caractères ou plus avec un mélange de lettres, chiffres et symboles)
