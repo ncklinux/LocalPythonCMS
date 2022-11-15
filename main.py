@@ -175,7 +175,7 @@ class Main(QMainWindow):
 
 def window():
     app = QApplication(sys.argv)
-    win = Main(app, "fr")
+    win = Main(app, "en")
     win.show()
     sys.exit(app.exec_())
 
