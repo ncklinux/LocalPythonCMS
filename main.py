@@ -1,4 +1,5 @@
 import sys
+import i18n
 from PyQt5 import QtWidgets, QtCore, QtSvg
 from PyQt5.QtGui import QKeySequence
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDesktopWidget, QStatusBar
@@ -8,55 +9,61 @@ from popup import PopUp
 
 
 class Main(QMainWindow):
-    def __init__(self, app):
+    def __init__(self, app, locale):
         super(Main, self).__init__()
         self.app = app
+        self.locale = locale
         self.initUI()
 
     def initUI(self):
+        i18n.load_path.append("locales")
+        i18n.set("locale", self.locale)
+        i18n.set("fallback", "en")
         screen = self.app.primaryScreen()
         rect = screen.availableGeometry()
         self.setGeometry(50, 100, rect.width() - 200, rect.height() - 200)
-        self.setWindowTitle("LocalPythonCMS - Create, edit, and publish web content!")
+        self.setWindowTitle(i18n.t("translate.softwareTitle"))
         self.statusBar = QStatusBar()
         self.setStatusBar(self.statusBar)
-        self.setStatus(
-            "By logging in, you agree to the license and the disclaimer agreement."
-        )
+        self.setStatus(i18n.t("translate.starUpStatus"))
 
         self.db = Database()
 
         # Menu
         self.topBar = self.menuBar()
-        self.topBarFile = self.topBar.addMenu("File")
-        self.topBarEdit = self.topBar.addMenu("Edit")
-        self.topBarHelp = self.topBar.addMenu("Help")
+        self.topBarFile = self.topBar.addMenu(i18n.t("translate.file"))
+        self.topBarEdit = self.topBar.addMenu(i18n.t("translate.edit"))
+        self.topBarHelp = self.topBar.addMenu(i18n.t("translate.help"))
 
         # File
-        self.topBarFileManager = QtWidgets.QAction("Manager", self)
+        self.topBarFileManager = QtWidgets.QAction(i18n.t("translate.manager"), self)
         self.topBarFile.addAction(self.topBarFileManager)
-        self.topBarFileImport = QtWidgets.QAction("Import", self)
+        self.topBarFileImport = QtWidgets.QAction(i18n.t("translate.import"), self)
         self.topBarFile.addAction(self.topBarFileImport)
-        self.topBarFileExport = QtWidgets.QAction("Export", self)
+        self.topBarFileExport = QtWidgets.QAction(i18n.t("translate.export"), self)
         self.topBarFile.addAction(self.topBarFileExport)
         self.topBarFile.addSeparator()
-        self.topBarFileExit = QtWidgets.QAction("Quit", self)
+        self.topBarFileExit = QtWidgets.QAction(i18n.t("translate.quit"), self)
         self.topBarFile.addAction(self.topBarFileExit)
         self.topBarFileExit.triggered.connect(self.topBarFileExitFunction)
         self.topBarFileExit.setShortcut(QKeySequence.Quit)
 
         # Edit
-        self.topBarFileSettings = QtWidgets.QAction("Settings", self)
+        self.topBarFileSettings = QtWidgets.QAction(i18n.t("translate.settings"), self)
         self.topBarEdit.addAction(self.topBarFileSettings)
 
         # Help
-        self.topBarHelpDocumentation = QtWidgets.QAction("Documentation", self)
+        self.topBarHelpDocumentation = QtWidgets.QAction(
+            i18n.t("translate.documentation"), self
+        )
         self.topBarHelp.addAction(self.topBarHelpDocumentation)
-        self.topBarHelpUpdates = QtWidgets.QAction("Check for updates", self)
+        self.topBarHelpUpdates = QtWidgets.QAction(
+            i18n.t("translate.checkForUpdates"), self
+        )
         self.topBarHelp.addAction(self.topBarHelpUpdates)
-        self.topBarHelpBug = QtWidgets.QAction("Report a bug", self)
+        self.topBarHelpBug = QtWidgets.QAction(i18n.t("translate.reportABug"), self)
         self.topBarHelp.addAction(self.topBarHelpBug)
-        self.topBarHelpAbout = QtWidgets.QAction("About", self)
+        self.topBarHelpAbout = QtWidgets.QAction(i18n.t("translate.about"), self)
         self.topBarHelp.addAction(self.topBarHelpAbout)
         self.topBarHelpAbout.triggered.connect(self.topBarHelpAboutFunction)
 
@@ -74,37 +81,41 @@ class Main(QMainWindow):
 
         self.label = QtWidgets.QLabel(self)
         self.label.setText(
-            '<span style="font-size: 14pt; font-weight: 600;">LocalPythonCMS</span><br><span font-size: 12pt;>Create, edit, and publish web content!</span>'
+            '<span style="font-size: 14pt; font-weight: 600;">'
+            + i18n.t("translate.softwareName")
+            + "</span><br><span font-size: 12pt;>"
+            + i18n.t("translate.softwareSlogan")
+            + "</span>"
         )
         self.label.move(128, 50)
         self.label.adjustSize()
 
         self.labelForm = QtWidgets.QLabel(self)
         self.labelForm.setText(
-            "<span font-size: 12pt;>Use your sign in credentials</span>"
+            "<span font-size: 12pt;>" + i18n.t("translate.useCredentials") + "</span>"
         )
         self.labelForm.move(50, 154)
         self.labelForm.adjustSize()
 
         self.inputName = QtWidgets.QLineEdit(self)
         self.inputName.move(50, 200)
-        self.inputName.setPlaceholderText("Username")
+        self.inputName.setPlaceholderText(i18n.t("translate.username"))
         self.inputName.setFixedWidth(150)
 
         self.inputPass = QtWidgets.QLineEdit(self)
         self.inputPass.setEchoMode(QtWidgets.QLineEdit.Password)
         self.inputPass.move(50, 240)
-        self.inputPass.setPlaceholderText("Password")
+        self.inputPass.setPlaceholderText(i18n.t("translate.password"))
         self.inputPass.setFixedWidth(150)
 
         self.btnLogin = QtWidgets.QPushButton(self)
-        self.btnLogin.setText("Sign in")
+        self.btnLogin.setText(i18n.t("translate.signIn"))
         self.btnLogin.setMinimumWidth(150)
         self.btnLogin.move(50, 280)
         self.btnLogin.clicked.connect(self.btnLoginEvent)
 
         self.btnRegister = QtWidgets.QPushButton(self)
-        self.btnRegister.setText("Create account")
+        self.btnRegister.setText(i18n.t("translate.createAccount"))
         self.btnRegister.setMinimumWidth(150)
         self.btnRegister.move(50, 320)
         self.btnRegister.clicked.connect(self.btnRegisterEvent)
@@ -118,13 +129,21 @@ class Main(QMainWindow):
 
     def btnLoginEvent(self):
         self.labelForm.setText(
-            "<span font-size: 12pt;>Use your sign in credentials</span>"
+            "<span font-size: 12pt;>" + i18n.t("translate.useCredentials") + "</span>"
         )
         self.labelForm.adjustSize()
 
     def btnRegisterEvent(self):
         self.labelForm.setText(
-            "<span font-size: 12pt;><b>Username</b>: You can use letters, numbers & periods<br><b>Password:</b> Use 8 or more characters with a mix of letters, numbers & symbols)</span>"
+            "<span font-size: 12pt;><b>"
+            + i18n.t("translate.username")
+            + "</b>: "
+            + i18n.t("translate.usernameDPrerequisites")
+            + "<br><b>"
+            + i18n.t("translate.password")
+            + ":</b> "
+            + i18n.t("translate.passwordPrerequisites")
+            + "</span>"
         )
         self.labelForm.adjustSize()
 
@@ -140,7 +159,11 @@ class Main(QMainWindow):
     def topBarHelpAboutFunction(self):
         self.about = PopUp(
             "About",
-            '<div style="text-align: center;"><span style="font-size: 14pt; font-weight: 600;">LocalPythonCMS</span><br><span font-size: 12pt;>Create, edit, and publish web content!</span></div>',
+            '<div style="text-align: center;"><span style="font-size: 14pt; font-weight: 600;">'
+            + i18n.t("translate.softwareName")
+            + "</span><br><span font-size: 12pt;>"
+            + i18n.t("translate.softwareSlogan")
+            + "</span></div>",
         )
         self.about.resize(500, 200)
         self.about.show()
@@ -152,7 +175,7 @@ class Main(QMainWindow):
 
 def window():
     app = QApplication(sys.argv)
-    win = Main(app)
+    win = Main(app, "fr")
     win.show()
     sys.exit(app.exec_())
 
