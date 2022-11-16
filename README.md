@@ -14,7 +14,7 @@ $ pip install python-i18n
 # Ubuntu - install packages
 $ sudo apt update
 $ sudo apt install python3-pyqt5 python3-pip
-$ python -V && pip3 --version
+$ python3 -V && pip3 --version
 $ pip3 install python-i18n
 
 # clone repository
