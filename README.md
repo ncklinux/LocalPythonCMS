@@ -14,7 +14,7 @@ $ pip install python-i18n
 # Ubuntu - install packages
 $ sudo apt update
 $ sudo apt install python3-pyqt5 python3-pip
-$ python -V && pip3 --version
+$ python3 -V && pip3 --version
 $ pip3 install python-i18n
 
 # clone repository
@@ -28,7 +28,7 @@ $ python main.py
 
 ## Motivation
 
-Having a local CMS that publishes only the content you choose, on a remote server (securely via SSH) is great for many reasons, for example maintainability! Being able to update the CMS without hassle and system and network administration knowledge (just like updating your web browser) makes it fun :wink:  
+Having a local CMS that publishes only the content you choose, on a remote server (securely via SSH and Ed25519 key pairs) is great for many reasons, for example maintainability! Being able to update the CMS without hassle and system and network administration knowledge (just like updating your web browser) makes it fun :wink:  
 
 Most importantly, you own your data, locally! Keeping your data stored on your local computer :computer: (including backups) makes it safe :lock: by default! Simply because, there is no reason to store sensitive data on a remote server and leave them there, without that data even needing (in most times) to be called and used on the websites.  
 
@@ -42,7 +42,7 @@ GNU General Public License v3.0 - See the [LICENSE](https://github.com/ncklinux/
 
 ## Disclaimer
 
-This project is distributed FREE & WITHOUT ANY WARRANTY. Report any bugs or suggestions here as an [issue](https://github.com/ncklinux/LocalPythonCMS/issues/new).
+This project is distributed FREE & WITHOUT ANY WARRANTY. Report any bugs or suggestions as an [issue](https://github.com/ncklinux/LocalPythonCMS/issues/new).
 
 ## Contributing
 
