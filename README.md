@@ -28,13 +28,17 @@ $ python main.py
 
 ## Motivation
 
-Having a local CMS that publishes only the content you choose, on a remote server (securely via SSH and Ed25519 key pairs) is great for many reasons, for example maintainability! Being able to update the CMS without hassle and system and network administration knowledge (just like updating your web browser) makes it fun :wink:  
+Having a local CMS that publishes only the content you choose, on a remote server (securely via SSH and Ed25519 key pairs) is great for many reasons, for example maintainability! Being able to update the CMS without hassle and system and network administration knowledge (just like updating your web browser) makes it fun :wink:
 
-Most importantly, you own your data, locally! Keeping your data stored on your local computer :computer: (including backups) makes it safe :lock: by default! Simply because, there is no reason to store sensitive data on a remote server and leave them there, without that data even needing (in most times) to be called and used on the websites.  
+Most importantly, you own your data, locally! Keeping your data stored on your local computer :computer: (including backups) makes it safe :lock: by default! Simply because, there is no reason to store sensitive data on a remote server and leave them there, without that data even needing (in most times) to be called and used on the websites.
 
-John Johnson says *“First, solve the problem. Then, write the code.”*
+John Johnson says _“First, solve the problem. Then, write the code.”_
 
 ![Screenshot](./assets/images/screenshot20221115.png)
+
+## Internationalization
+
+This project uses [python-i18n](https://pypi.org/project/python-i18n/) for translations, an out of the box library for designing and developing software so it can be adapted for users of different cultures and languages. The files are located in the [locales](https://github.com/ncklinux/LocalPythonCMS/tree/main/locales) directory in [YAML](https://yaml.org/) format. [JSON](https://www.json.org) format is also supported, to be used it must be specified explicitly `i18n.set('file_format', 'json')`
 
 ## License
 
