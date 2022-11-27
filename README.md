@@ -7,13 +7,13 @@ A content management system (CMS) written in Python that allows you to create, e
 ```bash
 # Arch Linux - install packages
 $ sudo pacman -Syu
-$ sudo pacman -S python-pyqt5 python-pip
+$ sudo pacman -S python-pyqt5 python-pip sqlite
 $ python -V && pip --version
 $ pip install python-i18n
 
 # Ubuntu - install packages
 $ sudo apt update
-$ sudo apt install python3-pyqt5 python3-pip
+$ sudo apt install python3-pyqt5 python3-pip sqlite3
 $ python3 -V && pip3 --version
 $ pip3 install python-i18n
 
@@ -39,6 +39,23 @@ John Johnson says _“First, solve the problem. Then, write the code.”_
 ## Internationalization
 
 This project uses [python-i18n](https://pypi.org/project/python-i18n/) for translations, an out of the box library for designing and developing software so it can be adapted for users of different cultures and languages. The files are located in the [locales](https://github.com/ncklinux/LocalPythonCMS/tree/main/locales) directory in [YAML](https://yaml.org/) format. [JSON](https://www.json.org) format is also supported, to be used it must be specified explicitly `i18n.set('file_format', 'json')`
+
+## SQLite
+
+Start the sqlite program by typing `sqlite` at the Terminal, followed by the name of the file that holds the [SQLite](https://sqlite.org/cli.html) database
+
+```bash
+# Arch Linux
+$ sqlite localpythoncms.sqlite
+
+# Ubuntu
+$ sqlite3 localpythoncms.sqlite
+
+# SQLite CLI
+sqlite> .tables
+sqlite> select * from users;
+```
+![Screenshot](./assets/images/sqlite_screenshot_20221127.png)
 
 ## License
 
