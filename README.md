@@ -42,19 +42,16 @@ This project uses [python-i18n](https://pypi.org/project/python-i18n/) for trans
 
 ## SQLite
 
-Start the sqlite program by typing `sqlite` at the Terminal, followed by the name of the file that holds the [SQLite](https://sqlite.org/cli.html) database
+Start the [SQLite](https://sqlite.org/cli.html) program by typing `sqlite3` at the Terminal, followed by the name of the file that holds the database.
 
 ```bash
-# Arch Linux
-$ sqlite localpythoncms.sqlite
-
-# Ubuntu
 $ sqlite3 localpythoncms.sqlite
 
 # SQLite CLI
 sqlite> .tables
 sqlite> select * from users;
 ```
+
 ![Screenshot](./assets/images/sqlite_screenshot_20221127.png)
 
 ## License
