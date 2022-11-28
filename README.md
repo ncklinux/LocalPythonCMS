@@ -5,13 +5,13 @@ A content management system (CMS) written in Python that allows you to create, e
 ## Build Setup
 
 ```bash
-# Arch Linux - install packages
+# Arch Linux - required packages
 $ sudo pacman -Syu
 $ sudo pacman -S python-pyqt5 python-pip sqlite
 $ python -V && pip --version
 $ pip install python-i18n
 
-# Ubuntu - install packages
+# Ubuntu - required packages
 $ sudo apt update
 $ sudo apt install python3-pyqt5 python3-pip sqlite3
 $ python3 -V && pip3 --version
@@ -86,6 +86,6 @@ Gonna keep this project as open source forever! [Watch this repo](https://github
 
 Icons from [Google Material Symbols](https://fonts.google.com/icons)
 
-## Frameworks, programming languages and development tools
+## Powered by
 
 <img height="33" style="margin-right: 3px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unix/unix-original.svg" /><img height="33" style="margin-right: 3px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" /><img height="33" style="margin-right: 3px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original-wordmark.svg" /><img height="33" style="margin-right: 3px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" /><img height="33" style="margin-right: 3px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ssh/ssh-original-wordmark.svg" /><img height="33" style="margin-right: 3px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-plain-wordmark.svg" /><img height="33" style="margin-right: 3px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/qt/qt-original.svg" /><img height="33" style="margin-right: 3px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" />
