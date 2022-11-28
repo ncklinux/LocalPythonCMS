@@ -19,6 +19,7 @@ class Database(object):
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             firstname varchar(50) NOT NULL,
             lastname varchar(50) NOT NULL,
+            language varchar(7) NOT NULL,
             email varchar(100) NOT NULL UNIQUE,
             username varchar(50) NOT NULL UNIQUE,
             password varchar(128) NOT NULL)"""
@@ -27,10 +28,11 @@ class Database(object):
     def seeder(self):
         try:
             self.__cur.execute(
-                "INSERT INTO users VALUES (null, ?, ?, ?, ?, ?)",
+                "INSERT INTO users VALUES (null, ?, ?, ?, ?, ?, ?)",
                 (
                     "Firstname",
                     "Lastname",
+                    "en",
                     "test@localpythoncms.local",
                     "test",
                     self.sha256("test"),
@@ -40,6 +42,10 @@ class Database(object):
         except sqlite3.IntegrityError as e:
             print("INTEGRITY ERROR")
             # print(traceback.print_exc())
+
+    def getLanguage(self):
+        self.__cur.execute("SELECT language FROM users")
+        return self.__cur.fetchone()[0]
 
     def sha256(self, string):
         return hashlib.sha256(string.encode("utf-8"), usedforsecurity=True).hexdigest()

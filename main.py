@@ -27,8 +27,6 @@ class Main(QMainWindow):
         self.setStatusBar(self.statusBar)
         self.setStatus(i18n.t("translate.starUpStatus"))
 
-        self.db = Database()
-
         # Menu
         self.topBar = self.menuBar()
         self.topBarFile = self.topBar.addMenu(i18n.t("translate.file"))
@@ -175,7 +173,8 @@ class Main(QMainWindow):
 
 def window():
     app = QApplication(sys.argv)
-    win = Main(app, "en")
+    db = Database()
+    win = Main(app, db.getLanguage())
     win.show()
     sys.exit(app.exec_())
 
