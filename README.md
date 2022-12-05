@@ -64,7 +64,7 @@ This project is distributed FREE & WITHOUT ANY WARRANTY. Report any bugs or sugg
 
 ## Contributing
 
-It's best to open an [issue](https://github.com/ncklinux/LocalPythonCMS/issues/new). It's even better to accompany it with a Pull Request ;)
+Please read the [contribution](https://github.com/ncklinux/LocalPythonCMS/blob/main/.github/CONTRIBUTING.md) guidelines.
 
 ## Commit Messages
 
