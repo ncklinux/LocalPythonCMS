@@ -1,4 +1,5 @@
 import sys
+import webbrowser
 import i18n
 from PyQt5 import QtWidgets, QtCore, QtSvg
 from PyQt5.QtGui import QKeySequence
@@ -61,6 +62,7 @@ class Main(QMainWindow):
         self.topBarHelp.addAction(self.topBarHelpUpdates)
         self.topBarHelpBug = QtWidgets.QAction(i18n.t("translate.reportABug"), self)
         self.topBarHelp.addAction(self.topBarHelpBug)
+        self.topBarHelpBug.triggered.connect(self.topBarHelpBugFunction)
         self.topBarHelpAbout = QtWidgets.QAction(i18n.t("translate.about"), self)
         self.topBarHelp.addAction(self.topBarHelpAbout)
         self.topBarHelpAbout.triggered.connect(self.topBarHelpAboutFunction)
@@ -169,6 +171,9 @@ class Main(QMainWindow):
 
     def setStatus(self, status=None):
         self.statusBar.showMessage(status)
+
+    def topBarHelpBugFunction(self):
+        webbrowser.open_new_tab("https://github.com/ncklinux/LocalPythonCMS/issues/new")
 
 
 def window():
