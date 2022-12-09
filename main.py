@@ -4,6 +4,8 @@ import i18n
 from PyQt5 import QtWidgets, QtCore, QtSvg
 from PyQt5.QtGui import QKeySequence
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDesktopWidget, QStatusBar
+from PyQt5.QtCore import *
+from PyQt5.QtWebEngineWidgets import *
 from datetime import datetime
 from database import Database
 from popup import PopUp
@@ -56,6 +58,11 @@ class Main(QMainWindow):
             i18n.t("translate.documentation"), self
         )
         self.topBarHelp.addAction(self.topBarHelpDocumentation)
+        self.topBarHelpDocumentation.triggered.connect(
+            lambda: self.setBrowserContent(
+                "https://github.com/ncklinux/LocalPythonCMS/blob/main/README.md"
+            )
+        )
         self.topBarHelpUpdates = QtWidgets.QAction(
             i18n.t("translate.checkForUpdates"), self
         )
@@ -174,6 +181,12 @@ class Main(QMainWindow):
 
     def topBarHelpBugFunction(self):
         webbrowser.open_new_tab("https://github.com/ncklinux/LocalPythonCMS/issues/new")
+
+    def setBrowserContent(self, url):
+        self.browser = QWebEngineView()
+        self.browser.setUrl(QUrl(url))
+        self.browser.resize(900, 600)
+        self.browser.show()
 
 
 def window():
