@@ -185,6 +185,7 @@ class Main(QMainWindow):
     def setBrowserContent(self, url):
         self.browser = QWebEngineView()
         self.browser.setUrl(QUrl(url))
+        self.browser.setWindowTitle(i18n.t("translate.documentation"))
         self.browser.resize(900, 600)
         self.browser.show()
 
