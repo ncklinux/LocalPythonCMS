@@ -7,13 +7,13 @@ A content management system (CMS) written in Python that allows you to create, e
 ```bash
 # Arch Linux - required packages
 $ sudo pacman -Syu
-$ sudo pacman -S python-pyqt5 python-pip sqlite
+$ sudo pacman -S python-pyqt5 python-pyqt5-webengine python-pip sqlite
 $ python -V && pip --version
 $ pip install python-i18n
 
 # Ubuntu - required packages
 $ sudo apt update
-$ sudo apt install python3-pyqt5 python3-pip sqlite3
+$ sudo apt install python3-pyqt5 python3-pyqt5.qtwebengine python3-pip sqlite3
 $ python3 -V && pip3 --version
 $ pip3 install python-i18n
 
