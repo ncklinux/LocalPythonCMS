@@ -13,6 +13,7 @@ en:
   settings: Settings
   documentation: Documentation
   checkForUpdates: Check for updates
+  checkForUpdatesNoVersionYetError: Something went wrong! There isn't any versions yet.
   reportABug: Report a bug
   about: About
   useCredentials: Use your sign in credentials

@@ -1,5 +1,6 @@
 import sys
 import webbrowser
+import requests
 import i18n
 from PyQt5 import QtWidgets, QtCore, QtSvg
 from PyQt5.QtGui import QKeySequence
@@ -68,6 +69,7 @@ class Main(QMainWindow):
         )
         self.topBarHelp.addAction(self.topBarHelpUpdates)
         self.topBarHelpBug = QtWidgets.QAction(i18n.t("translate.reportABug"), self)
+        self.topBarHelpUpdates.triggered.connect(self.checkForUpdates)
         self.topBarHelp.addAction(self.topBarHelpBug)
         self.topBarHelpBug.triggered.connect(self.topBarHelpBugFunction)
         self.topBarHelpAbout = QtWidgets.QAction(i18n.t("translate.about"), self)
@@ -188,6 +190,31 @@ class Main(QMainWindow):
         self.browser.setWindowTitle(i18n.t("translate.documentation"))
         self.browser.resize(900, 600)
         self.browser.show()
+
+    def checkForUpdates(self):
+        response = requests.get(
+            "https://api.github.com/repos/ncklinux/LocalPythonCMS/releases/latest"
+        )
+        if response.json()["message"] == "Not Found":
+            print(response.json())
+            self.about = PopUp(
+                i18n.t("translate.checkForUpdates"),
+                '<div style="text-align: center;"><span style="font-size: 14pt; font-weight: 600;">'
+                + i18n.t("translate.softwareName")
+                + "</span><br><span font-size: 12pt;>"
+                + i18n.t("translate.softwareSlogan")
+                + "</span>"
+                + "<br><br><span font-size: 12pt;>"
+                + i18n.t("translate.checkForUpdatesNoVersionYetError")
+                + "</span>"
+                + "</div>",
+            )
+        else:
+            # TODO: Get version, compare and update
+            print("COMPARE VERSIONS")
+        self.about.resize(560, 200)
+        self.about.show()
+        self.center()
 
 
 def window():
