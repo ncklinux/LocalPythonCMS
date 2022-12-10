@@ -13,6 +13,7 @@ fr:
   settings: Paramètres
   documentation: Documentation
   checkForUpdates: Vérifier les mises à jour
+  checkForUpdatesNoVersionYetError: Quelque chose s'est mal passé ! Il n'y a pas encore de version.
   reportABug: Signaler un bogue
   about: À propos de
   useCredentials: Utilisez vos identifiants de connexion
