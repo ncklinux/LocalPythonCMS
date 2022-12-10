@@ -14,15 +14,20 @@ class Database(object):
         self.seeder()
 
     def createTable(self):
-        self.__cur.execute(
-            """CREATE TABLE IF NOT EXISTS users (
+        self.__cur.executescript(
+            """
+            CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             firstname varchar(50) NOT NULL,
             lastname varchar(50) NOT NULL,
             language varchar(7) NOT NULL,
             email varchar(100) NOT NULL UNIQUE,
             username varchar(50) NOT NULL UNIQUE,
-            password varchar(128) NOT NULL)"""
+            password varchar(128) NOT NULL);
+            CREATE TABLE IF NOT EXISTS updates (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            version varchar(50) NOT NULL UNIQUE);
+            """
         )
 
     def seeder(self):
@@ -37,6 +42,11 @@ class Database(object):
                     "test",
                     self.sha256("test"),
                 ),
+            )
+            self.__cur.executescript(
+                """
+                INSERT INTO updates VALUES (null, "v0.00.0");
+                """
             )
             self.__db_connection.commit()
         except sqlite3.IntegrityError as e:
