@@ -17,9 +17,13 @@ fr:
   reportABug: Signaler un bogue
   about: À propos de
   useCredentials: Utilisez vos identifiants de connexion
+  email: Email
   username: Nom d'utilisateur
   password: Mot de passe
   signIn: Se connecter
   createAccount: Créer un compte
   usernameDPrerequisites: Vous pouvez utiliser des lettres, des chiffres et des points
   passwordPrerequisites: Utilisez 8 caractères ou plus avec un mélange de lettres, chiffres et symboles)
+  error: Error
+  registrationFieldsRequired: Tous les champs d'inscription sont obligatoires
+  registrationProgress: Inscription en cours, veuillez patienter..

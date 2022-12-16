@@ -60,5 +60,19 @@ class Database(object):
     def sha256(self, string):
         return hashlib.sha256(string.encode("utf-8"), usedforsecurity=True).hexdigest()
 
+    def registerNewUser(self, email, username, password):
+        try:
+            print(email + " " + username + " " + password)
+        except sqlite3.IntegrityError as e:
+            print("INTEGRITY ERROR: " + e)
+
+        """
+        self.__cur.execute("SELECT 1 FROM users where username = %s", [x])
+        if self.__cur.rowcount:
+            print("Username already exists")
+        else:
+            print("Username doesn't exist")
+        """
+
     def __del__(self):
         self.__db_connection.close()

@@ -8,7 +8,8 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QDesktopWidget, QStatusBa
 from PyQt5.QtCore import *
 from PyQt5.QtWebEngineWidgets import *
 from datetime import datetime
-from database import Database
+from db.database import Database
+from db.actions import Actions
 from popup import PopUp
 
 
@@ -99,23 +100,24 @@ class Main(QMainWindow):
         self.label.move(128, 50)
         self.label.adjustSize()
 
-        self.labelForm = QtWidgets.QLabel(self)
-        self.labelForm.setText(
+        # User login
+        self.loginLabel = QtWidgets.QLabel(self)
+        self.loginLabel.setText(
             "<span font-size: 12pt;>" + i18n.t("translate.useCredentials") + "</span>"
         )
-        self.labelForm.move(50, 154)
-        self.labelForm.adjustSize()
+        self.loginLabel.move(50, 154)
+        self.loginLabel.adjustSize()
 
-        self.inputName = QtWidgets.QLineEdit(self)
-        self.inputName.move(50, 200)
-        self.inputName.setPlaceholderText(i18n.t("translate.username"))
-        self.inputName.setFixedWidth(150)
+        self.loginUsername = QtWidgets.QLineEdit(self)
+        self.loginUsername.move(50, 200)
+        self.loginUsername.setPlaceholderText(i18n.t("translate.username"))
+        self.loginUsername.setFixedWidth(150)
 
-        self.inputPass = QtWidgets.QLineEdit(self)
-        self.inputPass.setEchoMode(QtWidgets.QLineEdit.Password)
-        self.inputPass.move(50, 240)
-        self.inputPass.setPlaceholderText(i18n.t("translate.password"))
-        self.inputPass.setFixedWidth(150)
+        self.loginPassword = QtWidgets.QLineEdit(self)
+        self.loginPassword.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.loginPassword.move(50, 240)
+        self.loginPassword.setPlaceholderText(i18n.t("translate.password"))
+        self.loginPassword.setFixedWidth(150)
 
         self.btnLogin = QtWidgets.QPushButton(self)
         self.btnLogin.setText(i18n.t("translate.signIn"))
@@ -123,27 +125,9 @@ class Main(QMainWindow):
         self.btnLogin.move(50, 280)
         self.btnLogin.clicked.connect(self.btnLoginEvent)
 
-        self.btnRegister = QtWidgets.QPushButton(self)
-        self.btnRegister.setText(i18n.t("translate.createAccount"))
-        self.btnRegister.setMinimumWidth(150)
-        self.btnRegister.move(50, 320)
-        self.btnRegister.clicked.connect(self.btnRegisterEvent)
-
-        """
-        grid.addWidget(self.btnLogin, 0, 0, QtCore.Qt.AlignLeft | QtCore.Qt.AlignBottom)
-        grid.addWidget(
-            self.btnRegister, 0, 1, QtCore.Qt.AlignRight | QtCore.Qt.AlignBottom
-        )
-        """
-
-    def btnLoginEvent(self):
-        self.labelForm.setText(
-            "<span font-size: 12pt;>" + i18n.t("translate.useCredentials") + "</span>"
-        )
-        self.labelForm.adjustSize()
-
-    def btnRegisterEvent(self):
-        self.labelForm.setText(
+        # New user registration
+        self.registerLabel = QtWidgets.QLabel(self)
+        self.registerLabel.setText(
             "<span font-size: 12pt;><b>"
             + i18n.t("translate.username")
             + "</b>: "
@@ -154,7 +138,83 @@ class Main(QMainWindow):
             + i18n.t("translate.passwordPrerequisites")
             + "</span>"
         )
-        self.labelForm.adjustSize()
+        self.registerLabel.move(50, 354)
+        self.registerLabel.adjustSize()
+
+        self.registerFirstname = QtWidgets.QLineEdit(self)
+        self.registerFirstname.move(50, 400)
+        self.registerFirstname.setPlaceholderText(i18n.t("translate.firstname"))
+        self.registerFirstname.setFixedWidth(150)
+
+        self.registerLastname = QtWidgets.QLineEdit(self)
+        self.registerLastname.move(50, 440)
+        self.registerLastname.setPlaceholderText(i18n.t("translate.lastname"))
+        self.registerLastname.setFixedWidth(150)
+
+        self.registerEmail = QtWidgets.QLineEdit(self)
+        self.registerEmail.move(50, 480)
+        self.registerEmail.setPlaceholderText(i18n.t("translate.email"))
+        self.registerEmail.setFixedWidth(150)
+
+        self.registerUsername = QtWidgets.QLineEdit(self)
+        self.registerUsername.move(50, 520)
+        self.registerUsername.setPlaceholderText(i18n.t("translate.username"))
+        self.registerUsername.setFixedWidth(150)
+
+        self.registerPassword = QtWidgets.QLineEdit(self)
+        self.registerPassword.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.registerPassword.move(50, 560)
+        self.registerPassword.setPlaceholderText(i18n.t("translate.password"))
+        self.registerPassword.setFixedWidth(150)
+
+        self.btnRegister = QtWidgets.QPushButton(self)
+        self.btnRegister.setText(i18n.t("translate.createAccount"))
+        self.btnRegister.setMinimumWidth(150)
+        self.btnRegister.move(50, 600)
+        self.btnRegister.clicked.connect(self.btnRegisterEvent)
+
+        """
+        grid.addWidget(self.btnLogin, 0, 0, QtCore.Qt.AlignLeft | QtCore.Qt.AlignBottom)
+        grid.addWidget(
+            self.btnRegister, 0, 1, QtCore.Qt.AlignRight | QtCore.Qt.AlignBottom
+        )
+        """
+
+    def btnLoginEvent(self):
+        self.loginLabel.setText(
+            "<span font-size: 12pt;>" + i18n.t("translate.useCredentials") + "</span>"
+        )
+        self.loginLabel.adjustSize()
+        # print(self.loginUsername.text())
+        # print(self.loginPassword.text())
+
+    def btnRegisterEvent(self):
+        if (
+            self.registerFirstname.text()
+            and self.registerLastname.text()
+            and self.registerEmail.text()
+            and self.registerUsername.text()
+            and self.registerPassword.text()
+        ):
+            dba = Actions()
+            dba.registerNewUser(
+                self.registerFirstname.text(),
+                self.registerLastname.text(),
+                self.registerEmail.text(),
+                self.registerUsername.text(),
+                self.registerPassword.text(),
+            )
+            self.registerLabel.setText(
+                "<span font-size: 12pt;>"
+                + i18n.t("translate.registrationProgress")
+                + "</span>"
+            )
+        else:
+            self.registerLabel.setText(
+                "<span font-size: 12pt;>"
+                + i18n.t("translate.registrationFieldsRequired")
+                + "</span>"
+            )
 
     def topBarFileExitFunction(self):
         self.close()

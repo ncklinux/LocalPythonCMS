@@ -17,12 +17,18 @@ en:
   reportABug: Report a bug
   about: About
   useCredentials: Use your sign in credentials
+  email: Email
+  firstname: Firstname
+  lastname: Lastname
   username: Username
   password: Password
   signIn: Sign in
   createAccount: Create account
   usernameDPrerequisites: You can use letters, numbers & periods
   passwordPrerequisites: Use 8 or more characters with a mix of letters, numbers & symbols)
+  error: Error
+  registrationFieldsRequired: All registration fields are required
+  registrationProgress: Registration in progress, please wait..
 
 
 
