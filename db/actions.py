@@ -8,7 +8,7 @@ class Actions(object):
     __DB_LOCATION = "localpythoncms.sqlite"
 
     def __init__(self):
-        self.__db_connection = sqlite3.connect(self.__DB_LOCATION, timeout=1)
+        self.__db_connection = sqlite3.connect(self.__DB_LOCATION)
         self.__cur = self.__db_connection.cursor()
 
     def registerNewUser(self, firstname, lastname, email, username, password):
