@@ -196,19 +196,20 @@ class Main(QMainWindow):
             and self.registerUsername.text()
             and self.registerPassword.text()
         ):
-            dba = Actions()
-            dba.registerNewUser(
+            self.registerLabel.setText(
+                "<span font-size: 12pt;>"
+                + i18n.t("translate.registrationProgress")
+                + "</span>"
+            )
+            dbActions = Actions()
+            dbActions.registerNewUser(
                 self.registerFirstname.text(),
                 self.registerLastname.text(),
                 self.registerEmail.text(),
                 self.registerUsername.text(),
                 self.registerPassword.text(),
             )
-            self.registerLabel.setText(
-                "<span font-size: 12pt;>"
-                + i18n.t("translate.registrationProgress")
-                + "</span>"
-            )
+            del dbActions
         else:
             self.registerLabel.setText(
                 "<span font-size: 12pt;>"
@@ -281,6 +282,7 @@ def window():
     app = QApplication(sys.argv)
     db = Database()
     win = Main(app, db.getLanguage())
+    del db
     win.show()
     sys.exit(app.exec_())
 
