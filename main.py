@@ -210,12 +210,29 @@ class Main(QMainWindow):
                 self.registerPassword.text(),
             )
             del dbActions
+            self.btnRegister.setEnabled(False)
+            self.cleanFormFields()
+            self.registerLabel.setText(
+                "<span font-size: 12pt;>"
+                + i18n.t("translate.registrationSuccess")
+                + "</span>"
+            )
+
         else:
             self.registerLabel.setText(
                 "<span font-size: 12pt;>"
                 + i18n.t("translate.registrationFieldsRequired")
                 + "</span>"
             )
+
+    def cleanFormFields(self):
+        self.loginPassword.clear()
+        self.loginUsername.clear()
+        self.registerFirstname.clear()
+        self.registerLastname.clear()
+        self.registerEmail.clear()
+        self.registerUsername.clear()
+        self.registerPassword.clear()
 
     def topBarFileExitFunction(self):
         self.close()
