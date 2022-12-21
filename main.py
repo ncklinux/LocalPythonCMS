@@ -8,6 +8,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QDesktopWidget, QStatusBa
 from PyQt5.QtCore import *
 from PyQt5.QtWebEngineWidgets import *
 from datetime import datetime
+from common.functions import Functions
 from db.database import Database
 from db.actions import Actions
 from popup import PopUp
@@ -189,10 +190,11 @@ class Main(QMainWindow):
         # print(self.loginPassword.text())
 
     def btnRegisterEvent(self):
+        commonFun = Functions()
         if (
             self.registerFirstname.text()
             and self.registerLastname.text()
-            and self.registerEmail.text()
+            and commonFun.validateEmail(self.registerEmail.text())
             and self.registerUsername.text()
             and self.registerPassword.text()
         ):
