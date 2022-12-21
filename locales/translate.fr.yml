@@ -27,4 +27,4 @@ fr:
   error: Error
   registrationFieldsRequired: Tous les champs d'inscription sont obligatoires
   registrationProgress: Inscription en cours, veuillez patienter..
-  registrationSuccess: Le nouvel utilisateur s'est enregistré avec succès!
+  registrationSuccess: Le nouvel utilisateur a été enregistré avec succès !

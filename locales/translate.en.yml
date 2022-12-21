@@ -29,7 +29,7 @@ en:
   error: Error
   registrationFieldsRequired: All registration fields are required
   registrationProgress: Registration in progress, please wait..
-  registrationSuccess: The new user has successfully registered!
+  registrationSuccess: The new user has been successfully registered!
 
 
 
