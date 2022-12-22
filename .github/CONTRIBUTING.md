@@ -9,7 +9,7 @@ Most types of contribution are encouraged and appreciated. See the contents belo
 For those just getting started with pull requests, GitHub has a [how to](https://help.github.com/articles/using-pull-requests/).
 
 - Always open an [issue](https://github.com/ncklinux/LocalPythonCMS/issues/new) and provide as much context as you can about what you're running into (it is best to search for existing [issues](https://github.com/ncklinux/LocalPythonCMS/issues) that might help you).
-- Provide programming language, project, platform and OS versions (nodejs, npm, PHP, Python, Kernel etc), depending on what seems relevant.
+- Provide programming language, project, platform and OS versions (Python, pip, Kernel etc), depending on what seems relevant.
 - Make sure that you are using the latest version from “base” branch.
 - Sign commits locally by using [GPG](https://docs.github.com/en/authentication/managing-commit-signature-verification/signing-commits).
 - Follow the [Conventional Commits](https://www.conventionalcommits.org) specification and the commit message should never exceed 100 characters.
