@@ -18,6 +18,8 @@ fr:
   about: À propos de
   useCredentials: Utilisez vos identifiants de connexion
   email: Email
+  firstname: Prénom
+  lastname: Nom de famille
   username: Nom d'utilisateur
   password: Mot de passe
   signIn: Se connecter
