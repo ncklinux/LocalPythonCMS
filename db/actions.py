@@ -5,7 +5,7 @@ from common.functions import Functions
 
 class Actions(object):
 
-    __DB_LOCATION = "localpythoncms.sqlite"
+    __DB_LOCATION = "assets/sqlite/localpythoncms.sqlite"
 
     def __init__(self):
         self.__db_connection = sqlite3.connect(self.__DB_LOCATION)
