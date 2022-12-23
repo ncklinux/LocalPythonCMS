@@ -1,7 +1,7 @@
 fr:
   softwareName: LocalPythonCMS
   softwareSlogan: Créez, éditez et publiez du contenu web!
-  softwareTitle: LocalPythonCMS - Créez, éditez et publiez du contenu web !
+  softwareTitle: LocalPythonCMS - Créez, éditez et publiez du contenu web!
   starUpStatus: En vous connectant, vous acceptez la licence et l'accord de non-responsabilité.
   file: Fichier
   edit: Modifier
@@ -13,11 +13,13 @@ fr:
   settings: Paramètres
   documentation: Documentation
   checkForUpdates: Vérifier les mises à jour
-  checkForUpdatesNoVersionYetError: Quelque chose s'est mal passé ! Il n'y a pas encore de version.
+  checkForUpdatesNoVersionYetError: Quelque chose s'est mal passé! Il n'y a pas encore de version.
   reportABug: Signaler un bogue
   about: À propos de
   useCredentials: Utilisez vos identifiants de connexion
   email: Email
+  firstname: Prénom
+  lastname: Nom de famille
   username: Nom d'utilisateur
   password: Mot de passe
   signIn: Se connecter
@@ -27,4 +29,5 @@ fr:
   error: Error
   registrationFieldsRequired: Tous les champs d'inscription sont obligatoires
   registrationProgress: Inscription en cours, veuillez patienter..
-  registrationSuccess: Le nouvel utilisateur a été enregistré avec succès !
+  registrationSuccess: Le nouvel utilisateur a été enregistré avec succès!
+  registrationFailed: Cet e-mail appartient à un autre utilisateur enregistré !

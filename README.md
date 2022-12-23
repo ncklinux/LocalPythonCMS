@@ -45,7 +45,7 @@ This project uses [python-i18n](https://pypi.org/project/python-i18n/) for trans
 Start the [SQLite](https://sqlite.org/cli.html) program by typing `sqlite3` at the Terminal, followed by the name of the file that holds the database.
 
 ```bash
-$ sqlite3 localpythoncms.sqlite
+$ sqlite3 assets/sqlite/localpythoncms.sqlite
 
 # SQLite CLI
 sqlite> .tables

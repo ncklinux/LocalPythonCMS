@@ -30,8 +30,4 @@ en:
   registrationFieldsRequired: All registration fields are required
   registrationProgress: Registration in progress, please wait..
   registrationSuccess: The new user has been successfully registered!
-
-
-
-
-
+  registrationFailed: This email belongs to another registered user!
