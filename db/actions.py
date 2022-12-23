@@ -13,19 +13,26 @@ class Actions(object):
 
     def registerNewUser(self, firstname, lastname, email, username, password):
         try:
-            commonFun = Functions()
-            self.__cur.execute(
-                "INSERT INTO users VALUES (null, ?, ?, ?, ?, ?, ?)",
-                (
-                    firstname,
-                    lastname,
-                    "en",
-                    email,
-                    username,
-                    commonFun.sha256(password),
-                ),
-            )
-            self.__db_connection.commit()
+            self.__cur.execute("SELECT 1 FROM users where email = ?", [email])
+            data = self.__cur.fetchall()
+            if len(data) == 0:
+                commonFun = Functions()
+                self.__cur.execute(
+                    "INSERT INTO users VALUES (null, ?, ?, ?, ?, ?, ?)",
+                    (
+                        firstname,
+                        lastname,
+                        "en",
+                        email,
+                        username,
+                        commonFun.sha256(password),
+                    ),
+                )
+                self.__db_connection.commit()
+                return True
+            else:
+                return False
+
         except sqlite3.IntegrityError as e:
             print("INTEGRITY ERROR: " + e)
 

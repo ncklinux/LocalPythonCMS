@@ -204,22 +204,27 @@ class Main(QMainWindow):
                 + "</span>"
             )
             dbActions = Actions()
-            dbActions.registerNewUser(
+            if dbActions.registerNewUser(
                 self.registerFirstname.text(),
                 self.registerLastname.text(),
                 self.registerEmail.text(),
                 self.registerUsername.text(),
                 self.registerPassword.text(),
-            )
-            del dbActions
-            self.btnRegister.setEnabled(False)
-            self.cleanFormFields()
-            self.registerLabel.setText(
-                "<span font-size: 12pt;>"
-                + i18n.t("translate.registrationSuccess")
-                + "</span>"
-            )
-
+            ):
+                del dbActions
+                # self.btnRegister.setEnabled(False)
+                self.cleanFormFields()
+                self.registerLabel.setText(
+                    "<span font-size: 12pt;>"
+                    + i18n.t("translate.registrationSuccess")
+                    + "</span>"
+                )
+            else:
+                self.registerLabel.setText(
+                    "<span font-size: 12pt;>"
+                    + i18n.t("translate.registrationFailed")
+                    + "</span>"
+                )
         else:
             self.registerLabel.setText(
                 "<span font-size: 12pt;>"
