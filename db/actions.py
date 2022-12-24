@@ -11,7 +11,7 @@ class Actions(object):
         self.__db_connection = sqlite3.connect(self.__DB_LOCATION)
         self.__cur = self.__db_connection.cursor()
 
-    def registerNewUser(self, firstname, lastname, email, username, password):
+    def registerNewUser(self, firstname, lastname, email, username, password, language):
         try:
             self.__cur.execute("SELECT 1 FROM users where email = ?", [email])
             data = self.__cur.fetchall()
@@ -22,7 +22,7 @@ class Actions(object):
                     (
                         firstname,
                         lastname,
-                        "en",
+                        language,
                         email,
                         username,
                         commonFun.sha256(password),

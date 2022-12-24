@@ -2,9 +2,16 @@ import sys
 import webbrowser
 import requests
 import i18n
+import pandas as pd
 from PyQt5 import QtWidgets, QtCore, QtSvg
 from PyQt5.QtGui import QKeySequence
-from PyQt5.QtWidgets import QApplication, QMainWindow, QDesktopWidget, QStatusBar
+from PyQt5.QtWidgets import (
+    QApplication,
+    QMainWindow,
+    QDesktopWidget,
+    QStatusBar,
+    QComboBox,
+)
 from PyQt5.QtCore import *
 from PyQt5.QtWebEngineWidgets import *
 from datetime import datetime
@@ -168,10 +175,23 @@ class Main(QMainWindow):
         self.registerPassword.setPlaceholderText(i18n.t("translate.password"))
         self.registerPassword.setFixedWidth(230)
 
+        self.registerLanguage = QComboBox(self)
+        self.registerLanguageList = pd.DataFrame(
+            {
+                "LANG": ["English", "French"],
+                "INITIALS": ["en", "fr"],
+            }
+        )
+
+        for item in self.registerLanguageList.itertuples():
+            self.registerLanguage.addItem(item.LANG, item.INITIALS)
+        self.registerLanguage.move(50, 600)
+        self.registerLanguage.setFixedWidth(230)
+
         self.btnRegister = QtWidgets.QPushButton(self)
         self.btnRegister.setText(i18n.t("translate.createAccount"))
         self.btnRegister.setMinimumWidth(230)
-        self.btnRegister.move(50, 600)
+        self.btnRegister.move(50, 640)
         self.btnRegister.clicked.connect(self.btnRegisterEvent)
 
         """
@@ -210,6 +230,7 @@ class Main(QMainWindow):
                 self.registerEmail.text(),
                 self.registerUsername.text(),
                 self.registerPassword.text(),
+                self.registerLanguage.currentData(),
             ):
                 del dbActions
                 # self.btnRegister.setEnabled(False)
