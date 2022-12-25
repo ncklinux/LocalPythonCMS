@@ -178,13 +178,13 @@ class Main(QMainWindow):
         self.registerLanguage = QComboBox(self)
         self.registerLanguageList = pd.DataFrame(
             {
-                "LANG": ["English", "French"],
-                "INITIALS": ["en", "fr"],
+                "LANGUAGE": ["English", "French"],
+                "COUNTRYCODES": ["en", "fr"],
             }
         )
 
         for item in self.registerLanguageList.itertuples():
-            self.registerLanguage.addItem(item.LANG, item.INITIALS)
+            self.registerLanguage.addItem(item.LANGUAGE, item.COUNTRYCODES)
         self.registerLanguage.move(50, 600)
         self.registerLanguage.setFixedWidth(230)
 
