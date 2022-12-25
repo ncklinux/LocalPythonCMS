@@ -2,7 +2,9 @@ import sys
 import webbrowser
 import requests
 import i18n
+import glob
 import pandas as pd
+import country_converter as coco
 from PyQt5 import QtWidgets, QtCore, QtSvg
 from PyQt5.QtGui import QKeySequence
 from PyQt5.QtWidgets import (
@@ -31,7 +33,7 @@ class Main(QMainWindow):
     def initUI(self):
         i18n.load_path.append("locales")
         i18n.set("locale", self.locale)
-        i18n.set("fallback", "en")
+        i18n.set("fallback", "us")
         screen = self.app.primaryScreen()
         rect = screen.availableGeometry()
         self.setGeometry(50, 100, rect.width() - 200, rect.height() - 200)
@@ -175,14 +177,18 @@ class Main(QMainWindow):
         self.registerPassword.setPlaceholderText(i18n.t("translate.password"))
         self.registerPassword.setFixedWidth(230)
 
+        commonFun = Functions()
         self.registerLanguage = QComboBox(self)
         self.registerLanguageList = pd.DataFrame(
             {
-                "LANGUAGE": ["English", "French"],
-                "COUNTRYCODES": ["en", "fr"],
+                "COUNTRYCODES": commonFun.getCountryCodesFromLocales(),
             }
         )
-
+        self.registerLanguageList[
+            "LANGUAGE"
+        ] = self.registerLanguageList.COUNTRYCODES.apply(
+            lambda x: coco.convert(names=x, to="name_short", not_found=None)
+        )
         for item in self.registerLanguageList.itertuples():
             self.registerLanguage.addItem(item.LANGUAGE, item.COUNTRYCODES)
         self.registerLanguage.move(50, 600)
