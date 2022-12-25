@@ -39,7 +39,7 @@ class Database(object):
                 (
                     "Firstname",
                     "Lastname",
-                    "en",
+                    "us",
                     "test@localpythoncms.local",
                     "test",
                     commonFun.sha256("test"),

@@ -9,13 +9,13 @@ A content management system (CMS) written in Python that allows you to create, e
 $ sudo pacman -Syu
 $ sudo pacman -S python-pyqt5 python-pyqt5-webengine python-pip sqlite
 $ python -V && pip --version
-$ pip install python-i18n pandas
+$ pip install python-i18n pandas country_converter
 
 # Ubuntu - required packages
 $ sudo apt update
 $ sudo apt install python3-pyqt5 python3-pyqt5.qtwebengine python3-pip sqlite3
 $ python3 -V && pip3 --version
-$ pip3 install python-i18n pandas
+$ pip3 install python-i18n pandas country_converter
 
 # clone repository
 $ git clone git@github.com:ncklinux/LocalPythonCMS.git
