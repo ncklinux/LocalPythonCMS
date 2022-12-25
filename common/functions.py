@@ -1,7 +1,6 @@
 import os
 import re
 import hashlib
-import glob
 
 
 class Functions(object):
