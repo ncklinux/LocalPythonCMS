@@ -31,3 +31,4 @@ fr:
   registrationProgress: Inscription en cours, veuillez patienter..
   registrationSuccess: Le nouvel utilisateur a été enregistré avec succès!
   registrationFailed: Cet e-mail appartient à un autre utilisateur enregistré!
+  registrationSelectLanguage: Sélectionner la langue
