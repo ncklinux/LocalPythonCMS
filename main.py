@@ -185,12 +185,12 @@ class Main(QMainWindow):
             }
         )
         self.registerLanguageList[
-            "LANGUAGE"
+            "LANGUAGES"
         ] = self.registerLanguageList.COUNTRYCODES.apply(
             lambda x: coco.convert(names=x, to="name_short", not_found=None)
         )
         for item in self.registerLanguageList.itertuples():
-            self.registerLanguage.addItem(item.LANGUAGE, item.COUNTRYCODES)
+            self.registerLanguage.addItem(item.LANGUAGES, item.COUNTRYCODES)
         self.registerLanguage.move(50, 600)
         self.registerLanguage.setFixedWidth(230)
 
