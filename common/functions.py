@@ -1,5 +1,7 @@
+import os
 import re
 import hashlib
+import glob
 
 
 class Functions(object):
@@ -10,3 +12,12 @@ class Functions(object):
         if not re.fullmatch(r"[^@]+@[^@]+\.[^@]+", string):
             return False
         return True
+
+    def getCountryCodesFromLocales(self):
+        directory = "locales"
+        fileFormat = "*.yml"
+        languages = []
+        for item in os.listdir(directory):
+            if item.endswith(fileFormat[1:]):
+                languages.append(re.split("[.]", str(item))[-2])
+        return languages
