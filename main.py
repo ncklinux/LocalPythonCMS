@@ -189,6 +189,17 @@ class Main(QMainWindow):
         ] = self.registerLanguageList.COUNTRYCODES.apply(
             lambda x: coco.convert(names=x, to="name_short", not_found=None)
         )
+        self.registerLanguageDefault = pd.DataFrame(
+            {
+                "COUNTRYCODES": [""],
+                "LANGUAGES": [i18n.t("translate.registrationSelectLanguage")],
+            }
+        )
+        self.registerLanguageList = pd.concat(
+            [self.registerLanguageDefault, self.registerLanguageList],
+            ignore_index=True,
+            sort=False,
+        )
         for item in self.registerLanguageList.itertuples():
             self.registerLanguage.addItem(item.LANGUAGES, item.COUNTRYCODES)
         self.registerLanguage.move(50, 600)
@@ -223,6 +234,7 @@ class Main(QMainWindow):
             and commonFun.validateEmail(self.registerEmail.text())
             and self.registerUsername.text()
             and self.registerPassword.text()
+            and self.registerLanguage.currentData().strip()
         ):
             self.registerLabel.setText(
                 "<span font-size: 12pt;>"
