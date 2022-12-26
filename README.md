@@ -7,13 +7,13 @@ A content management system (CMS) written in Python that allows you to create, e
 ```bash
 # Arch Linux - required packages
 $ sudo pacman -Syu
-$ sudo pacman -S python-pyqt5 python-pyqt5-webengine python-pip sqlite
+$ sudo pacman -S python-pyqt5 python-pyqt5-webengine python-pip sqlite openssh
 $ python -V && pip --version
 $ pip install python-i18n pandas country_converter
 
 # Ubuntu - required packages
 $ sudo apt update
-$ sudo apt install python3-pyqt5 python3-pyqt5.qtwebengine python3-pip sqlite3
+$ sudo apt install python3-pyqt5 python3-pyqt5.qtwebengine python3-pip sqlite3 openssh-client
 $ python3 -V && pip3 --version
 $ pip3 install python-i18n pandas country_converter
 
@@ -28,7 +28,7 @@ $ python main.py
 
 ## Motivation
 
-Having a local CMS that publishes only the content you choose, on a remote server (securely via SSH and Ed25519 key pairs) is great for many reasons, for example maintainability! Being able to update the CMS without hassle and system and network administration knowledge (just like updating your web browser) makes it fun :wink:
+Having a local CMS that publishes only the content you choose, on a remote server (securely via [SSH](https://www.openssh.com) and [Ed25519](https://ed25519.cr.yp.to/) elliptic curve signature key pair) is great for many reasons, for example maintainability! Being able to update the CMS without hassle and system and network administration knowledge (just like updating your web browser) makes it fun :wink:
 
 Most importantly, you own your data, locally! Keeping your data stored on your local computer :computer: (including backups) makes it safe :lock: by default! Simply because, there is no reason to store sensitive data on a remote server and leave them there, without that data even needing (in most times) to be called and used on the websites.
 
