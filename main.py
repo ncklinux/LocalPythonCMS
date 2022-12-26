@@ -118,10 +118,10 @@ class Main(QMainWindow):
         self.loginLabel.move(50, 154)
         self.loginLabel.adjustSize()
 
-        self.loginUsername = QtWidgets.QLineEdit(self)
-        self.loginUsername.move(50, 200)
-        self.loginUsername.setPlaceholderText(i18n.t("translate.username"))
-        self.loginUsername.setFixedWidth(230)
+        self.loginEmail = QtWidgets.QLineEdit(self)
+        self.loginEmail.move(50, 200)
+        self.loginEmail.setPlaceholderText(i18n.t("translate.email"))
+        self.loginEmail.setFixedWidth(230)
 
         self.loginPassword = QtWidgets.QLineEdit(self)
         self.loginPassword.setEchoMode(QtWidgets.QLineEdit.Password)
@@ -223,7 +223,7 @@ class Main(QMainWindow):
             "<span font-size: 12pt;>" + i18n.t("translate.useCredentials") + "</span>"
         )
         self.loginLabel.adjustSize()
-        # print(self.loginUsername.text())
+        # print(self.loginEmail.text())
         # print(self.loginPassword.text())
 
     def btnRegisterEvent(self):
@@ -273,7 +273,7 @@ class Main(QMainWindow):
 
     def cleanFormFields(self):
         self.loginPassword.clear()
-        self.loginUsername.clear()
+        self.loginEmail.clear()
         self.registerFirstname.clear()
         self.registerLastname.clear()
         self.registerEmail.clear()
