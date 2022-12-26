@@ -263,6 +263,7 @@ class Main(QMainWindow):
         self.registerEmail.clear()
         self.registerUsername.clear()
         self.registerPassword.clear()
+        self.registerLanguage.setCurrentIndex(0)
 
     def topBarFileExitFunction(self):
         self.close()
