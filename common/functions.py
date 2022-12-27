@@ -10,7 +10,9 @@ class Functions(object):
         return hashlib.sha256(string.encode("utf-8"), usedforsecurity=True).hexdigest()
 
     def validateEmail(self, string):
-        if not re.fullmatch(r"[^@]+@[^@]+\.[^@]+", string):
+        if not re.fullmatch(
+            r"(^[a-zA-Z0-9'_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", string
+        ):
             return False
         return True
 
