@@ -36,5 +36,28 @@ class Actions(object):
         except sqlite3.IntegrityError as e:
             print("INTEGRITY ERROR: " + e)
 
+    def loginUser(self, email, password):
+        try:
+            self.__cur.execute("SELECT 1 FROM users where email = ?", [email])
+            data = self.__cur.fetchall()
+            if len(data) == 1:
+                commonFun = Functions()
+                self.__cur.execute(
+                    "SELECT * FROM users WHERE email = ? AND password = ?",
+                    (
+                        email,
+                        commonFun.sha256(password),
+                    ),
+                )
+                self.__db_connection.commit()
+                if self.__cur.fetchall():
+                    return True
+                else:
+                    return False
+            else:
+                return False
+        except sqlite3.IntegrityError as e:
+            print("INTEGRITY ERROR: " + e)
+
     def __del__(self):
         self.__db_connection.close()

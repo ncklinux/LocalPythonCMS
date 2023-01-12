@@ -206,9 +206,35 @@ class Main(QMainWindow):
         self.loginLabel.setText(
             "<span font-size: 12pt;>" + i18n.t("translate.useCredentials") + "</span>"
         )
+        commonFun = Functions()
+        if (
+            commonFun.validateEmail(self.loginEmail.text())
+            and self.loginPassword.text()
+        ):
+            dbActions = Actions()
+            if dbActions.loginUser(
+                self.loginEmail.text(),
+                self.loginPassword.text(),
+            ):
+                print(
+                    dbActions.loginUser(
+                        self.loginEmail.text(), self.loginPassword.text()
+                    )
+                )
+                del dbActions
+            else:
+                self.loginLabel.setText(
+                    "<span font-size: 12pt;>"
+                    + i18n.t("translate.loginFailed")
+                    + "</span>"
+                )
+        else:
+            self.loginLabel.setText(
+                "<span font-size: 12pt;>"
+                + i18n.t("translate.loginFieldsRequired")
+                + "</span>"
+            )
         self.loginLabel.adjustSize()
-        # print(self.loginEmail.text())
-        # print(self.loginPassword.text())
 
     def btnRegisterEvent(self):
         commonFun = Functions()

@@ -32,3 +32,5 @@ us:
   registrationSuccess: The new user has been successfully registered!
   registrationFailed: This email belongs to another registered user!
   registrationSelectLanguage: Select Language
+  loginFieldsRequired: All fields are required
+  loginFailed: The login process failed, please try again
