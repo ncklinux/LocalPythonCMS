@@ -11,12 +11,14 @@ class Actions(object):
         self.__db_connection = sqlite3.connect(self.__DB_LOCATION)
         self.__cur = self.__db_connection.cursor()
 
-    def registerNewUser(self, firstname, lastname, email, username, password, language):
+    def register_new_user(
+        self, firstname, lastname, email, username, password, language
+    ):
         try:
             self.__cur.execute("SELECT 1 FROM users where email = ?", [email])
             data = self.__cur.fetchall()
             if len(data) == 0:
-                commonFun = Functions()
+                common_functions = Functions()
                 self.__cur.execute(
                     "INSERT INTO users VALUES (null, ?, ?, ?, ?, ?, ?)",
                     (
@@ -25,7 +27,7 @@ class Actions(object):
                         language,
                         email,
                         username,
-                        commonFun.sha256(password),
+                        common_functions.sha256(password),
                     ),
                 )
                 self.__db_connection.commit()
@@ -36,17 +38,17 @@ class Actions(object):
         except sqlite3.IntegrityError as e:
             print("INTEGRITY ERROR: " + e)
 
-    def loginUser(self, email, password):
+    def login_user(self, email, password):
         try:
             self.__cur.execute("SELECT 1 FROM users where email = ?", [email])
             data = self.__cur.fetchall()
             if len(data) == 1:
-                commonFun = Functions()
+                common_functions = Functions()
                 self.__cur.execute(
                     "SELECT * FROM users WHERE email = ? AND password = ?",
                     (
                         email,
-                        commonFun.sha256(password),
+                        common_functions.sha256(password),
                     ),
                 )
                 self.__db_connection.commit()
