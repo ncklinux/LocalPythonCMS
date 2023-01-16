@@ -54,9 +54,9 @@ sqlite> select * from users;
 
 ![Screenshot](./assets/images/sqlite_screenshot_20221127.png)
 
-## PEP8
+## PEP8 & Black
 
-This project follows the [PEP8](https://peps.python.org/pep-0008/) style proposal, which provides guidelines and best practices for writing Python code. For formatting use [Black](https://pypi.org/project/black/), several plugins/addons are available for most code editors, makes code review faster by producing the smallest diffs possible.
+This project follows the [PEP8](https://peps.python.org/pep-0008/) style, which provides guidelines and best practices for writing Python code, and [Black](https://pypi.org/project/black/) for formatting, that makes code review faster by producing the smallest diffs possible.
 
 ## License
 
