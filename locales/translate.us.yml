@@ -1,8 +1,8 @@
 us:
-  softwareName: LocalPythonCMS
-  softwareSlogan: Create, edit, and publish web content!
-  softwareTitle: LocalPythonCMS - Create, edit, and publish web content!
-  starUpStatus: By logging in, you agree to the license and the disclaimer agreement.
+  software_name: LocalPythonCMS
+  software_slogan: Create, edit, and publish web content!
+  software_title: LocalPythonCMS - Create, edit, and publish web content!
+  star_up_status: By logging in, you agree to the license and the disclaimer agreement.
   file: File
   edit: Edit
   help: Help
@@ -12,25 +12,25 @@ us:
   quit: Quit
   settings: Settings
   documentation: Documentation
-  checkForUpdates: Check for updates
-  checkForUpdatesNoVersionYetError: Something went wrong! There isn't any versions yet.
-  reportABug: Report a bug
+  check_for_updates: Check for updates
+  check_for_updates_no_version_yet_error: Something went wrong! There isn't any versions yet.
+  report_a_bug: Report a bug
   about: About
-  useCredentials: Use your sign in credentials
+  use_sign_in_credentials: Use your sign in credentials
   email: Email
   firstname: Firstname
   lastname: Lastname
   username: Username
   password: Password
-  signIn: Sign in
-  createAccount: Create account
-  usernameDPrerequisites: You can use letters, numbers & periods
-  passwordPrerequisites: Use 8 or more characters with a mix of letters, numbers & symbols)
+  sign_in: Sign in
+  create_account: Create account
+  username_prerequisites: You can use letters, numbers & periods
+  password_prerequisites: Use 8 or more characters with a mix of letters, numbers & symbols)
   error: Error
-  registrationFieldsRequired: All registration fields are required
-  registrationProgress: Registration in progress, please wait..
-  registrationSuccess: The new user has been successfully registered!
-  registrationFailed: This email belongs to another registered user!
-  registrationSelectLanguage: Select Language
-  loginFieldsRequired: All fields are required
-  loginFailed: The login process failed, please try again
+  registration_fields_required: All registration fields are required
+  registration_progress: Registration in progress, please wait..
+  registration_success: The new user has been successfully registered!
+  registration_failed: This email belongs to another registered user!
+  registration_select_language: Select Language
+  login_fields_required: All fields are required
+  login_failed: The login process failed, please try again
