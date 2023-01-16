@@ -56,17 +56,17 @@ class Main(QMainWindow):
         self.top_bar_help = self.top_bar.addMenu(i18n.t("translate.help"))
 
         # File
-        self.topBarFileManager = QtWidgets.QAction(i18n.t("translate.manager"), self)
-        self.top_bar_file.addAction(self.topBarFileManager)
-        self.topBarFileImport = QtWidgets.QAction(i18n.t("translate.import"), self)
-        self.top_bar_file.addAction(self.topBarFileImport)
-        self.topBarFileExport = QtWidgets.QAction(i18n.t("translate.export"), self)
-        self.top_bar_file.addAction(self.topBarFileExport)
+        self.top_bar_file_manager = QtWidgets.QAction(i18n.t("translate.manager"), self)
+        self.top_bar_file.addAction(self.top_bar_file_manager)
+        self.top_bar_file_import = QtWidgets.QAction(i18n.t("translate.import"), self)
+        self.top_bar_file.addAction(self.top_bar_file_import)
+        self.top_bar_file_export = QtWidgets.QAction(i18n.t("translate.export"), self)
+        self.top_bar_file.addAction(self.top_bar_file_export)
         self.top_bar_file.addSeparator()
-        self.topBarFileExit = QtWidgets.QAction(i18n.t("translate.quit"), self)
-        self.top_bar_file.addAction(self.topBarFileExit)
-        self.topBarFileExit.triggered.connect(self.top_bar_file_exit_function)
-        self.topBarFileExit.setShortcut(QKeySequence.Quit)
+        self.top_bar_file_exit = QtWidgets.QAction(i18n.t("translate.quit"), self)
+        self.top_bar_file.addAction(self.top_bar_file_exit)
+        self.top_bar_file_exit.triggered.connect(self.top_bar_file_exit_function)
+        self.top_bar_file_exit.setShortcut(QKeySequence.Quit)
 
         # Edit
         self.top_bar_file_settings = QtWidgets.QAction(
