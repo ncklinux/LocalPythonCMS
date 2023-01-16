@@ -365,7 +365,7 @@ class Main(QMainWindow):
             )
         else:
             # TODO: Get version, compare and update
-            print("COMPARE VERSIONS")
+            self.logger.info("COMPARE VERSIONS")
         self.about.resize(560, 200)
         self.about.show()
         self.center()

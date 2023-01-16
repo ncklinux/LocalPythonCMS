@@ -1,6 +1,7 @@
 import sqlite3
 import sys
 from common.functions import Functions
+from common.logger_factory import LoggerFactory
 
 
 class Actions(object):
@@ -10,6 +11,7 @@ class Actions(object):
     def __init__(self):
         self.__db_connection = sqlite3.connect(self.__DB_LOCATION)
         self.__cur = self.__db_connection.cursor()
+        self.logger = LoggerFactory.CreateLogger(__name__)
 
     def register_new_user(
         self, firstname, lastname, email, username, password, language
@@ -36,7 +38,7 @@ class Actions(object):
                 return False
 
         except sqlite3.IntegrityError as e:
-            print("INTEGRITY ERROR: " + e)
+            self.logger.error("INTEGRITY ERROR")
 
     def login_user(self, email, password):
         try:
@@ -59,7 +61,7 @@ class Actions(object):
             else:
                 return False
         except sqlite3.IntegrityError as e:
-            print("INTEGRITY ERROR: " + e)
+            self.logger.error("INTEGRITY ERROR")
 
     def __del__(self):
         self.__db_connection.close()
