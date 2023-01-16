@@ -1,8 +1,8 @@
 fr:
-  softwareName: LocalPythonCMS
-  softwareSlogan: Créez, éditez et publiez du contenu web!
-  softwareTitle: LocalPythonCMS - Créez, éditez et publiez du contenu web!
-  starUpStatus: En vous connectant, vous acceptez la licence et l'accord de non-responsabilité.
+  software_name: LocalPythonCMS
+  software_slogan: Créez, éditez et publiez du contenu web!
+  software_title: LocalPythonCMS - Créez, éditez et publiez du contenu web!
+  star_up_status: En vous connectant, vous acceptez la licence et l'accord de non-responsabilité.
   file: Fichier
   edit: Modifier
   help: Aide
@@ -12,25 +12,25 @@ fr:
   quit: Arrêtez
   settings: Paramètres
   documentation: Documentation
-  checkForUpdates: Vérifier les mises à jour
-  checkForUpdatesNoVersionYetError: Quelque chose s'est mal passé! Il n'y a pas encore de version.
-  reportABug: Signaler un bogue
+  check_for_updates: Vérifier les mises à jour
+  check_for_updates_no_version_yet_error: Quelque chose s'est mal passé! Il n'y a pas encore de version.
+  report_a_bug: Signaler un bogue
   about: À propos de
-  useCredentials: Utilisez vos identifiants de connexion
+  use_sign_in_credentials: Utilisez vos identifiants de connexion
   email: Email
   firstname: Prénom
   lastname: Nom de famille
   username: Nom d'utilisateur
   password: Mot de passe
-  signIn: Se connecter
-  createAccount: Créer un compte
-  usernameDPrerequisites: Vous pouvez utiliser des lettres, des chiffres et des points
-  passwordPrerequisites: Utilisez 8 caractères ou plus avec un mélange de lettres, chiffres et symboles)
+  sign_in: Se connecter
+  create_account: Créer un compte
+  username_prerequisites: Vous pouvez utiliser des lettres, des chiffres et des points
+  password_prerequisites: Utilisez 8 caractères ou plus avec un mélange de lettres, chiffres et symboles)
   error: Error
-  registrationFieldsRequired: Tous les champs d'inscription sont obligatoires
-  registrationProgress: Inscription en cours, veuillez patienter..
-  registrationSuccess: Le nouvel utilisateur a été enregistré avec succès!
-  registrationFailed: Cet e-mail appartient à un autre utilisateur enregistré!
-  registrationSelectLanguage: Sélectionner la langue
-  loginFieldsRequired: Tous les champs sont obligatoires
-  loginFailed: Le processus de connexion a échoué, réessayez
+  registration_fields_required: Tous les champs d'inscription sont obligatoires
+  registration_progress: Inscription en cours, veuillez patienter..
+  registration_success: Le nouvel utilisateur a été enregistré avec succès!
+  registration_failed: Cet e-mail appartient à un autre utilisateur enregistré!
+  registration_select_language: Sélectionner la langue
+  login_fields_required: Tous les champs sont obligatoires
+  login_failed: Le processus de connexion a échoué, réessayez

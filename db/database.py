@@ -2,6 +2,7 @@ import sqlite3
 import sys
 import traceback
 from common.functions import Functions
+from common.logger_factory import LoggerFactory
 
 
 class Database(object):
@@ -11,10 +12,11 @@ class Database(object):
     def __init__(self):
         self.__db_connection = sqlite3.connect(self.__DB_LOCATION)
         self.__cur = self.__db_connection.cursor()
-        self.createTable()
+        self.logger = LoggerFactory.CreateLogger(__name__)
+        self.create_table()
         self.seeder()
 
-    def createTable(self):
+    def create_table(self):
         self.__cur.executescript(
             """
             CREATE TABLE IF NOT EXISTS users (
@@ -30,10 +32,11 @@ class Database(object):
             version varchar(50) NOT NULL UNIQUE);
             """
         )
+        self.logger.info("Info database output")
 
     def seeder(self):
         try:
-            commonFun = Functions()
+            common_functions = Functions()
             self.__cur.execute(
                 "INSERT INTO users VALUES (null, ?, ?, ?, ?, ?, ?)",
                 (
@@ -42,7 +45,7 @@ class Database(object):
                     "us",
                     "test@localpythoncms.local",
                     "test",
-                    commonFun.sha256("test"),
+                    common_functions.sha256("test"),
                 ),
             )
             self.__cur.executescript(
@@ -55,7 +58,7 @@ class Database(object):
             print("INTEGRITY ERROR")
             # print(traceback.print_exc())
 
-    def getLanguage(self):
+    def get_language(self):
         self.__cur.execute("SELECT language FROM users")
         return self.__cur.fetchone()[0]
 

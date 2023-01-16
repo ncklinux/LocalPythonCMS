@@ -3,23 +3,19 @@ import logging
 
 class LoggerFactory(object):
     @staticmethod
-    def createLogger(name):
-        fileFormatter = logging.Formatter(
+    def CreateLogger(name):
+        file_formatter = logging.Formatter(
             "%(asctime)s~%(levelname)s~%(message)s~module:%(module)s~function:%(module)s"
         )
-        consoleFormatter = logging.Formatter("%(levelname)s -- %(message)s")
-
-        fileHandler = logging.FileHandler("logs/logdata.log")
-        fileHandler.setLevel(logging.WARN)
-        fileHandler.setFormatter(fileFormatter)
-
-        consoleHandler = logging.StreamHandler()
-        consoleHandler.setLevel(logging.DEBUG)
-        consoleHandler.setFormatter(consoleFormatter)
-
+        console_formatter = logging.Formatter("%(levelname)s -- %(message)s")
+        file_handler = logging.FileHandler("logs/logdata.log")
+        file_handler.setLevel(logging.WARN)
+        file_handler.setFormatter(file_formatter)
+        console_handler = logging.StreamHandler()
+        console_handler.setLevel(logging.DEBUG)
+        console_handler.setFormatter(console_formatter)
         logger = logging.getLogger(name)
-        logger.addHandler(fileHandler)
-        logger.addHandler(consoleHandler)
+        logger.addHandler(file_handler)
+        logger.addHandler(console_handler)
         logger.setLevel(logging.DEBUG)
-
         return logger
