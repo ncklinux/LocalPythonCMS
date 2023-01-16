@@ -54,6 +54,10 @@ sqlite> select * from users;
 
 ![Screenshot](./assets/images/sqlite_screenshot_20221127.png)
 
+## PEP8
+
+This project uses the [PEP8](https://peps.python.org/pep-0008/) style proposal, which provides guidelines and best practices for writing Python code.
+
 ## License
 
 GNU General Public License v3.0 - See the [LICENSE](https://github.com/ncklinux/LocalPythonCMS/blob/main/LICENSE) file in this project for details.
