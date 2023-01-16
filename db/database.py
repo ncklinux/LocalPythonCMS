@@ -32,7 +32,6 @@ class Database(object):
             version varchar(50) NOT NULL UNIQUE);
             """
         )
-        self.logger.info("Info database output")
 
     def seeder(self):
         try:
@@ -55,7 +54,7 @@ class Database(object):
             )
             self.__db_connection.commit()
         except sqlite3.IntegrityError as e:
-            print("INTEGRITY ERROR")
+            self.logger.error("INTEGRITY ERROR")
             # print(traceback.print_exc())
 
     def get_language(self):

@@ -42,12 +42,14 @@ class Main(QMainWindow):
         self.setStatusBar(self.status_bar)
         self.set_status(i18n.t("translate.star_up_status"))
 
-        # Logging
+        # Logging examples
+        """
         self.logger.critical("Critical output")
         self.logger.error("Error output")
         self.logger.warning("Warning output")
         self.logger.info("Info output")
         self.logger.debug("Debug output")
+        """
 
         # Menu
         self.top_bar = self.menuBar()
@@ -56,17 +58,17 @@ class Main(QMainWindow):
         self.top_bar_help = self.top_bar.addMenu(i18n.t("translate.help"))
 
         # File
-        self.topBarFileManager = QtWidgets.QAction(i18n.t("translate.manager"), self)
-        self.top_bar_file.addAction(self.topBarFileManager)
-        self.topBarFileImport = QtWidgets.QAction(i18n.t("translate.import"), self)
-        self.top_bar_file.addAction(self.topBarFileImport)
-        self.topBarFileExport = QtWidgets.QAction(i18n.t("translate.export"), self)
-        self.top_bar_file.addAction(self.topBarFileExport)
+        self.top_bar_file_manager = QtWidgets.QAction(i18n.t("translate.manager"), self)
+        self.top_bar_file.addAction(self.top_bar_file_manager)
+        self.top_bar_file_import = QtWidgets.QAction(i18n.t("translate.import"), self)
+        self.top_bar_file.addAction(self.top_bar_file_import)
+        self.top_bar_file_export = QtWidgets.QAction(i18n.t("translate.export"), self)
+        self.top_bar_file.addAction(self.top_bar_file_export)
         self.top_bar_file.addSeparator()
-        self.topBarFileExit = QtWidgets.QAction(i18n.t("translate.quit"), self)
-        self.top_bar_file.addAction(self.topBarFileExit)
-        self.topBarFileExit.triggered.connect(self.top_bar_file_exit_function)
-        self.topBarFileExit.setShortcut(QKeySequence.Quit)
+        self.top_bar_file_exit = QtWidgets.QAction(i18n.t("translate.quit"), self)
+        self.top_bar_file.addAction(self.top_bar_file_exit)
+        self.top_bar_file_exit.triggered.connect(self.top_bar_file_exit_function)
+        self.top_bar_file_exit.setShortcut(QKeySequence.Quit)
 
         # Edit
         self.top_bar_file_settings = QtWidgets.QAction(
@@ -363,7 +365,7 @@ class Main(QMainWindow):
             )
         else:
             # TODO: Get version, compare and update
-            print("COMPARE VERSIONS")
+            self.logger.info("COMPARE VERSIONS")
         self.about.resize(560, 200)
         self.about.show()
         self.center()
