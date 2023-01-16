@@ -32,7 +32,8 @@ class Database(object):
             version varchar(50) NOT NULL UNIQUE);
             """
         )
-        self.logger.info("Info database output")
+        # Logging example
+        # self.logger.info("Info database output")
 
     def seeder(self):
         try:

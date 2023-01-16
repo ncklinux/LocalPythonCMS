@@ -42,12 +42,14 @@ class Main(QMainWindow):
         self.setStatusBar(self.status_bar)
         self.set_status(i18n.t("translate.star_up_status"))
 
-        # Logging
+        # Logging examples
+        """
         self.logger.critical("Critical output")
         self.logger.error("Error output")
         self.logger.warning("Warning output")
         self.logger.info("Info output")
         self.logger.debug("Debug output")
+        """
 
         # Menu
         self.top_bar = self.menuBar()
