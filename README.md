@@ -9,13 +9,13 @@ A content management system (CMS) written in Python that allows you to create, e
 $ sudo pacman -Syu
 $ sudo pacman -S python-pyqt5 python-pyqt5-webengine python-pip sqlite openssh
 $ python -V && pip --version
-$ pip install python-i18n pandas country_converter
+$ pip install python-i18n pandas country_converter black
 
 # Ubuntu - required packages
 $ sudo apt update
 $ sudo apt install python3-pyqt5 python3-pyqt5.qtwebengine python3-pip sqlite3 openssh-client
 $ python3 -V && pip3 --version
-$ pip3 install python-i18n pandas country_converter
+$ pip3 install python-i18n pandas country_converter black
 
 # clone repository
 $ git clone git@github.com:ncklinux/LocalPythonCMS.git
@@ -56,7 +56,7 @@ sqlite> select * from users;
 
 ## PEP8 & Black
 
-This project follows the [PEP8](https://peps.python.org/pep-0008/) style, which provides guidelines and best practices for writing Python code, and [Black](https://pypi.org/project/black/) for formatting, that makes code review faster by producing the smallest diffs possible.
+This project follows the [PEP8](https://peps.python.org/pep-0008/) style, which provides guidelines and best practices for writing Python code, and [Black](https://github.com/psf/black) for formatting, that makes code review faster by producing the smallest diffs possible (it's already available for most editors and IDEs [VSCode](https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter), [ST4](https://packagecontrol.io/packages/python-black), [PyCharm](https://plugins.jetbrains.com/plugin/14321-blackconnect) and also via [CLI](https://black.readthedocs.io/en/stable/usage_and_configuration/the_basics.html) e.g. `black {source_file_or_directory}`, to list all the options use `black --help`).
 
 ## License
 
