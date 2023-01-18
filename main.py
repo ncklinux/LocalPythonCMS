@@ -38,7 +38,7 @@ class Main(QMainWindow):
         screen = self.app.primaryScreen()
         rect = screen.availableGeometry()
         self.setGeometry(50, 100, rect.width() - 200, rect.height() - 200)
-        self.setWindowTitle(i18n.t("translate.softwareTitle"))
+        self.setWindowTitle(i18n.t("translate.software_title"))
         self.status_bar = QStatusBar()
         self.setStatusBar(self.status_bar)
         self.set_status(i18n.t("translate.star_up_status"))
