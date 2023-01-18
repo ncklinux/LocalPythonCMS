@@ -1,3 +1,4 @@
+import re
 import sys
 import webbrowser
 import requests
@@ -146,9 +147,17 @@ class Main(QMainWindow):
 
         self.btn_login = QtWidgets.QPushButton(self)
         self.btn_login.setText(i18n.t("translate.sign_in"))
-        self.btn_login.setMinimumWidth(230)
+        self.btn_login.setMinimumWidth(120)
         self.btn_login.move(50, 280)
         self.btn_login.clicked.connect(self.btn_login_event)
+
+        self.btn_login_form_reset = QtWidgets.QPushButton(self)
+        self.btn_login_form_reset.setText(i18n.t("translate.clear"))
+        self.btn_login_form_reset.setMinimumWidth(100)
+        self.btn_login_form_reset.move(180, 280)
+        self.btn_login_form_reset.clicked.connect(
+            lambda: self.reset_form_fields(self.login_password, self.login_email)
+        )
 
         # New user registration
         self.register_label = QtWidgets.QLabel(self)
@@ -207,10 +216,25 @@ class Main(QMainWindow):
         self.register_language.setFixedWidth(230)
 
         self.btn_register = QtWidgets.QPushButton(self)
-        self.btn_register.setText(i18n.t("translate.create_account"))
-        self.btn_register.setMinimumWidth(230)
+        self.btn_register.setText(i18n.t("translate.register"))
+        self.btn_register.setMinimumWidth(120)
         self.btn_register.move(50, 640)
         self.btn_register.clicked.connect(self.btn_register_event)
+
+        self.btn_register_form_reset = QtWidgets.QPushButton(self)
+        self.btn_register_form_reset.setText(i18n.t("translate.clear"))
+        self.btn_register_form_reset.setMinimumWidth(100)
+        self.btn_register_form_reset.move(180, 640)
+        self.btn_register_form_reset.clicked.connect(
+            lambda: self.reset_form_fields(
+                self.register_firstname,
+                self.register_lastname,
+                self.register_email,
+                self.register_username,
+                self.register_password,
+                self.register_language,
+            )
+        )
 
         """
         grid.addWidget(self.btn_login, 0, 0, QtCore.Qt.AlignLeft | QtCore.Qt.AlignBottom)
@@ -281,7 +305,14 @@ class Main(QMainWindow):
             ):
                 del database_actions
                 # self.btn_register.setEnabled(False)
-                self.clean_form_fields()
+                self.reset_form_fields(
+                    self.register_firstname,
+                    self.register_lastname,
+                    self.register_email,
+                    self.register_username,
+                    self.register_password,
+                    self.register_language,
+                )
                 self.register_label.setText(
                     "<span font-size: 12pt;>"
                     + i18n.t("translate.registration_success")
@@ -300,15 +331,12 @@ class Main(QMainWindow):
                 + "</span>"
             )
 
-    def clean_form_fields(self):
-        self.login_password.clear()
-        self.login_email.clear()
-        self.register_firstname.clear()
-        self.register_lastname.clear()
-        self.register_email.clear()
-        self.register_username.clear()
-        self.register_password.clear()
-        self.register_language.setCurrentIndex(0)
+    def reset_form_fields(self, *fields):
+        for item in fields:
+            if re.search("QComboBox", str(item)):
+                item.setCurrentIndex(0)
+            else:
+                item.clear()
 
     def top_bar_file_exit_function(self):
         self.close()

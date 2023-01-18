@@ -23,7 +23,7 @@ fr:
   username: Nom d'utilisateur
   password: Mot de passe
   sign_in: Se connecter
-  create_account: Créer un compte
+  register: Registre
   username_prerequisites: Vous pouvez utiliser des lettres, des chiffres et des points
   password_prerequisites: Utilisez 8 caractères ou plus avec un mélange de lettres, chiffres et symboles)
   error: Error
@@ -34,3 +34,4 @@ fr:
   registration_select_language: Sélectionner la langue
   login_fields_required: Tous les champs sont obligatoires
   login_failed: Le processus de connexion a échoué, réessayez
+  clear: Clair
