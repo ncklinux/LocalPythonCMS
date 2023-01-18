@@ -39,7 +39,7 @@ Most importantly, you own your data, locally! Keeping your data stored on your l
 
 John Johnson says _“First, solve the problem. Then, write the code.”_
 
-![Screenshot](./assets/images/screenshot20221225.png)
+![Screenshot](./assets/images/screenshot20230118.png)
 
 ## Internationalization
 

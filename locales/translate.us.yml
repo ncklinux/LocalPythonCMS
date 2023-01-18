@@ -23,7 +23,7 @@ us:
   username: Username
   password: Password
   sign_in: Sign in
-  create_account: Create account
+  register: Register
   username_prerequisites: You can use letters, numbers & periods
   password_prerequisites: Use 8 or more characters with a mix of letters, numbers & symbols)
   error: Error
@@ -34,3 +34,4 @@ us:
   registration_select_language: Select Language
   login_fields_required: All fields are required
   login_failed: The login process failed, please try again
+  clear: Clear
