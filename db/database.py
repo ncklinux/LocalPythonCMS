@@ -26,7 +26,8 @@ class Database(object):
             language varchar(7) NOT NULL,
             email varchar(100) NOT NULL UNIQUE,
             username varchar(50) NOT NULL UNIQUE,
-            password varchar(128) NOT NULL);
+            password varchar(128) NOT NULL,
+            logged_in integer(1) NOT NULL);
             CREATE TABLE IF NOT EXISTS updates (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             version varchar(50) NOT NULL UNIQUE);
@@ -37,7 +38,7 @@ class Database(object):
         try:
             common_functions = Functions()
             self.__cur.execute(
-                "INSERT INTO users VALUES (null, ?, ?, ?, ?, ?, ?)",
+                "INSERT INTO users VALUES (null, ?, ?, ?, ?, ?, ?, ?)",
                 (
                     "Firstname",
                     "Lastname",
@@ -45,6 +46,7 @@ class Database(object):
                     "test@localpythoncms.local",
                     "test",
                     common_functions.sha256("test"),
+                    0,
                 ),
             )
             self.__cur.executescript(

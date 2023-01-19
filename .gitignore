@@ -142,3 +142,6 @@ dmypy.json
 
 # sqlite
 *.sqlite
+
+# country_converter
+country_data.*

@@ -22,7 +22,7 @@ class Actions(object):
             if len(data) == 0:
                 common_functions = Functions()
                 self.__cur.execute(
-                    "INSERT INTO users VALUES (null, ?, ?, ?, ?, ?, ?)",
+                    "INSERT INTO users VALUES (null, ?, ?, ?, ?, ?, ?, ?)",
                     (
                         firstname,
                         lastname,
@@ -30,6 +30,7 @@ class Actions(object):
                         email,
                         username,
                         common_functions.sha256(password),
+                        0,
                     ),
                 )
                 self.__db_connection.commit()
@@ -53,7 +54,6 @@ class Actions(object):
                         common_functions.sha256(password),
                     ),
                 )
-                self.__db_connection.commit()
                 if self.__cur.fetchall():
                     return True
                 else:

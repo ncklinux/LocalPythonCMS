@@ -30,7 +30,7 @@ fr:
   registration_fields_required: Tous les champs d'inscription sont obligatoires
   registration_progress: Inscription en cours, veuillez patienter..
   registration_success: Le nouvel utilisateur a été enregistré avec succès!
-  registration_failed: Cet e-mail appartient à un autre utilisateur enregistré!
+  registration_failed: Ce nom d'utilisateur ou cet e-mail appartient déjà à un autre utilisateur!
   registration_select_language: Sélectionner la langue
   login_fields_required: Tous les champs sont obligatoires
   login_failed: Le processus de connexion a échoué, réessayez

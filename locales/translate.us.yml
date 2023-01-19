@@ -30,7 +30,7 @@ us:
   registration_fields_required: All registration fields are required
   registration_progress: Registration in progress, please wait..
   registration_success: The new user has been successfully registered!
-  registration_failed: This email belongs to another registered user!
+  registration_failed: This username or email already belongs to another user!
   registration_select_language: Select Language
   login_fields_required: All fields are required
   login_failed: The login process failed, please try again
