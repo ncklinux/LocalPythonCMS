@@ -54,7 +54,6 @@ class Actions(object):
                         common_functions.sha256(password),
                     ),
                 )
-                self.__db_connection.commit()
                 if self.__cur.fetchall():
                     return True
                 else:
