@@ -56,7 +56,6 @@ class Actions(object):
                 )
                 user_matching = self.__cur.fetchall()
                 if user_matching:
-                    # print(user_matching)
                     self.__cur.execute(
                         "UPDATE users SET logged_in = 1 WHERE email = ?", [email]
                     )
