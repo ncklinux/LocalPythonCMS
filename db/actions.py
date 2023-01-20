@@ -17,7 +17,7 @@ class Actions(object):
         self, firstname, lastname, email, username, password, language
     ):
         try:
-            self.__cur.execute("SELECT 1 FROM users where email = ?", [email])
+            self.__cur.execute("SELECT 1 FROM users WHERE email = ?", [email])
             data = self.__cur.fetchall()
             if len(data) == 0:
                 common_functions = Functions()
@@ -43,7 +43,7 @@ class Actions(object):
 
     def login_user(self, email, password):
         try:
-            self.__cur.execute("SELECT 1 FROM users where email = ?", [email])
+            self.__cur.execute("SELECT 1 FROM users WHERE email = ?", [email])
             data = self.__cur.fetchall()
             if len(data) == 1:
                 common_functions = Functions()
@@ -54,7 +54,13 @@ class Actions(object):
                         common_functions.sha256(password),
                     ),
                 )
-                if self.__cur.fetchall():
+                user_matching = self.__cur.fetchall()
+                if user_matching:
+                    # print(user_matching)
+                    self.__cur.execute(
+                        "UPDATE users SET logged_in = 1 WHERE email = ?", [email]
+                    )
+                    self.__db_connection.commit()
                     return True
                 else:
                     return False
