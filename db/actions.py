@@ -68,5 +68,13 @@ class Actions(object):
         except sqlite3.IntegrityError as e:
             self.logger.error("INTEGRITY ERROR")
 
+    def logout_user(self):
+        self.__cur.execute("UPDATE users SET logged_in = 0")
+        self.__db_connection.commit()
+        if self.__cur.rowcount > 1:
+            return True
+        else:
+            return False
+
     def __del__(self):
         self.__db_connection.close()

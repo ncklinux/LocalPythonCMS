@@ -128,7 +128,7 @@ class Main(QMainWindow):
         self.login_label = QtWidgets.QLabel(self)
         self.login_label.setText(
             "<span font-size: 12pt;>"
-            + i18n.t("translate.use_sign_in_credentials")
+            + i18n.t("translate.use_login_credentials")
             + "</span>"
         )
         self.login_label.move(50, 154)
@@ -146,10 +146,17 @@ class Main(QMainWindow):
         self.login_password.setFixedWidth(230)
 
         self.btn_login = QtWidgets.QPushButton(self)
-        self.btn_login.setText(i18n.t("translate.sign_in"))
+        self.btn_login.setText(i18n.t("translate.login"))
         self.btn_login.setMinimumWidth(120)
         self.btn_login.move(50, 280)
         self.btn_login.clicked.connect(self.btn_login_event)
+
+        self.btn_logout = QtWidgets.QPushButton(self)
+        self.btn_logout.setText(i18n.t("translate.logout"))
+        self.btn_logout.setMinimumWidth(120)
+        self.btn_logout.move(50, 200)
+        self.btn_logout.clicked.connect(self.btn_logout_event)
+        self.btn_logout.hide()
 
         self.btn_login_form_reset = QtWidgets.QPushButton(self)
         self.btn_login_form_reset.setText(i18n.t("translate.clear"))
@@ -246,7 +253,7 @@ class Main(QMainWindow):
     def btn_login_event(self):
         self.login_label.setText(
             "<span font-size: 12pt;>"
-            + i18n.t("translate.use_sign_in_credentials")
+            + i18n.t("translate.use_login_credentials")
             + "</span>"
         )
         common_functions = Functions()
@@ -259,11 +266,26 @@ class Main(QMainWindow):
                 self.login_email.text(),
                 self.login_password.text(),
             ):
-                print(
-                    database_actions.login_user(
-                        self.login_email.text(), self.login_password.text()
-                    )
+                self.btn_logout.show()
+                self.login_email.hide()
+                self.login_password.hide()
+                self.btn_login.hide()
+                self.btn_login_form_reset.hide()
+                self.register_label.hide()
+                self.register_firstname.hide()
+                self.register_lastname.hide()
+                self.register_email.hide()
+                self.register_username.hide()
+                self.register_password.hide()
+                self.register_language.hide()
+                self.btn_register.hide()
+                self.btn_register_form_reset.hide()
+                self.login_label.setText(
+                    "<span font-size: 12pt;>"
+                    + i18n.t("translate.login_success")
+                    + "</span>"
                 )
+                self.reset_form_fields(self.login_password, self.login_email)
                 del database_actions
             else:
                 self.login_label.setText(
@@ -278,6 +300,36 @@ class Main(QMainWindow):
                 + "</span>"
             )
         self.login_label.adjustSize()
+
+    def btn_logout_event(self):
+        database_actions = Actions()
+        if database_actions.logout_user():
+            self.btn_logout.hide()
+            self.login_email.show()
+            self.login_password.show()
+            self.btn_login.show()
+            self.btn_login_form_reset.show()
+            self.register_label.show()
+            self.register_firstname.show()
+            self.register_lastname.show()
+            self.register_email.show()
+            self.register_username.show()
+            self.register_password.show()
+            self.register_language.show()
+            self.btn_register.show()
+            self.btn_register_form_reset.show()
+            self.login_label.setText(
+                "<span font-size: 12pt;>"
+                + i18n.t("translate.use_login_credentials")
+                + "</span>"
+            )
+            del database_actions
+        else:
+            self.login_label.setText(
+                "<span font-size: 12pt;>"
+                + i18n.t("translate.logout_failed")
+                + "</span>"
+            )
 
     def btn_register_event(self):
         common_functions = Functions()
@@ -339,7 +391,10 @@ class Main(QMainWindow):
                 item.clear()
 
     def top_bar_file_exit_function(self):
-        self.close()
+        database_actions = Actions()
+        if database_actions.logout_user():
+            del database_actions
+            self.close()
 
     def center(self):
         frame_geo = self.frameGeometry()

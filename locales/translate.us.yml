@@ -16,13 +16,14 @@ us:
   check_for_updates_no_version_yet_error: Something went wrong! There isn't any versions yet.
   report_a_bug: Report a bug
   about: About
-  use_sign_in_credentials: Use your sign in credentials
+  use_login_credentials: Use your login credentials
   email: Email
   firstname: Firstname
   lastname: Lastname
   username: Username
   password: Password
-  sign_in: Sign in
+  login: Login
+  logout: Logout
   register: Register
   username_prerequisites: You can use letters, numbers & periods
   password_prerequisites: Use 8 or more characters with a mix of letters, numbers & symbols)
@@ -34,4 +35,6 @@ us:
   registration_select_language: Select Language
   login_fields_required: All fields are required
   login_failed: The login process failed, please try again
+  login_success: You have successfully logged in!
+  logout_failed: The logout failed! Please restart the software.
   clear: Clear

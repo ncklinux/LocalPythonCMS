@@ -16,13 +16,14 @@ fr:
   check_for_updates_no_version_yet_error: Quelque chose s'est mal passé! Il n'y a pas encore de version.
   report_a_bug: Signaler un bogue
   about: À propos de
-  use_sign_in_credentials: Utilisez vos identifiants de connexion
+  use_login_credentials: Utilisez vos identifiants de connexion
   email: Email
   firstname: Prénom
   lastname: Nom de famille
   username: Nom d'utilisateur
   password: Mot de passe
-  sign_in: Se connecter
+  login: Connexion
+  logout: Déconnexion
   register: Registre
   username_prerequisites: Vous pouvez utiliser des lettres, des chiffres et des points
   password_prerequisites: Utilisez 8 caractères ou plus avec un mélange de lettres, chiffres et symboles)
@@ -34,4 +35,6 @@ fr:
   registration_select_language: Sélectionner la langue
   login_fields_required: Tous les champs sont obligatoires
   login_failed: Le processus de connexion a échoué, réessayez
+  login_success: Vous vous êtes connecté avec succès!
+  logout_failed: La déconnexion a échoué ! Veuillez redémarrer le logiciel.
   clear: Clair
