@@ -3,7 +3,6 @@ import sys
 import webbrowser
 import requests
 import i18n
-import glob
 from PyQt5 import QtWidgets, QtCore, QtSvg
 from PyQt5.QtGui import QKeySequence
 from PyQt5.QtWidgets import (
@@ -15,7 +14,6 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtCore import *
 from PyQt5.QtWebEngineWidgets import *
-from datetime import datetime
 from common.functions import Functions
 from common.logger_factory import LoggerFactory
 from db.database import Database
@@ -26,12 +24,46 @@ from popup import PopUp
 class Main(QMainWindow):
     def __init__(self, app, locale):
         super(Main, self).__init__()
+        self.status_bar = None
+        self.label = None
+        self.login_label = None
+        self.logo = None
+        self.about = None
+        self.browser = None
+        self.btn_login = None
+        self.btn_login_form_reset = None
+        self.btn_logout = None
+        self.btn_register = None
+        self.btn_register_form_reset = None
+        self.login_email = None
+        self.login_password = None
+        self.register_label = None
+        self.register_firstname = None
+        self.register_lastname = None
+        self.register_email = None
+        self.register_username = None
+        self.register_password = None
+        self.register_language = None
+        self.register_language_list = None
+        self.top_bar = None
+        self.top_bar_file = None
+        self.top_bar_file_manager = None
+        self.top_bar_file_import = None
+        self.top_bar_file_export = None
+        self.top_bar_file_exit = None
+        self.top_bar_edit = None
+        self.top_bar_edit_settings = None
+        self.top_bar_help = None
+        self.top_bar_help_documentation = None
+        self.top_bar_help_updates = None
+        self.top_bar_help_bug = None
+        self.top_bar_help_about = None
         self.app = app
         self.locale = locale
         self.logger = LoggerFactory.CreateLogger(__name__)
-        self.initUI()
+        self.init_ui()
 
-    def initUI(self):
+    def init_ui(self):
         i18n.load_path.append("locales")
         i18n.set("locale", self.locale)
         i18n.set("fallback", "us")
@@ -72,10 +104,10 @@ class Main(QMainWindow):
         self.top_bar_file_exit.setShortcut(QKeySequence.Quit)
 
         # Edit
-        self.top_bar_file_settings = QtWidgets.QAction(
+        self.top_bar_edit_settings = QtWidgets.QAction(
             i18n.t("translate.settings"), self
         )
-        self.top_bar_edit.addAction(self.top_bar_file_settings)
+        self.top_bar_edit.addAction(self.top_bar_edit_settings)
 
         # Help
         self.top_bar_help_documentation = QtWidgets.QAction(
@@ -383,6 +415,7 @@ class Main(QMainWindow):
                 + "</span>"
             )
 
+    # noinspection PyMethodMayBeStatic
     def reset_form_fields(self, *fields):
         for item in fields:
             if re.search("QComboBox", str(item)):
@@ -418,7 +451,8 @@ class Main(QMainWindow):
     def set_status(self, status=None):
         self.status_bar.showMessage(status)
 
-    def top_bar_help_bug_function(self):
+    @staticmethod
+    def top_bar_help_bug_function():
         webbrowser.open_new_tab("https://github.com/ncklinux/LocalPythonCMS/issues/new")
 
     def set_browser_content(self, url):
