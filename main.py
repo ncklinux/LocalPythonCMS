@@ -415,6 +415,7 @@ class Main(QMainWindow):
                 + "</span>"
             )
 
+    # noinspection PyMethodMayBeStatic
     def reset_form_fields(self, *fields):
         for item in fields:
             if re.search("QComboBox", str(item)):
@@ -450,7 +451,8 @@ class Main(QMainWindow):
     def set_status(self, status=None):
         self.status_bar.showMessage(status)
 
-    def top_bar_help_bug_function(self):
+    @staticmethod
+    def top_bar_help_bug_function():
         webbrowser.open_new_tab("https://github.com/ncklinux/LocalPythonCMS/issues/new")
 
     def set_browser_content(self, url):

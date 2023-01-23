@@ -6,17 +6,20 @@ import country_converter as coco
 
 
 class Functions(object):
-    def sha256(self, string):
+    @staticmethod
+    def sha256(string):
         return hashlib.sha256(string.encode("utf-8"), usedforsecurity=True).hexdigest()
 
-    def validate_email(self, string):
+    @staticmethod
+    def validate_email(string):
         if not re.fullmatch(
             r"(^[a-zA-Z0-9'_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", string
         ):
             return False
         return True
 
-    def get_country_codes_from_locales(self):
+    @staticmethod
+    def get_country_codes_from_locales():
         directory = "locales"
         file_format = "*.yml"
         languages = []
@@ -25,8 +28,8 @@ class Functions(object):
                 languages.append(re.split("[.]", str(item))[-2])
         return languages
 
+    @staticmethod
     def combo_box_data_frame(
-        self,
         usage,
         column_value_name,
         column_value_items,
