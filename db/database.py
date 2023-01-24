@@ -56,7 +56,7 @@ class Database(object):
             )
             self.__db_connection.commit()
         except sqlite3.IntegrityError as e:
-            self.logger.error("INTEGRITY ERROR")
+            self.logger.error("Exception: {}".format(type(e)))
             # print(traceback.print_exc())
 
     def get_language(self):

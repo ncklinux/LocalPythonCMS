@@ -39,7 +39,7 @@ class Actions(object):
                 return False
 
         except sqlite3.IntegrityError as e:
-            self.logger.error("INTEGRITY ERROR")
+            self.logger.error("Exception: {}".format(type(e)))
 
     def login_user(self, email, password):
         try:
@@ -66,7 +66,7 @@ class Actions(object):
             else:
                 return False
         except sqlite3.IntegrityError as e:
-            self.logger.error("INTEGRITY ERROR")
+            self.logger.error("Exception: {}".format(type(e)))
 
     def logout_user(self):
         self.__cur.execute("UPDATE users SET logged_in = 0")
