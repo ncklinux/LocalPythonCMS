@@ -145,3 +145,8 @@ dmypy.json
 
 # country_converter
 country_data.*
+
+# Eclipse & PyDev project description files
+.project
+.pydevproject
+.pydevproject.bak
