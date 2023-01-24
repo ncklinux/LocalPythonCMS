@@ -145,3 +145,6 @@ dmypy.json
 
 # country_converter
 country_data.*
+
+# Eclipse project description file
+.project
