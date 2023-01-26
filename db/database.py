@@ -1,6 +1,4 @@
 import sqlite3
-import sys
-import traceback
 from common.functions import Functions
 from common.logger_factory import LoggerFactory
 
@@ -57,7 +55,6 @@ class Database(object):
             self.__db_connection.commit()
         except sqlite3.IntegrityError as e:
             self.logger.error("Exception: {}".format(type(e)))
-            # print(traceback.print_exc())
 
     def get_language(self):
         self.__cur.execute("SELECT language FROM users")

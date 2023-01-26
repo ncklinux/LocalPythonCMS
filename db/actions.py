@@ -1,5 +1,4 @@
 import sqlite3
-import sys
 from common.functions import Functions
 from common.logger_factory import LoggerFactory
 
