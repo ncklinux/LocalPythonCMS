@@ -30,6 +30,7 @@ $ wget https://github.com/konstantinstadler/country_converter/blob/master/countr
 # Another way it's to find the file and use the relative path to country_data.tsv e.g. --add-data '../.local/lib/python3.YOUR_VERSION/site-packages/country_converter/country_data.tsv' or, just copy country_data.tsv in LocalPythonCMS directory
 # find / -type f -name "country_data.tsv" 2>&1 | grep -v 'Permission denied'
 $ python -m PyInstaller --noconsole --onefile --windowed --exclude-module tkinter --add-data 'country_data.tsv:country_converter' main.py
+# There are also some other options, like fbs (based on PyInstaller) or Flatpak
 ```
 
 ## Motivation
