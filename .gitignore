@@ -150,3 +150,6 @@ country_data.*
 .project
 .pydevproject
 .pydevproject.bak
+
+# Docker
+.docker
