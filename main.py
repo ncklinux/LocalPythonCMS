@@ -11,6 +11,7 @@ from PyQt5.QtWidgets import (
     QDesktopWidget,
     QStatusBar,
     QComboBox,
+    QListWidget,
 )
 from PyQt5.QtCore import *
 from PyQt5.QtWebEngineWidgets import *
@@ -58,6 +59,8 @@ class Main(QMainWindow):
         self.top_bar_help_updates = None
         self.top_bar_help_bug = None
         self.top_bar_help_about = None
+        self.manager_label = None
+        self.manager_connections = None
         self.app = app
         self.locale = locale
         self.logger = LoggerFactory.CreateLogger(__name__)
@@ -92,11 +95,9 @@ class Main(QMainWindow):
 
         # File
         self.top_bar_file_manager = QtWidgets.QAction(i18n.t("translate.manager"), self)
-        self.top_bar_file.addAction(self.top_bar_file_manager)
+        self.top_bar_file_manager.triggered.connect(self.manager)
         self.top_bar_file_import = QtWidgets.QAction(i18n.t("translate.import"), self)
-        self.top_bar_file.addAction(self.top_bar_file_import)
         self.top_bar_file_export = QtWidgets.QAction(i18n.t("translate.export"), self)
-        self.top_bar_file.addAction(self.top_bar_file_export)
         self.top_bar_file.addSeparator()
         self.top_bar_file_exit = QtWidgets.QAction(i18n.t("translate.quit"), self)
         self.top_bar_file.addAction(self.top_bar_file_exit)
@@ -312,12 +313,17 @@ class Main(QMainWindow):
                 self.register_language.hide()
                 self.btn_register.hide()
                 self.btn_register_form_reset.hide()
+                self.reset_form_fields(self.login_password, self.login_email)
+                self.top_bar_file.removeAction(self.top_bar_file_exit)
+                self.top_bar_file.addAction(self.top_bar_file_manager)
+                self.top_bar_file.addAction(self.top_bar_file_import)
+                self.top_bar_file.addAction(self.top_bar_file_export)
+                self.top_bar_file.addAction(self.top_bar_file_exit)
                 self.login_label.setText(
                     "<span font-size: 12pt;>"
                     + i18n.t("translate.login_success")
                     + "</span>"
                 )
-                self.reset_form_fields(self.login_password, self.login_email)
                 del database_actions
             else:
                 self.login_label.setText(
@@ -350,6 +356,11 @@ class Main(QMainWindow):
             self.register_language.show()
             self.btn_register.show()
             self.btn_register_form_reset.show()
+            self.top_bar_file.removeAction(self.top_bar_file_manager)
+            self.top_bar_file.removeAction(self.top_bar_file_import)
+            self.top_bar_file.removeAction(self.top_bar_file_export)
+            self.manager_label.hide()
+            self.manager_connections.hide()
             self.login_label.setText(
                 "<span font-size: 12pt;>"
                 + i18n.t("translate.use_login_credentials")
@@ -486,6 +497,21 @@ class Main(QMainWindow):
         self.about.resize(560, 200)
         self.about.show()
         self.center()
+
+    def manager(self):
+        self.manager_label = QtWidgets.QLabel(self)
+        self.manager_label.setText(
+            "<span font-size: 12pt;>" + i18n.t("translate.manager_title") + "</span>"
+        )
+        self.manager_label.move(50, 260)
+        self.manager_label.adjustSize()
+        self.manager_label.show()
+        self.manager_connections = QListWidget(self)
+        self.manager_connections.addItems([])
+        self.manager_connections.setMinimumWidth(230)
+        self.manager_connections.setMinimumHeight(230)
+        self.manager_connections.move(50, 290)
+        self.manager_connections.show()
 
 
 def window():

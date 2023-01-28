@@ -38,3 +38,4 @@ us:
   login_success: You have successfully logged in!
   logout_failed: The logout failed! Please restart the software.
   clear: Clear
+  manager_title: Predefined sites
