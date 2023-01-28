@@ -39,3 +39,4 @@ fr:
   logout_failed: La déconnexion a échoué ! Veuillez redémarrer le logiciel.
   clear: Clair
   manager_title: Sites prédéfinis
+  manager_new_item_input_placeholder: Name
