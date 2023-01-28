@@ -38,3 +38,5 @@ fr:
   login_success: Vous vous êtes connecté avec succès!
   logout_failed: La déconnexion a échoué ! Veuillez redémarrer le logiciel.
   clear: Clair
+  manager_title: Sites prédéfinis
+  manager_new_item_input_placeholder: Name

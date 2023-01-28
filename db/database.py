@@ -29,6 +29,16 @@ class Database(object):
             CREATE TABLE IF NOT EXISTS updates (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             version varchar(50) NOT NULL UNIQUE);
+            CREATE TABLE IF NOT EXISTS manager (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name varchar(50) NOT NULL UNIQUE,
+            protocol integer(1) NOT NULL,
+            host varchar(50) NOT NULL,
+            port integer(5) NOT NULL,
+            encryption integer(1) NOT NULL,
+            type integer(1) NOT NULL,
+            user varchar(50) NOT NULL,
+            password varchar(128) NOT NULL);
             """
         )
 
