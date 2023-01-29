@@ -41,4 +41,4 @@ us:
   manager_title: Predefined sites
   manager_new_item_input_placeholder: Name
   manager_new_item_input_empty: The name input field is empty
-  manager_new_item_failed: The process failed, please try again!
+  manager_new_item_failed: The process failed, or this name may already exist!

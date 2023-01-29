@@ -91,5 +91,13 @@ class Actions(object):
         except sqlite3.IntegrityError as e:
             self.logger.error("Exception: {}".format(type(e)))
 
+    def manager_get_items(self):
+        try:
+            self.__cur.execute("SELECT name FROM manager")
+            rows = self.__cur.fetchall()
+            return rows
+        except sqlite3.IntegrityError as e:
+            self.logger.error("Exception: {}".format(type(e)))
+
     def __del__(self):
         self.__db_connection.close()

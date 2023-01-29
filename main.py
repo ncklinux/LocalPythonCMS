@@ -531,8 +531,10 @@ class Main(QMainWindow):
         self.btn_manager_remove.move(358, 290)
         self.btn_manager_remove.clicked.connect(self.manager_remove_selected)
         self.btn_manager_remove.show()
+        database_actions = Actions()
         self.manager_connections = QListWidget(self)
-        self.manager_connections.addItems([])
+        for row in database_actions.manager_get_items():
+            self.manager_connections.addItem(row[0])
         self.manager_connections.setMinimumWidth(408)
         self.manager_connections.setMinimumHeight(130)
         self.manager_connections.move(50, 330)
@@ -542,6 +544,10 @@ class Main(QMainWindow):
         if self.manager_input_name.text():
             database_actions = Actions()
             if database_actions.manager_add(self.manager_input_name.text()):
+                self.manager_input_name.clear()
+                self.manager_connections.clear()
+                for row in database_actions.manager_get_items():
+                    self.manager_connections.addItem(row[0])
                 del database_actions
             else:
                 self.manager_label.setText(
