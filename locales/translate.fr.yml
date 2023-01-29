@@ -40,3 +40,5 @@ fr:
   clear: Clair
   manager_title: Sites prédéfinis
   manager_new_item_input_placeholder: Name
+  manager_new_item_input_empty: Le champ de saisie du nom est vide
+  manager_new_item_failed: Le processus a échoué, veuillez réessayer!

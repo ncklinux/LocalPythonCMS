@@ -75,5 +75,21 @@ class Actions(object):
         else:
             return False
 
+    def manager_add(self, name):
+        try:
+            self.__cur.execute("SELECT 1 FROM manager WHERE name = ?", [name])
+            data = self.__cur.fetchall()
+            if len(data) == 0:
+                self.__cur.execute(
+                    "INSERT INTO manager (id, name) VALUES (null, ?)",
+                    (name,),
+                )
+                self.__db_connection.commit()
+                return True
+            else:
+                return False
+        except sqlite3.IntegrityError as e:
+            self.logger.error("Exception: {}".format(type(e)))
+
     def __del__(self):
         self.__db_connection.close()
