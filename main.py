@@ -523,13 +523,13 @@ class Main(QMainWindow):
         self.btn_manager_add.setText("+")
         self.btn_manager_add.setMinimumWidth(30)
         self.btn_manager_add.move(254, 290)
-        self.btn_manager_add.clicked.connect(self.manager_add)
+        self.btn_manager_add.clicked.connect(self.manager_add_site)
         self.btn_manager_add.show()
         self.btn_manager_remove = QtWidgets.QPushButton(self)
         self.btn_manager_remove.setText("-")
         self.btn_manager_remove.setMinimumWidth(30)
         self.btn_manager_remove.move(358, 290)
-        self.btn_manager_remove.clicked.connect(self.manager_remove)
+        self.btn_manager_remove.clicked.connect(self.manager_delete_site)
         self.btn_manager_remove.show()
         database_actions = Actions()
         self.manager_connections = QListWidget(self)
@@ -540,7 +540,7 @@ class Main(QMainWindow):
         self.manager_connections.move(50, 330)
         self.manager_connections.show()
 
-    def manager_add(self):
+    def manager_add_site(self):
         if self.manager_input_name.text():
             database_actions = Actions()
             if database_actions.manager_add(self.manager_input_name.text()):
@@ -564,19 +564,27 @@ class Main(QMainWindow):
             )
             self.manager_label.adjustSize()
 
-    def manager_remove(self):
-        database_actions = Actions()
-        if database_actions.manager_delete(
-            self.manager_connections.currentItem().text()
-        ):
-            self.manager_connections.clear()
-            for row in database_actions.manager_get():
-                self.manager_connections.addItem(row[0])
-            del database_actions
+    def manager_delete_site(self):
+        if self.manager_connections.currentItem():
+            database_actions = Actions()
+            if database_actions.manager_delete(
+                self.manager_connections.currentItem().text()
+            ):
+                self.manager_connections.clear()
+                for row in database_actions.manager_get():
+                    self.manager_connections.addItem(row[0])
+                del database_actions
+            else:
+                self.manager_label.setText(
+                    "<span font-size: 12pt;>"
+                    + i18n.t("translate.manager_delete_item_failed")
+                    + "</span>"
+                )
+                self.manager_label.adjustSize()
         else:
             self.manager_label.setText(
                 "<span font-size: 12pt;>"
-                + i18n.t("translate.manager_delete_item_failed")
+                + i18n.t("translate.manager_delete_item_select_error")
                 + "</span>"
             )
             self.manager_label.adjustSize()
