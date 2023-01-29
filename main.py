@@ -512,7 +512,6 @@ class Main(QMainWindow):
         self.manager_label.move(50, 260)
         self.manager_label.adjustSize()
         self.manager_label.show()
-
         self.manager_input_name = QtWidgets.QLineEdit(self)
         self.manager_input_name.move(50, 290)
         self.manager_input_name.setPlaceholderText(
@@ -520,33 +519,67 @@ class Main(QMainWindow):
         )
         self.manager_input_name.setFixedWidth(200)
         self.manager_input_name.show()
-
         self.btn_manager_add = QtWidgets.QPushButton(self)
         self.btn_manager_add.setText("+")
         self.btn_manager_add.setMinimumWidth(30)
         self.btn_manager_add.move(254, 290)
         self.btn_manager_add.clicked.connect(self.manager_add_item)
         self.btn_manager_add.show()
-
         self.btn_manager_remove = QtWidgets.QPushButton(self)
         self.btn_manager_remove.setText("-")
         self.btn_manager_remove.setMinimumWidth(30)
         self.btn_manager_remove.move(358, 290)
         self.btn_manager_remove.clicked.connect(self.manager_remove_selected)
         self.btn_manager_remove.show()
-
+        database_actions = Actions()
         self.manager_connections = QListWidget(self)
-        self.manager_connections.addItems([])
+        for row in database_actions.manager_get():
+            self.manager_connections.addItem(row[0])
         self.manager_connections.setMinimumWidth(408)
         self.manager_connections.setMinimumHeight(130)
         self.manager_connections.move(50, 330)
         self.manager_connections.show()
 
     def manager_add_item(self):
-        print("Add new item in manager")
+        if self.manager_input_name.text():
+            database_actions = Actions()
+            if database_actions.manager_add(self.manager_input_name.text()):
+                self.manager_input_name.clear()
+                self.manager_connections.clear()
+                for row in database_actions.manager_get():
+                    self.manager_connections.addItem(row[0])
+                del database_actions
+            else:
+                self.manager_label.setText(
+                    "<span font-size: 12pt;>"
+                    + i18n.t("translate.manager_new_item_failed")
+                    + "</span>"
+                )
+                self.manager_label.adjustSize()
+        else:
+            self.manager_label.setText(
+                "<span font-size: 12pt;>"
+                + i18n.t("translate.manager_new_item_input_empty")
+                + "</span>"
+            )
+            self.manager_label.adjustSize()
 
     def manager_remove_selected(self):
-        print("Remove item from manager")
+        database_actions = Actions()
+        if database_actions.manager_delete(
+            self.manager_connections.currentItem().text()
+        ):
+            self.manager_connections.clear()
+            for row in database_actions.manager_get():
+                self.manager_connections.addItem(row[0])
+            del database_actions
+        else:
+            self.manager_label.setText(
+                "<span font-size: 12pt;>"
+                + i18n.t("translate.manager_delete_item_failed")
+                + "</span>"
+            )
+            self.manager_label.adjustSize()
 
 
 def window():
