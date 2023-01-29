@@ -523,13 +523,13 @@ class Main(QMainWindow):
         self.btn_manager_add.setText("+")
         self.btn_manager_add.setMinimumWidth(30)
         self.btn_manager_add.move(254, 290)
-        self.btn_manager_add.clicked.connect(self.manager_add_item)
+        self.btn_manager_add.clicked.connect(self.manager_add)
         self.btn_manager_add.show()
         self.btn_manager_remove = QtWidgets.QPushButton(self)
         self.btn_manager_remove.setText("-")
         self.btn_manager_remove.setMinimumWidth(30)
         self.btn_manager_remove.move(358, 290)
-        self.btn_manager_remove.clicked.connect(self.manager_remove_selected)
+        self.btn_manager_remove.clicked.connect(self.manager_remove)
         self.btn_manager_remove.show()
         database_actions = Actions()
         self.manager_connections = QListWidget(self)
@@ -540,7 +540,7 @@ class Main(QMainWindow):
         self.manager_connections.move(50, 330)
         self.manager_connections.show()
 
-    def manager_add_item(self):
+    def manager_add(self):
         if self.manager_input_name.text():
             database_actions = Actions()
             if database_actions.manager_add(self.manager_input_name.text()):
@@ -564,7 +564,7 @@ class Main(QMainWindow):
             )
             self.manager_label.adjustSize()
 
-    def manager_remove_selected(self):
+    def manager_remove(self):
         database_actions = Actions()
         if database_actions.manager_delete(
             self.manager_connections.currentItem().text()
