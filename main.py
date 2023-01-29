@@ -533,7 +533,7 @@ class Main(QMainWindow):
         self.btn_manager_remove.show()
         database_actions = Actions()
         self.manager_connections = QListWidget(self)
-        for row in database_actions.manager_get_items():
+        for row in database_actions.manager_get():
             self.manager_connections.addItem(row[0])
         self.manager_connections.setMinimumWidth(408)
         self.manager_connections.setMinimumHeight(130)
@@ -546,7 +546,7 @@ class Main(QMainWindow):
             if database_actions.manager_add(self.manager_input_name.text()):
                 self.manager_input_name.clear()
                 self.manager_connections.clear()
-                for row in database_actions.manager_get_items():
+                for row in database_actions.manager_get():
                     self.manager_connections.addItem(row[0])
                 del database_actions
             else:
@@ -565,7 +565,21 @@ class Main(QMainWindow):
             self.manager_label.adjustSize()
 
     def manager_remove_selected(self):
-        print("Remove item from manager")
+        database_actions = Actions()
+        if database_actions.manager_delete(
+            self.manager_connections.currentItem().text()
+        ):
+            self.manager_connections.clear()
+            for row in database_actions.manager_get():
+                self.manager_connections.addItem(row[0])
+            del database_actions
+        else:
+            self.manager_label.setText(
+                "<span font-size: 12pt;>"
+                + i18n.t("translate.manager_delete_item_failed")
+                + "</span>"
+            )
+            self.manager_label.adjustSize()
 
 
 def window():
