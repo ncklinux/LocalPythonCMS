@@ -66,9 +66,5 @@ class Database(object):
         except sqlite3.IntegrityError as e:
             self.logger.error("Exception: {}".format(type(e)))
 
-    def get_language(self):
-        self.__cur.execute("SELECT language FROM users")
-        return self.__cur.fetchone()[0]
-
     def __del__(self):
         self.__db_connection.close()

@@ -12,6 +12,10 @@ class Actions(object):
         self.__cur = self.__db_connection.cursor()
         self.logger = LoggerFactory.CreateLogger(__name__)
 
+    def get_language(self):
+        self.__cur.execute("SELECT language FROM users")
+        return self.__cur.fetchone()[0]
+
     def register_new_user(
         self, firstname, lastname, email, username, password, language
     ):
