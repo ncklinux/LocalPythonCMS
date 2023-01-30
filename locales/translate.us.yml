@@ -44,3 +44,4 @@ us:
   manager_new_item_failed: The process failed, or this name may already exist!
   manager_delete_item_select_error: Select site to delete!
   manager_delete_item_failed: Failed to delete site!
+  manager_delete_confirmation: Are you sure you want to delete this site?
