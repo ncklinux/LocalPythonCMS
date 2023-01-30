@@ -516,7 +516,7 @@ class Main(QMainWindow):
         self.manager_input_name = QtWidgets.QLineEdit(self)
         self.manager_input_name.move(50, 290)
         self.manager_input_name.setPlaceholderText(
-            i18n.t("translate.manager_new_item_input_placeholder")
+            i18n.t("translate.manager_new_site_input_placeholder")
         )
         self.manager_input_name.setFixedWidth(200)
         self.manager_input_name.show()
@@ -553,14 +553,14 @@ class Main(QMainWindow):
             else:
                 self.manager_label.setText(
                     "<span font-size: 12pt;>"
-                    + i18n.t("translate.manager_new_item_failed")
+                    + i18n.t("translate.manager_new_site_failed")
                     + "</span>"
                 )
                 self.manager_label.adjustSize()
         else:
             self.manager_label.setText(
                 "<span font-size: 12pt;>"
-                + i18n.t("translate.manager_new_item_input_empty")
+                + i18n.t("translate.manager_new_site_input_empty")
                 + "</span>"
             )
             self.manager_label.adjustSize()
@@ -585,14 +585,14 @@ class Main(QMainWindow):
                 else:
                     self.manager_label.setText(
                         "<span font-size: 12pt;>"
-                        + i18n.t("translate.manager_delete_item_failed")
+                        + i18n.t("translate.manager_delete_site_failed")
                         + "</span>"
                     )
                     self.manager_label.adjustSize()
             else:
                 self.manager_label.setText(
                     "<span font-size: 12pt;>"
-                    + i18n.t("translate.manager_delete_item_select_error")
+                    + i18n.t("translate.manager_delete_site_select_error")
                     + "</span>"
                 )
                 self.manager_label.adjustSize()

@@ -39,9 +39,9 @@ fr:
   logout_failed: La déconnexion a échoué ! Veuillez redémarrer le logiciel.
   clear: Clair
   manager_title: Sites prédéfinis
-  manager_new_item_input_placeholder: Name
-  manager_new_item_input_empty: Le champ de saisie du nom est vide
-  manager_new_item_failed: Le processus a échoué, ou ce nom existe peut-être déjà!
-  manager_delete_item_select_error: Sélectionnez le site à supprimer!
-  manager_delete_item_failed: Échec de la suppression du site!
+  manager_new_site_input_placeholder: Name
+  manager_new_site_input_empty: Le champ de saisie du nom est vide
+  manager_new_site_failed: Le processus a échoué, ou ce nom existe peut-être déjà!
+  manager_delete_site_select_error: Sélectionnez le site à supprimer!
+  manager_delete_site_failed: Échec de la suppression du site!
   manager_delete_confirmation: Êtes-vous sûr de vouloir supprimer ce site?
