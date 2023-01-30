@@ -12,6 +12,7 @@ from PyQt5.QtWidgets import (
     QStatusBar,
     QComboBox,
     QListWidget,
+    QMessageBox,
 )
 from PyQt5.QtCore import *
 from PyQt5.QtWebEngineWidgets import *
@@ -515,7 +516,7 @@ class Main(QMainWindow):
         self.manager_input_name = QtWidgets.QLineEdit(self)
         self.manager_input_name.move(50, 290)
         self.manager_input_name.setPlaceholderText(
-            i18n.t("translate.manager_new_item_input_placeholder")
+            i18n.t("translate.manager_new_site_input_placeholder")
         )
         self.manager_input_name.setFixedWidth(200)
         self.manager_input_name.show()
@@ -552,42 +553,49 @@ class Main(QMainWindow):
             else:
                 self.manager_label.setText(
                     "<span font-size: 12pt;>"
-                    + i18n.t("translate.manager_new_item_failed")
+                    + i18n.t("translate.manager_new_site_failed")
                     + "</span>"
                 )
                 self.manager_label.adjustSize()
         else:
             self.manager_label.setText(
                 "<span font-size: 12pt;>"
-                + i18n.t("translate.manager_new_item_input_empty")
+                + i18n.t("translate.manager_new_site_input_empty")
                 + "</span>"
             )
             self.manager_label.adjustSize()
 
     def manager_delete_site(self):
         if self.manager_connections.currentItem():
-            database_actions = Actions()
-            if database_actions.manager_delete(
-                self.manager_connections.currentItem().text()
-            ):
-                self.manager_connections.clear()
-                for row in database_actions.manager_get():
-                    self.manager_connections.addItem(row[0])
-                del database_actions
+            confirmation = QMessageBox.question(
+                self,
+                "",
+                i18n.t("translate.manager_delete_confirmation"),
+                QMessageBox.Yes | QMessageBox.No,
+            )
+            if confirmation == QMessageBox.Yes:
+                database_actions = Actions()
+                if database_actions.manager_delete(
+                    self.manager_connections.currentItem().text()
+                ):
+                    self.manager_connections.clear()
+                    for row in database_actions.manager_get():
+                        self.manager_connections.addItem(row[0])
+                    del database_actions
+                else:
+                    self.manager_label.setText(
+                        "<span font-size: 12pt;>"
+                        + i18n.t("translate.manager_delete_site_failed")
+                        + "</span>"
+                    )
+                    self.manager_label.adjustSize()
             else:
                 self.manager_label.setText(
                     "<span font-size: 12pt;>"
-                    + i18n.t("translate.manager_delete_item_failed")
+                    + i18n.t("translate.manager_delete_site_select_error")
                     + "</span>"
                 )
                 self.manager_label.adjustSize()
-        else:
-            self.manager_label.setText(
-                "<span font-size: 12pt;>"
-                + i18n.t("translate.manager_delete_item_select_error")
-                + "</span>"
-            )
-            self.manager_label.adjustSize()
 
 
 def window():

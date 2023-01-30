@@ -39,8 +39,9 @@ us:
   logout_failed: The logout failed! Please restart the software.
   clear: Clear
   manager_title: Predefined sites
-  manager_new_item_input_placeholder: Name
-  manager_new_item_input_empty: The name input field is empty
-  manager_new_item_failed: The process failed, or this name may already exist!
-  manager_delete_item_select_error: Select site to delete!
-  manager_delete_item_failed: Failed to delete site!
+  manager_new_site_input_placeholder: Name
+  manager_new_site_input_empty: The name input field is empty
+  manager_new_site_failed: The process failed, or this name may already exist!
+  manager_delete_site_select_error: Select site to delete!
+  manager_delete_site_failed: Failed to delete site!
+  manager_delete_confirmation: Are you sure you want to delete this site?
