@@ -45,3 +45,4 @@ fr:
   manager_delete_site_select_error: Sélectionnez le site à supprimer!
   manager_delete_site_failed: Échec de la suppression du site!
   manager_delete_confirmation: Êtes-vous sûr de vouloir supprimer ce site?
+  manager_delete_title: Confirmation de la suppression
