@@ -45,3 +45,4 @@ us:
   manager_delete_site_select_error: Select site to delete!
   manager_delete_site_failed: Failed to delete site!
   manager_delete_confirmation: Are you sure you want to delete this site?
+  manager_delete_title: Confirmation of deletion

@@ -569,7 +569,7 @@ class Main(QMainWindow):
         if self.manager_connections.currentItem():
             confirmation = QMessageBox.question(
                 self,
-                "",
+                i18n.t("translate.manager_delete_title"),
                 i18n.t("translate.manager_delete_confirmation"),
                 QMessageBox.Yes | QMessageBox.No,
             )
