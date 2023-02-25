@@ -363,11 +363,14 @@ class Main(QMainWindow):
             self.top_bar_file.removeAction(self.top_bar_file_manager)
             self.top_bar_file.removeAction(self.top_bar_file_import)
             self.top_bar_file.removeAction(self.top_bar_file_export)
-            self.manager_label.hide()
-            self.manager_connections.hide()
-            self.manager_input_name.hide()
-            self.btn_manager_add.hide()
-            self.btn_manager_remove.hide()
+
+            if self.manager_label:
+                self.manager_label.hide()
+                self.manager_connections.hide()
+                self.manager_input_name.hide()
+                self.btn_manager_add.hide()
+                self.btn_manager_remove.hide()
+
             self.login_label.setText(
                 "<span font-size: 12pt;>"
                 + i18n.t("translate.use_login_credentials")
