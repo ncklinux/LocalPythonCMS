@@ -22,6 +22,11 @@ $ git clone git@github.com:ncklinux/LocalPythonCMS.git
 $ cd LocalPythonCMS
 $ git checkout -b YOUR_BRANCH_NAME
 
+# Virtual environment (recommended). The following commands are used to create the virtual environment which is required in order to manage libraries and the source command will activate it.
+$ python -m venv .venv
+$ source .venv/bin/activate
+$ pip install python-i18n pandas country_converter black pyinstaller requests PyQt5 PyQtWebEngine PyYAML
+
 # Launch
 $ python main.py
 
