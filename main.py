@@ -175,12 +175,14 @@ class Main(QMainWindow):
         self.login_email.move(50, 200)
         self.login_email.setPlaceholderText(i18n.t("translate.email"))
         self.login_email.setFixedWidth(230)
+        self.login_email.returnPressed.connect(self.btn_login_event)
 
         self.login_password = QtWidgets.QLineEdit(self)
         self.login_password.setEchoMode(QtWidgets.QLineEdit.Password)
         self.login_password.move(50, 240)
         self.login_password.setPlaceholderText(i18n.t("translate.password"))
         self.login_password.setFixedWidth(230)
+        self.login_password.returnPressed.connect(self.btn_login_event)
 
         self.btn_login = QtWidgets.QPushButton(self)
         self.btn_login.setText(i18n.t("translate.login"))
@@ -223,27 +225,32 @@ class Main(QMainWindow):
         self.register_firstname.move(50, 400)
         self.register_firstname.setPlaceholderText(i18n.t("translate.firstname"))
         self.register_firstname.setFixedWidth(230)
+        self.register_firstname.returnPressed.connect(self.btn_register_event)
 
         self.register_lastname = QtWidgets.QLineEdit(self)
         self.register_lastname.move(50, 440)
         self.register_lastname.setPlaceholderText(i18n.t("translate.lastname"))
         self.register_lastname.setFixedWidth(230)
+        self.register_lastname.returnPressed.connect(self.btn_register_event)
 
         self.register_email = QtWidgets.QLineEdit(self)
         self.register_email.move(50, 480)
         self.register_email.setPlaceholderText(i18n.t("translate.email"))
         self.register_email.setFixedWidth(230)
+        self.register_email.returnPressed.connect(self.btn_register_event)
 
         self.register_username = QtWidgets.QLineEdit(self)
         self.register_username.move(50, 520)
         self.register_username.setPlaceholderText(i18n.t("translate.username"))
         self.register_username.setFixedWidth(230)
+        self.register_username.returnPressed.connect(self.btn_register_event)
 
         self.register_password = QtWidgets.QLineEdit(self)
         self.register_password.setEchoMode(QtWidgets.QLineEdit.Password)
         self.register_password.move(50, 560)
         self.register_password.setPlaceholderText(i18n.t("translate.password"))
         self.register_password.setFixedWidth(230)
+        self.register_password.returnPressed.connect(self.btn_register_event)
 
         common_functions = Functions()
         self.register_language_list = common_functions.combo_box_data_frame(
