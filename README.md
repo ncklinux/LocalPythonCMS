@@ -25,7 +25,7 @@ $ git checkout -b YOUR_BRANCH_NAME
 # Virtual environment (recommended). To manage libraries with pip, the following commands are used to create and activate the required virtual environment.
 $ python -m venv .venv
 $ source .venv/bin/activate
-$ pip install python-i18n pandas country_converter black pyinstaller requests PyQt5 PyQtWebEngine PyYAML
+$ pip install python-i18n pandas country_converter black pyinstaller requests PyQt5 PyQtWebEngine PyYAML mypy flake8
 
 # Launch
 $ python main.py
@@ -73,6 +73,44 @@ This project follows the [PEP8](https://peps.python.org/pep-0008/) style, which 
 If you use PyCharm but for whatever reason you don't want to use the [BlackConnect](https://plugins.jetbrains.com/plugin/14321-blackconnect) plugin and therefore [blackd](https://black.readthedocs.io/en/stable/usage_and_configuration/black_as_a_server.html), follow the screenshots below to set up [black](https://pypi.org/project/black/) as an external tool with a file watcher in order to run it on save. Use `which black` to identify the location of the executable and add it in the "Program" input field.
 
 ![Screenshot](./assets/images/pycharm_screenshot.png)
+
+## Type Annotations
+
+[Mypy](https://mypy-lang.org) is an optional static type checker for Python that aims to combine the benefits of dynamic (or "duck") typing and static typing. Mypy combines the expressive power and convenience of Python with a powerful type system and compile-time type checking. Mypy type checks standard Python programs; run them using any Python VM with basically no runtime overhead.
+
+```bash
+$ mypy --ignore-missing-imports main.py
+# Success: no issues found in 1 source file
+```
+
+## Linter
+
+Linting means running a quality tool on the code. The linter will perform syntax checks and give you instructions, security tips and help you avoid bugs. There are some linters out there, the most tried and tested is [Flake8](https://flake8.pycqa.org), "the wrapper which verifies pep8, pyflakes, and circular complexity", also has a low false positive rate.
+
+## Troubleshooting
+
+If you encountered the following module error (any module error in fact) `No module named 'pip'`, see below for more details:
+
+```bash
+$ python main.py
+
+# Traceback (most recent call last):
+#   File ".venv/bin/pip", line 5, in <module>
+#     from pip._internal.cli.main import main
+# ModuleNotFoundError: No module named 'pip'
+```
+
+It turns out that Virtualenv is not up to date, use the following commands to fix the problem:
+
+```bash
+$ deactivate
+$ rm -rf .venv
+$ python -m venv .venv
+$ source .venv/bin/activate
+$ pip install ...
+```
+
+And reinstall all the PIP packages as you did at the [beginning](https://github.com/ncklinux/LocalPythonCMS?tab=readme-ov-file#build-setup) when you started with the program, then execute `python main.py` again, this time should work without module issues.
 
 ## License
 
