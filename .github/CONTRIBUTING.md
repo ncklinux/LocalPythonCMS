@@ -17,6 +17,8 @@ For those just getting started with pull requests, GitHub has a [how to](https:/
   - Do not use `self` in functions if it's not in use (just like PyCharm prompts).
   - Factory function names (those that return an object) must have the first letter capitalized.
 - Use [Black](https://github.com/psf/black) for formatting.
+- Use [mypy](https://mypy-lang.org) for typing.
+- Use [Flake8](https://flake8.pycqa.org) for linting.
 - Include unit tests when you contribute new features, as they help to:
   - Prove that your code works correctly.
   - Guard against future breaking changes to lower the maintenance cost.
@@ -32,3 +34,4 @@ For those just getting started with pull requests, GitHub has a [how to](https:/
 > - Tweet about it
 > - Refer this project in your project's readme
 > - Mention the project at local meetups and tell your friends/colleagues
+> - And of course we are always open to suggestions and new tools
