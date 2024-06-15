@@ -42,7 +42,9 @@ $ python -m PyInstaller --noconsole --onefile --windowed --exclude-module tkinte
 
 Having a local CMS that publishes only the content you choose, on a remote server (securely via [SSH](https://www.openssh.com) and [Ed25519](https://ed25519.cr.yp.to/) elliptic curve signature key pair, as the book [Practical Cryptography with Go](https://leanpub.com/gocrypto/read#leanpub-auto-chapter-5-digital-signatures) suggests that those keys are more secure and efficient) is great for many reasons, for example maintainability! Being able to update the CMS without hassle and system and network administration knowledge (just like updating your web browser) makes it fun :wink:
 
-Most importantly, you own your data, locally! Keeping your data stored on your local computer :computer: (including backups) makes it safe :lock: by default! Simply because, there is no reason to store sensitive data on a remote server and leave them there, without that data even needing (in most times) to be called and used on the websites.
+Most importantly, your data belongs to you, locally! Keeping the CMS (Content Management System), in other words the administration (where you edit your pages) stored on your local :computer: including backups (before any commit, with Git of course :wink:), makes it secure :lock: by default! Simply because, there is no reason for the administration side of your website to be always online, including sensitive, in most cases unencrypted data on a remote server (that someone else rents it to you), without that data even needing to be called for changes so often in most of the times, I just don't see the point anymore. **So I decided to take down this piece, locally, since in return it gives us 50% less security problems, because it's not exposed to the public. It's that simple!**
+
+Just think about it, in the 90s might was "the thing" and a good idea to start writing a CMS, including admin pages along with the website, but now it's another century, things have changed, the security problems are growing every day, we have to do something! I want to hand down a safer digital world to my children, I thought about it, I found a practical solution and I'm working on it :construction: for my children, for the for the community :city_sunrise:
 
 John Johnson says _“First, solve the problem. Then, write the code.”_
 
@@ -89,7 +91,7 @@ Linting means running a quality tool on the code. The linter will perform syntax
 
 ## Troubleshooting
 
-If you encountered the following module error (any module error in fact) `No module named 'pip'`, see below for more details:
+If you encountered the following module error, in fact, any similar module error `No module named 'pip'`, see below for more details:
 
 ```bash
 $ python main.py
