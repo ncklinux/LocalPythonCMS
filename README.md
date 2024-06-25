@@ -1,5 +1,7 @@
 # LocalPythonCMS
 
+![Screenshot](./assets/images/readme_logo.png)
+
 A content management system (CMS) written in Python that allows you to create, edit, and publish web content
 
 ## Build Setup
@@ -7,13 +9,13 @@ A content management system (CMS) written in Python that allows you to create, e
 ```bash
 # Arch Linux - required packages
 $ sudo pacman -Syu
-$ sudo pacman -S python-pyqt5 python-pyqt5-webengine python-pip sqlite openssh upx
+$ sudo pacman -S python-pip sqlite openssh upx
 $ python -V && pip --version
 $ pip install python-i18n pandas country_converter black pyinstaller
 
 # Ubuntu - required packages
 $ sudo apt update
-$ sudo apt install python3-pyqt5 python3-pyqt5.qtwebengine python3-pip sqlite3 openssh-client upx
+$ sudo apt install python3-pip sqlite3 openssh-client upx
 $ python3 -V && pip3 --version
 $ pip3 install python-i18n pandas country_converter black pyinstaller
 
@@ -25,7 +27,7 @@ $ git checkout -b YOUR_BRANCH_NAME
 # Virtual environment (recommended). To manage libraries with pip, the following commands are used to create and activate the required virtual environment.
 $ python -m venv .venv
 $ source .venv/bin/activate
-$ pip install python-i18n pandas country_converter black pyinstaller requests PyQt5 PyQtWebEngine PyYAML mypy flake8
+$ pip install python-i18n pandas country_converter black pyinstaller requests PyQt6 PyYAML mypy flake8
 
 # Launch
 $ python main.py
@@ -44,11 +46,13 @@ Having a local CMS that publishes only the content you choose, on a remote serve
 
 Most importantly, your data belongs to you, locally! Keeping the CMS (Content Management System), in other words the administration, where you edit the content of the pages, stored on your local :computer: including backups (before any commit, with Git of course), makes it secure :lock: by default! Simply because, there is no reason for the administration side of your website to be always online, including sensitive, in most cases unencrypted data on a remote server (that someone else rents to you), without that data even needing to be called for changes so often (in most of the times), I just don't see the point anymore. **So I decided i decide to experiment, to take down this piece, locally, since in return it gives 50% less security problems, because it's not exposed to the public. It's that simple!**
 
-Just think about it, in the 90s might was "the thing" and a good idea to start writing a CMS, including admin pages along with the website, but now it's another century, things have changed, the security problems are growing every day, we have to do something! I want to hand down a safer digital world to my children, I thought about it, I found a practical solution and I'm working on it :construction: for my children, for the for the community :city_sunrise:
+Just think about it, in the 90s might was "the thing" and a good idea to start writing a CMS, including admin pages along with the website, but now it's another century, things have changed, the security problems are growing every day, we have to do something! I want to hand down a safer digital world, I thought about it, I found a practical solution and I'm working on it.
 
 John Johnson says _“First, solve the problem. Then, write the code.”_
 
-![Screenshot](./assets/images/screenshot20230118.png)
+| Result 01                                                | Result 02                                                |
+| -------------------------------------------------------- | -------------------------------------------------------- |
+| ![Screenshot](./assets/images/screenshot20240625_01.png) | ![Screenshot](./assets/images/screenshot20240625_02.png) |
 
 ## Internationalization
 
