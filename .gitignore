@@ -156,3 +156,6 @@ country_data.*
 
 # Flatpak
 .flatpak-builder
+
+# Assets
+assets/images/logo.svg
