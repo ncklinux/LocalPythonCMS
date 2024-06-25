@@ -1,21 +1,21 @@
 import re
 import sys
-import webbrowser
-import requests
 import i18n
-from PyQt5 import QtWidgets, QtCore, QtSvg
-from PyQt5.QtGui import QKeySequence
-from PyQt5.QtWidgets import (
+import requests
+import webbrowser
+from typing import Any
+from PyQt6.QtWidgets import (
     QApplication,
     QMainWindow,
-    QDesktopWidget,
+    QPushButton,
+    QMessageBox,
+    QListWidget,
     QStatusBar,
     QComboBox,
-    QListWidget,
-    QMessageBox,
+    QLineEdit,
+    QLabel,
 )
-from PyQt5.QtCore import *
-from PyQt5.QtWebEngineWidgets import *
+from PyQt6.QtGui import QAction, QPixmap
 from common.functions import Functions
 from common.logger_factory import LoggerFactory
 from db.database import Database
@@ -24,53 +24,45 @@ from popup import PopUp
 
 
 class Main(QMainWindow):
-    def __init__(self, app, locale):
+    def __init__(self, app, locale) -> None:
         super(Main, self).__init__()
-        self.status_bar = None
-        self.label = None
-        self.login_label = None
-        self.logo = None
-        self.about = None
-        self.browser = None
-        self.btn_login = None
-        self.btn_login_form_reset = None
-        self.btn_logout = None
-        self.btn_register = None
-        self.btn_register_form_reset = None
-        self.login_email = None
-        self.login_password = None
-        self.register_label = None
-        self.register_firstname = None
-        self.register_lastname = None
-        self.register_email = None
-        self.register_username = None
-        self.register_password = None
-        self.register_language = None
-        self.register_language_list = None
-        self.top_bar = None
-        self.top_bar_file = None
-        self.top_bar_file_manager = None
-        self.top_bar_file_import = None
-        self.top_bar_file_export = None
-        self.top_bar_file_exit = None
-        self.top_bar_edit = None
-        self.top_bar_edit_settings = None
-        self.top_bar_help = None
-        self.top_bar_help_documentation = None
-        self.top_bar_help_updates = None
-        self.top_bar_help_bug = None
-        self.top_bar_help_about = None
-        self.manager_label = None
-        self.manager_connections = None
-        self.manager_input_name = None
-        self.btn_manager_add = None
-        self.btn_manager_remove = None
         self.app = app
         self.locale = locale
+        self.status_bar: Any = None
+        self.tb: Any = None
+        self.tb_file: Any = None
+        self.tb_file_manager: Any = None
+        self.tb_file_import: Any = None
+        self.tb_file_export: Any = None
+        self.tb_file_quit: Any = None
+        self.tb_edit: Any = None
+        self.tb_edit_settings: Any = None
+        self.tb_help: Any = None
+        self.tb_help_documentation: Any = None
+        self.tb_help_updates: Any = None
+        self.tb_help_bug: Any = None
+        self.tb_help_about: Any = None
+        self.about_popup: Any = None
+        self.login_email: Any = None
+        self.login_password: Any = None
+        self.register_label: Any = None
+        self.register_firstname: Any = None
+        self.register_lastname: Any = None
+        self.register_email: Any = None
+        self.register_username: Any = None
+        self.register_password: Any = None
+        self.register_language: Any = None
+        self.register_language_list: Any = None
+        self.manager_label: Any = None
+        self.manager_connections: Any = None
+        self.manager_input_name: Any = None
+        self.btn_manager_add: Any = None
+        self.btn_manager_remove: Any = None
+        self.image: Any = None
         self.logger = LoggerFactory.CreateLogger(__name__)
         self.init_ui()
 
-    def init_ui(self):
+    def init_ui(self) -> None:
         i18n.load_path.append("locales")
         i18n.set("locale", self.locale)
         i18n.set("fallback", "us")
@@ -91,66 +83,13 @@ class Main(QMainWindow):
         self.logger.debug("Debug output")
         """
 
-        # Menu
-        self.top_bar = self.menuBar()
-        self.top_bar_file = self.top_bar.addMenu(i18n.t("translate.file"))
-        self.top_bar_edit = self.top_bar.addMenu(i18n.t("translate.edit"))
-        self.top_bar_help = self.top_bar.addMenu(i18n.t("translate.help"))
-
-        # File
-        self.top_bar_file_manager = QtWidgets.QAction(i18n.t("translate.manager"), self)
-        self.top_bar_file_manager.triggered.connect(self.manager)
-        self.top_bar_file_import = QtWidgets.QAction(i18n.t("translate.import"), self)
-        self.top_bar_file_export = QtWidgets.QAction(i18n.t("translate.export"), self)
-        self.top_bar_file.addSeparator()
-        self.top_bar_file_exit = QtWidgets.QAction(i18n.t("translate.quit"), self)
-        self.top_bar_file.addAction(self.top_bar_file_exit)
-        self.top_bar_file_exit.triggered.connect(self.top_bar_file_exit_function)
-        self.top_bar_file_exit.setShortcut(QKeySequence.Quit)
-
-        # Edit
-        self.top_bar_edit_settings = QtWidgets.QAction(
-            i18n.t("translate.settings"), self
-        )
-        self.top_bar_edit.addAction(self.top_bar_edit_settings)
-
-        # Help
-        self.top_bar_help_documentation = QtWidgets.QAction(
-            i18n.t("translate.documentation"), self
-        )
-        self.top_bar_help.addAction(self.top_bar_help_documentation)
-        self.top_bar_help_documentation.triggered.connect(
-            lambda: self.set_browser_content(
-                "https://github.com/ncklinux/LocalPythonCMS/blob/main/README.md"
-            )
-        )
-        self.top_bar_help_updates = QtWidgets.QAction(
-            i18n.t("translate.check_for_updates"), self
-        )
-        self.top_bar_help.addAction(self.top_bar_help_updates)
-        self.top_bar_help_bug = QtWidgets.QAction(
-            i18n.t("translate.report_a_bug"), self
-        )
-        self.top_bar_help_updates.triggered.connect(self.check_for_updates)
-        self.top_bar_help.addAction(self.top_bar_help_bug)
-        self.top_bar_help_bug.triggered.connect(self.top_bar_help_bug_function)
-        self.top_bar_help_about = QtWidgets.QAction(i18n.t("translate.about"), self)
-        self.top_bar_help.addAction(self.top_bar_help_about)
-        self.top_bar_help_about.triggered.connect(self.top_bar_help_about_function)
-
-        """
-        w = QtWidgets.QWidget()
-        self.setCentralWidget(w)
-        grid = QtWidgets.QGridLayout(w)
-        """
-
-        self.logo = QtSvg.QSvgWidget(self)
-        self.logo.load("./assets/svg/logo.svg")
-        self.logo.setGeometry(QtCore.QRect(0, 0, 70, 38))
-        self.logo.move(50, 50)
-        self.logo.show()
-
-        self.label = QtWidgets.QLabel(self)
+        # Logo
+        self.logo = QLabel(self)
+        pixmap = QPixmap("assets/images/logo.png")
+        self.logo.setPixmap(pixmap)
+        self.logo.move(44, 44)
+        self.logo.resize(pixmap.width(), pixmap.height())
+        self.label = QLabel(self)
         self.label.setText(
             '<span style="font-size: 14pt; font-weight: 600;">'
             + i18n.t("translate.software_name")
@@ -158,11 +97,48 @@ class Main(QMainWindow):
             + i18n.t("translate.software_slogan")
             + "</span>"
         )
-        self.label.move(128, 50)
+        self.label.move(120, 56)
         self.label.adjustSize()
 
+        # Top menubar
+        self.tb = self.menuBar()
+        self.tb_file = self.tb.addMenu(i18n.t("translate.file"))
+        self.tb_edit = self.tb.addMenu(i18n.t("translate.edit"))
+        self.tb_help = self.tb.addMenu(i18n.t("translate.help"))
+        self.tb_file_manager = QAction(i18n.t("translate.manager"), self)
+        self.tb_file_import = QAction(i18n.t("translate.import"), self)
+        self.tb_file_export = QAction(i18n.t("translate.export"), self)
+        self.tb_file_quit = QAction(i18n.t("translate.quit"), self)
+        self.tb_edit_settings = QAction(i18n.t("translate.settings"), self)
+        self.tb_help_documentation = QAction(i18n.t("translate.documentation"), self)
+        self.tb_help_updates = QAction(i18n.t("translate.check_for_updates"), self)
+        self.tb_help_bug = QAction(i18n.t("translate.report_a_bug"), self)
+        self.tb_help_about = QAction(i18n.t("translate.about"), self)
+        self.tb_file.addAction(self.tb_file_quit)
+        self.tb_help.addAction(self.tb_help_documentation)
+        self.tb_help.addAction(self.tb_help_updates)
+        self.tb_help.addAction(self.tb_help_bug)
+        self.tb_help.addAction(self.tb_help_about)
+        self.tb_file_manager.triggered.connect(self.manager)
+        # self.tb_file_import.triggered.connect(self.onMyToolBarButtonClick)
+        # self.tb_file_export.triggered.connect(self.onMyToolBarButtonClick)
+        self.tb_file_quit.triggered.connect(self.quit_app)
+        # self.tb_edit_settings.triggered.connect(self.onMyToolBarButtonClick)
+        self.tb_help_documentation.triggered.connect(
+            lambda: self.open_url(
+                "https://github.com/ncklinux/LocalPythonCMS/blob/main/README.md"
+            )
+        )
+        self.tb_help_updates.triggered.connect(self.about)
+        self.tb_help_bug.triggered.connect(
+            lambda: self.open_url(
+                "https://github.com/ncklinux/LocalPythonCMS/issues/new"
+            )
+        )
+        self.tb_help_about.triggered.connect(self.about)
+
         # User login
-        self.login_label = QtWidgets.QLabel(self)
+        self.login_label = QLabel(self)
         self.login_label.setText(
             "<span font-size: 12pt;>"
             + i18n.t("translate.use_login_credentials")
@@ -171,33 +147,33 @@ class Main(QMainWindow):
         self.login_label.move(50, 154)
         self.login_label.adjustSize()
 
-        self.login_email = QtWidgets.QLineEdit(self)
+        self.login_email = QLineEdit(self)
         self.login_email.move(50, 200)
         self.login_email.setPlaceholderText(i18n.t("translate.email"))
         self.login_email.setFixedWidth(230)
         self.login_email.returnPressed.connect(self.btn_login_event)
 
-        self.login_password = QtWidgets.QLineEdit(self)
-        self.login_password.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.login_password = QLineEdit(self)
+        self.login_password.setEchoMode(QLineEdit.EchoMode.Password)
         self.login_password.move(50, 240)
         self.login_password.setPlaceholderText(i18n.t("translate.password"))
         self.login_password.setFixedWidth(230)
         self.login_password.returnPressed.connect(self.btn_login_event)
 
-        self.btn_login = QtWidgets.QPushButton(self)
+        self.btn_login = QPushButton(self)
         self.btn_login.setText(i18n.t("translate.login"))
         self.btn_login.setMinimumWidth(120)
         self.btn_login.move(50, 280)
         self.btn_login.clicked.connect(self.btn_login_event)
 
-        self.btn_logout = QtWidgets.QPushButton(self)
+        self.btn_logout = QPushButton(self)
         self.btn_logout.setText(i18n.t("translate.logout"))
         self.btn_logout.setMinimumWidth(120)
         self.btn_logout.move(50, 200)
         self.btn_logout.clicked.connect(self.btn_logout_event)
         self.btn_logout.hide()
 
-        self.btn_login_form_reset = QtWidgets.QPushButton(self)
+        self.btn_login_form_reset = QPushButton(self)
         self.btn_login_form_reset.setText(i18n.t("translate.clear"))
         self.btn_login_form_reset.setMinimumWidth(100)
         self.btn_login_form_reset.move(180, 280)
@@ -206,7 +182,7 @@ class Main(QMainWindow):
         )
 
         # New user registration
-        self.register_label = QtWidgets.QLabel(self)
+        self.register_label = QLabel(self)
         self.register_label.setText(
             "<span font-size: 12pt;><b>"
             + i18n.t("translate.username")
@@ -221,32 +197,32 @@ class Main(QMainWindow):
         self.register_label.move(50, 354)
         self.register_label.adjustSize()
 
-        self.register_firstname = QtWidgets.QLineEdit(self)
+        self.register_firstname = QLineEdit(self)
         self.register_firstname.move(50, 400)
         self.register_firstname.setPlaceholderText(i18n.t("translate.firstname"))
         self.register_firstname.setFixedWidth(230)
         self.register_firstname.returnPressed.connect(self.btn_register_event)
 
-        self.register_lastname = QtWidgets.QLineEdit(self)
+        self.register_lastname = QLineEdit(self)
         self.register_lastname.move(50, 440)
         self.register_lastname.setPlaceholderText(i18n.t("translate.lastname"))
         self.register_lastname.setFixedWidth(230)
         self.register_lastname.returnPressed.connect(self.btn_register_event)
 
-        self.register_email = QtWidgets.QLineEdit(self)
+        self.register_email = QLineEdit(self)
         self.register_email.move(50, 480)
         self.register_email.setPlaceholderText(i18n.t("translate.email"))
         self.register_email.setFixedWidth(230)
         self.register_email.returnPressed.connect(self.btn_register_event)
 
-        self.register_username = QtWidgets.QLineEdit(self)
+        self.register_username = QLineEdit(self)
         self.register_username.move(50, 520)
         self.register_username.setPlaceholderText(i18n.t("translate.username"))
         self.register_username.setFixedWidth(230)
         self.register_username.returnPressed.connect(self.btn_register_event)
 
-        self.register_password = QtWidgets.QLineEdit(self)
-        self.register_password.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.register_password = QLineEdit(self)
+        self.register_password.setEchoMode(QLineEdit.EchoMode.Password)
         self.register_password.move(50, 560)
         self.register_password.setPlaceholderText(i18n.t("translate.password"))
         self.register_password.setFixedWidth(230)
@@ -266,13 +242,13 @@ class Main(QMainWindow):
         self.register_language.move(50, 600)
         self.register_language.setFixedWidth(230)
 
-        self.btn_register = QtWidgets.QPushButton(self)
+        self.btn_register = QPushButton(self)
         self.btn_register.setText(i18n.t("translate.register"))
         self.btn_register.setMinimumWidth(120)
         self.btn_register.move(50, 640)
         self.btn_register.clicked.connect(self.btn_register_event)
 
-        self.btn_register_form_reset = QtWidgets.QPushButton(self)
+        self.btn_register_form_reset = QPushButton(self)
         self.btn_register_form_reset.setText(i18n.t("translate.clear"))
         self.btn_register_form_reset.setMinimumWidth(100)
         self.btn_register_form_reset.move(180, 640)
@@ -287,14 +263,58 @@ class Main(QMainWindow):
             )
         )
 
-        """
-        grid.addWidget(self.btn_login, 0, 0, QtCore.Qt.AlignLeft | QtCore.Qt.AlignBottom)
-        grid.addWidget(
-            self.btn_register, 0, 1, QtCore.Qt.AlignRight | QtCore.Qt.AlignBottom
-        )
-        """
+    def set_status(self, status: str) -> None:
+        self.status_bar.showMessage(status)
 
-    def btn_login_event(self):
+    @staticmethod
+    def open_url(self, url: str) -> None:
+        webbrowser.open(url)
+
+    def about(self):
+        self.about_popup = PopUp(
+            "About",
+            '<div style="text-align: center;">'
+            + '<span style="font-size: 14pt; font-weight: 600;">'
+            + i18n.t("translate.software_name")
+            + "</span><br><span font-size: 12pt;>"
+            + i18n.t("translate.software_slogan")
+            + "</span></div>",
+        )
+        self.about_popup.resize(500, 200)
+        self.about_popup.show()
+
+    def updates(self) -> None:
+        response = requests.get(
+            "https://api.github.com/repos/ncklinux/LocalPythonCMS/releases/latest"
+        )
+        if response.json()["message"] == "Not Found":
+            print(response.json())
+            self.about_popup = PopUp(
+                i18n.t("translate.check_for_updates"),
+                '<div style="text-align: center;">'
+                + '<span style="font-size: 14pt; font-weight: 600;">'
+                + i18n.t("translate.software_name")
+                + "</span><br><span font-size: 12pt;>"
+                + i18n.t("translate.software_slogan")
+                + "</span>"
+                + "<br><br><span font-size: 12pt;>"
+                + i18n.t("translate.check_for_updates_no_version_yet_error")
+                + "</span>"
+                + "</div>",
+            )
+        else:
+            # TODO: Get version, compare and update
+            self.logger.info("COMPARE VERSIONS")
+        self.about_popup.resize(500, 200)
+        self.about_popup.show()
+
+    def quit_app(self) -> None:
+        database_actions = Actions()
+        if database_actions.logout_user():
+            del database_actions
+            self.close()
+
+    def btn_login_event(self) -> None:
         self.login_label.setText(
             "<span font-size: 12pt;>"
             + i18n.t("translate.use_login_credentials")
@@ -325,11 +345,11 @@ class Main(QMainWindow):
                 self.btn_register.hide()
                 self.btn_register_form_reset.hide()
                 self.reset_form_fields(self.login_password, self.login_email)
-                self.top_bar_file.removeAction(self.top_bar_file_exit)
-                self.top_bar_file.addAction(self.top_bar_file_manager)
-                self.top_bar_file.addAction(self.top_bar_file_import)
-                self.top_bar_file.addAction(self.top_bar_file_export)
-                self.top_bar_file.addAction(self.top_bar_file_exit)
+                self.tb_file.removeAction(self.tb_file_quit)
+                self.tb_file.addAction(self.tb_file_manager)
+                self.tb_file.addAction(self.tb_file_import)
+                self.tb_file.addAction(self.tb_file_export)
+                self.tb_edit.addAction(self.tb_edit_settings)
                 self.login_label.setText(
                     "<span font-size: 12pt;>"
                     + i18n.t("translate.login_success")
@@ -350,7 +370,7 @@ class Main(QMainWindow):
             )
         self.login_label.adjustSize()
 
-    def btn_logout_event(self):
+    def btn_logout_event(self) -> None:
         database_actions = Actions()
         if database_actions.logout_user():
             self.btn_logout.hide()
@@ -367,10 +387,11 @@ class Main(QMainWindow):
             self.register_language.show()
             self.btn_register.show()
             self.btn_register_form_reset.show()
-            self.top_bar_file.removeAction(self.top_bar_file_manager)
-            self.top_bar_file.removeAction(self.top_bar_file_import)
-            self.top_bar_file.removeAction(self.top_bar_file_export)
-
+            self.tb_file.removeAction(self.tb_file_manager)
+            self.tb_file.removeAction(self.tb_file_import)
+            self.tb_file.removeAction(self.tb_file_export)
+            self.tb_file.addAction(self.tb_file_quit)
+            self.tb_edit.removeAction(self.tb_edit_settings)
             if self.manager_label:
                 self.manager_label.hide()
                 self.manager_connections.hide()
@@ -391,7 +412,7 @@ class Main(QMainWindow):
                 + "</span>"
             )
 
-    def btn_register_event(self):
+    def btn_register_event(self) -> None:
         common_functions = Functions()
         if (
             self.register_firstname.text()
@@ -443,100 +464,35 @@ class Main(QMainWindow):
                 + "</span>"
             )
 
-    # noinspection PyMethodMayBeStatic
-    def reset_form_fields(self, *fields):
+    def reset_form_fields(self, *fields) -> None:
         for item in fields:
             if re.search("QComboBox", str(item)):
                 item.setCurrentIndex(0)
             else:
                 item.clear()
 
-    def top_bar_file_exit_function(self):
-        database_actions = Actions()
-        if database_actions.logout_user():
-            del database_actions
-            self.close()
-
-    def center(self):
-        frame_geo = self.frameGeometry()
-        center_point = QDesktopWidget().availableGeometry().center()
-        frame_geo.moveCenter(center_point)
-        self.move(frame_geo.topLeft())
-
-    def top_bar_help_about_function(self):
-        self.about = PopUp(
-            "About",
-            '<div style="text-align: center;"><span style="font-size: 14pt; font-weight: 600;">'
-            + i18n.t("translate.software_name")
-            + "</span><br><span font-size: 12pt;>"
-            + i18n.t("translate.software_slogan")
-            + "</span></div>",
-        )
-        self.about.resize(500, 200)
-        self.about.show()
-        self.center()
-
-    def set_status(self, status=None):
-        self.status_bar.showMessage(status)
-
-    @staticmethod
-    def top_bar_help_bug_function():
-        webbrowser.open_new_tab("https://github.com/ncklinux/LocalPythonCMS/issues/new")
-
-    def set_browser_content(self, url):
-        self.browser = QWebEngineView()
-        self.browser.setUrl(QUrl(url))
-        self.browser.setWindowTitle(i18n.t("translate.documentation"))
-        self.browser.resize(900, 600)
-        self.browser.show()
-
-    def check_for_updates(self):
-        response = requests.get(
-            "https://api.github.com/repos/ncklinux/LocalPythonCMS/releases/latest"
-        )
-        if response.json()["message"] == "Not Found":
-            print(response.json())
-            self.about = PopUp(
-                i18n.t("translate.check_for_updates"),
-                '<div style="text-align: center;"><span style="font-size: 14pt; font-weight: 600;">'
-                + i18n.t("translate.software_name")
-                + "</span><br><span font-size: 12pt;>"
-                + i18n.t("translate.software_slogan")
-                + "</span>"
-                + "<br><br><span font-size: 12pt;>"
-                + i18n.t("translate.check_for_updates_no_version_yet_error")
-                + "</span>"
-                + "</div>",
-            )
-        else:
-            # TODO: Get version, compare and update
-            self.logger.info("COMPARE VERSIONS")
-        self.about.resize(560, 200)
-        self.about.show()
-        self.center()
-
-    def manager(self):
-        self.manager_label = QtWidgets.QLabel(self)
+    def manager(self) -> None:
+        self.manager_label = QLabel(self)
         self.manager_label.setText(
             "<span font-size: 12pt;>" + i18n.t("translate.manager_title") + "</span>"
         )
         self.manager_label.move(50, 260)
         self.manager_label.adjustSize()
         self.manager_label.show()
-        self.manager_input_name = QtWidgets.QLineEdit(self)
+        self.manager_input_name = QLineEdit(self)
         self.manager_input_name.move(50, 290)
         self.manager_input_name.setPlaceholderText(
             i18n.t("translate.manager_new_site_input_placeholder")
         )
         self.manager_input_name.setFixedWidth(200)
         self.manager_input_name.show()
-        self.btn_manager_add = QtWidgets.QPushButton(self)
+        self.btn_manager_add = QPushButton(self)
         self.btn_manager_add.setText("+")
         self.btn_manager_add.setMinimumWidth(30)
         self.btn_manager_add.move(254, 290)
         self.btn_manager_add.clicked.connect(self.manager_add_site)
         self.btn_manager_add.show()
-        self.btn_manager_remove = QtWidgets.QPushButton(self)
+        self.btn_manager_remove = QPushButton(self)
         self.btn_manager_remove.setText("-")
         self.btn_manager_remove.setMinimumWidth(30)
         self.btn_manager_remove.move(358, 290)
@@ -551,7 +507,7 @@ class Main(QMainWindow):
         self.manager_connections.move(50, 330)
         self.manager_connections.show()
 
-    def manager_add_site(self):
+    def manager_add_site(self) -> None:
         if self.manager_input_name.text():
             database_actions = Actions()
             if database_actions.manager_add(self.manager_input_name.text()):
@@ -575,15 +531,16 @@ class Main(QMainWindow):
             )
             self.manager_label.adjustSize()
 
-    def manager_delete_site(self):
+    def manager_delete_site(self) -> None:
         if self.manager_connections.currentItem():
-            confirmation = QMessageBox.question(
-                self,
-                i18n.t("translate.manager_delete_title"),
-                i18n.t("translate.manager_delete_confirmation"),
-                QMessageBox.Yes | QMessageBox.No,
+            dlg = QMessageBox(self)
+            dlg.setWindowTitle(i18n.t("translate.manager_delete_title"))
+            dlg.setText(i18n.t("translate.manager_delete_confirmation"))
+            dlg.setStandardButtons(
+                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
             )
-            if confirmation == QMessageBox.Yes:
+            button = dlg.exec()
+            if button == QMessageBox.StandardButton.Yes:
                 database_actions = Actions()
                 if database_actions.manager_delete(
                     self.manager_connections.currentItem().text()
@@ -614,7 +571,7 @@ def window():
     win = Main(app, db.get_language())
     del db
     win.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
 
 
 window()
