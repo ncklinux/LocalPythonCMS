@@ -18,27 +18,32 @@ class Database(object):
         self.__cur.executescript(
             """
             CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            firstname varchar(50) NOT NULL,
-            lastname varchar(50) NOT NULL,
-            language varchar(7) NOT NULL,
-            email varchar(100) NOT NULL UNIQUE,
-            username varchar(50) NOT NULL UNIQUE,
-            password varchar(128) NOT NULL,
-            logged_in integer(1) NOT NULL);
-            CREATE TABLE IF NOT EXISTS updates (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            version varchar(50) NOT NULL UNIQUE);
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                firstname varchar(50) NOT NULL,
+                lastname varchar(50) NOT NULL,
+                language varchar(7) NOT NULL,
+                email varchar(100) NOT NULL UNIQUE,
+                username varchar(50) NOT NULL UNIQUE,
+                password varchar(128) NOT NULL,
+                logged_in integer(1) NOT NULL
+            );
             CREATE TABLE IF NOT EXISTS manager (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name varchar(50) NOT NULL UNIQUE,
-            protocol integer(1),
-            host varchar(50),
-            port integer(5),
-            encryption integer(1),
-            type integer(1),
-            user varchar(50),
-            password varchar(128));
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name varchar(50) NOT NULL UNIQUE,
+                protocol integer(1),
+                host varchar(50),
+                port integer(5),
+                encryption integer(1),
+                type integer(1),
+                user varchar(50),
+                password varchar(128)
+            );
+            CREATE TABLE IF NOT EXISTS global_settings (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                version varchar(50) NOT NULL,
+                language varchar(7) NOT NULL
+            );
+            INSERT INTO global_settings VALUES (null, "v0.00.0", "us");
             """
         )
 
@@ -48,26 +53,21 @@ class Database(object):
             self.__cur.execute(
                 "INSERT INTO users VALUES (null, ?, ?, ?, ?, ?, ?, ?)",
                 (
-                    "Firstname",
-                    "Lastname",
+                    "System",
+                    "Admin",
                     "us",
-                    "test@localpythoncms.local",
-                    "test",
-                    common_functions.sha256("test"),
+                    "sys@localpythoncms.local",
+                    "admin",
+                    common_functions.sha256("admin"),
                     0,
                 ),
-            )
-            self.__cur.executescript(
-                """
-                INSERT INTO updates VALUES (null, "v0.00.0");
-                """
             )
             self.__db_connection.commit()
         except sqlite3.IntegrityError as e:
             self.logger.error("Exception: {}".format(type(e)))
 
     def get_language(self):
-        self.__cur.execute("SELECT language FROM users")
+        self.__cur.execute("SELECT language FROM global_settings")
         return self.__cur.fetchone()[0]
 
     def __del__(self):
