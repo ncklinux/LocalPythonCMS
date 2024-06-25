@@ -1,8 +1,8 @@
-from PyQt5.QtWidgets import QDialog, QLabel
+from PyQt6.QtWidgets import QDialog, QLabel
 
 
 class PopUp(QDialog):
-    def __init__(self, title, text):
+    def __init__(self, title: str, text: str):
         super().__init__()
         self.title = title
         self.text = text
