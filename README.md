@@ -78,7 +78,9 @@ This project follows the [PEP8](https://peps.python.org/pep-0008/) style, which 
 
 If you use PyCharm but for whatever reason you don't want to use the [BlackConnect](https://plugins.jetbrains.com/plugin/14321-blackconnect) plugin and therefore [blackd](https://black.readthedocs.io/en/stable/usage_and_configuration/black_as_a_server.html), follow the screenshots below to set up [black](https://pypi.org/project/black/) as an external tool with a file watcher in order to run it on save. Use `which black` to identify the location of the executable and add it in the "Program" input field.
 
-![Screenshot](./assets/images/pycharm_screenshot.png)
+| IDE 01                                    | IDE 02                                    |
+| ----------------------------------------- | ----------------------------------------- |
+| ![Screenshot](./assets/images/ide_01.png) | ![Screenshot](./assets/images/ide_02.png) |
 
 ## Type Annotations
 
