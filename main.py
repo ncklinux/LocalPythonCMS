@@ -18,9 +18,9 @@ from PyQt6.QtWidgets import (
 from PyQt6.QtGui import QAction, QPixmap
 from common.functions import Functions
 from common.logger_factory import LoggerFactory
+from common.popup import PopUp
 from db.database import Database
 from db.actions import Actions
-from popup import PopUp
 
 
 class Main(QMainWindow):
