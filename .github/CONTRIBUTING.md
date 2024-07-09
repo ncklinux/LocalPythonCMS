@@ -19,6 +19,7 @@ For those just getting started with pull requests, GitHub has a [how to](https:/
 - Use [Black](https://github.com/psf/black) for formatting.
 - Use [mypy](https://mypy-lang.org) for typing.
 - Use [Flake8](https://flake8.pycqa.org) for linting.
+- Use [Bandit](https://bandit.readthedocs.io/en/latest/) for security linting.
 - Include unit tests when you contribute new features, as they help to:
   - Prove that your code works correctly.
   - Guard against future breaking changes to lower the maintenance cost.

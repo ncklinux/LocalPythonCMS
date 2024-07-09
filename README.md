@@ -11,13 +11,13 @@ A content management system (CMS) written in Python that allows you to create, e
 $ sudo pacman -Syu
 $ sudo pacman -S python-pip sqlite openssh upx
 $ python -V && pip --version
-$ pip install python-i18n pandas country_converter black pyinstaller
+$ pip install python-i18n pandas country_converter black pyinstaller requests PyQt6 PyYAML mypy flake8 bandit
 
 # Ubuntu - required packages
 $ sudo apt update
 $ sudo apt install python3-pip sqlite3 openssh-client upx
 $ python3 -V && pip3 --version
-$ pip3 install python-i18n pandas country_converter black pyinstaller
+$ pip3 install python-i18n pandas country_converter black pyinstaller requests PyQt6 PyYAML mypy flake8 bandit
 
 # Clone repository
 $ git clone git@github.com:ncklinux/LocalPythonCMS.git
@@ -27,7 +27,7 @@ $ git checkout -b YOUR_BRANCH_NAME
 # Virtual environment (recommended). To manage libraries with pip, the following commands are used to create and activate the required virtual environment.
 $ python -m venv .venv
 $ source .venv/bin/activate
-$ pip install python-i18n pandas country_converter black pyinstaller requests PyQt6 PyYAML mypy flake8
+$ pip install python-i18n pandas country_converter black pyinstaller requests PyQt6 PyYAML mypy flake8 bandit
 
 # Launch
 $ python main.py
@@ -95,9 +95,12 @@ $ mypy --ignore-missing-imports main.py
 # Success: no issues found in 1 source file
 ```
 
-## Linter
+## Linting
 
-Linting means running a quality tool on the code. The linter will perform syntax checks and give you instructions, security tips and help you avoid bugs. There are some linters out there, the most tried and tested is [Flake8](https://flake8.pycqa.org), "the wrapper which verifies pep8, pyflakes, and circular complexity", also has a low false positive rate.
+Python linting, also known as code linting or static code analysis, is the process of analyzing Python code for potential errors, bugs, security and stylistic issues. The term "lint" comes from the idea of using a lint roller to remove tangled threads from fabric, and in this context, Python linting is like using a tool to "lint" or clean up your Python code to make it more readable, maintainable, and error-free.
+
+- There are some linters out there, the most tried and tested is [Flake8](https://flake8.pycqa.org), "the wrapper which verifies pep8, pyflakes, and circular complexity", also has a low false positive rate.
+- [Bandit](https://bandit.readthedocs.io/en/latest/) is a tool designed to find common security issues in Python code. To do this, Bandit processes each file, builds an AST from it, and runs appropriate plugins against the AST nodes. Once Bandit has finished scanning all the files, it generates a report.
 
 ## Troubleshooting
 
