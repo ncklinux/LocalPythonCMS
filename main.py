@@ -285,7 +285,8 @@ class Main(QMainWindow):
 
     def updates(self) -> None:
         response = requests.get(
-            "https://api.github.com/repos/ncklinux/LocalPythonCMS/releases/latest"
+            "https://api.github.com/repos/ncklinux/LocalPythonCMS/releases/latest",
+            timeout=5,
         )
         if response.json()["message"] == "Not Found":
             print(response.json())
