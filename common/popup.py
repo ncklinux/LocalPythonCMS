@@ -13,7 +13,7 @@ class PopUp(QDialog):
 
         self.center_dialog()
 
-    def center_dialog(self):
+    def center_dialog(self) -> None:
         parent_widget = self.parentWidget()
         if parent_widget is not None:
             parent_geometry = parent_widget.frameGeometry()
