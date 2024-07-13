@@ -42,7 +42,7 @@ class Main(QMainWindow):
         self.tb_help_updates: Any = None
         self.tb_help_bug: Any = None
         self.tb_help_about: Any = None
-        self.about_popup: Any = None
+        self.popup: Any = None
         self.login_email: Any = None
         self.login_password: Any = None
         self.register_label: Any = None
@@ -271,7 +271,7 @@ class Main(QMainWindow):
         webbrowser.open(url)
 
     def about(self):
-        self.about_popup = PopUp(
+        self.popup = PopUp(
             "About",
             '<div style="text-align: center;">'
             + '<span style="font-size: 14pt; font-weight: 600;">'
@@ -279,9 +279,10 @@ class Main(QMainWindow):
             + "</span><br><span font-size: 12pt;>"
             + i18n.t("translate.software_slogan")
             + "</span></div>",
+            self,
         )
-        self.about_popup.resize(500, 200)
-        self.about_popup.show()
+        self.popup.resize(500, 200)
+        self.popup.exec()
 
     def updates(self) -> None:
         response = requests.get(
@@ -290,7 +291,7 @@ class Main(QMainWindow):
         )
         if response.json()["message"] == "Not Found":
             print(response.json())
-            self.about_popup = PopUp(
+            self.popup = PopUp(
                 i18n.t("translate.check_for_updates"),
                 '<div style="text-align: center;">'
                 + '<span style="font-size: 14pt; font-weight: 600;">'
@@ -302,12 +303,13 @@ class Main(QMainWindow):
                 + i18n.t("translate.check_for_updates_no_version_yet_error")
                 + "</span>"
                 + "</div>",
+                self,
             )
         else:
             # TODO: Get version, compare and update
             self.logger.info("COMPARE VERSIONS")
-        self.about_popup.resize(500, 200)
-        self.about_popup.show()
+        self.popup.resize(500, 200)
+        self.popup.exec()
 
     def quit_app(self) -> None:
         database_actions = Actions()
