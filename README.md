@@ -7,27 +7,26 @@ A content management system (CMS) written in Python that allows you to create, e
 ## Build Setup
 
 ```bash
-# Arch Linux - required packages
+# Arch Linux setup and required packages
 $ sudo pacman -Syu
 $ sudo pacman -S python-pip sqlite openssh upx
 $ python -V && pip --version
-$ pip install python-i18n pandas country_converter black pyinstaller requests PyQt6 PyYAML mypy flake8 bandit
-
-# Ubuntu - required packages
-$ sudo apt update
-$ sudo apt install python3-pip sqlite3 openssh-client upx
-$ python3 -V && pip3 --version
-$ pip3 install python-i18n pandas country_converter black pyinstaller requests PyQt6 PyYAML mypy flake8 bandit
-
-# Clone repository
 $ git clone git@github.com:ncklinux/LocalPythonCMS.git
 $ cd LocalPythonCMS
+$ python -m venv .venv # Virtual environment (recommended)
+$ pip install python-i18n pandas country_converter black pyinstaller requests PyQt6 PyYAML mypy flake8 bandit
 $ git checkout -b YOUR_BRANCH_NAME
 
-# Virtual environment (recommended). To manage libraries with pip, the following commands are used to create and activate the required virtual environment.
-$ python -m venv .venv
+# Ubuntu setup and required packages
+$ sudo apt update
+$ sudo apt install python3-pip sqlite3 openssh-client upx python3.12-venv
+$ python3 -V && pip3 --version
+$ git clone git@github.com:ncklinux/LocalPythonCMS.git
+$ cd LocalPythonCMS
+$ python3 -m venv .venv # Virtual environment (recommended)
 $ source .venv/bin/activate
-$ pip install python-i18n pandas country_converter black pyinstaller requests PyQt6 PyYAML mypy flake8 bandit
+$ pip3 install python-i18n pandas country_converter black pyinstaller requests PyQt6 PyYAML mypy flake8 bandit
+$ git checkout -b YOUR_BRANCH_NAME
 
 # Launch
 $ python main.py
