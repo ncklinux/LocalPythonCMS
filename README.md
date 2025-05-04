@@ -28,6 +28,10 @@ $ source .venv/bin/activate
 $ pip3 install python-i18n pandas country_converter black pyinstaller requests PyQt6 PyYAML mypy flake8 bandit
 $ git checkout -b YOUR_BRANCH_NAME
 
+# Deactivate and delete the virtual environment along with its packages to restart Ollover from scratch
+$ deactivate
+$ rm -rf build .venv
+
 # Launch
 $ python main.py
 
