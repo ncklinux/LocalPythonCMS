@@ -17,7 +17,7 @@ $ python -m venv .venv # Virtual environment (recommended)
 $ pip install python-i18n pandas country_converter black pyinstaller requests PyQt6 PyYAML mypy flake8 bandit
 $ git checkout -b YOUR_BRANCH_NAME
 
-# Ubuntu setup and required packages
+# Debian/Ubuntu setup and required packages
 $ sudo apt update
 $ sudo apt install python3-pip sqlite3 openssh-client upx python3.12-venv
 $ python3 -V && pip3 --version
@@ -32,8 +32,11 @@ $ git checkout -b YOUR_BRANCH_NAME
 $ deactivate
 $ rm -rf build .venv
 
-# Launch
+# Launch on Arch Linux
 $ python main.py
+
+# Launch on Debian/Ubuntu
+$ python3 main.py
 
 # Build for production
 $ wget https://github.com/konstantinstadler/country_converter/blob/master/country_converter/country_data.tsv
