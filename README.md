@@ -8,41 +8,41 @@ A content management system (CMS) written in Python that allows you to create, e
 
 ```bash
 # Arch Linux setup and required packages
-$ sudo pacman -Syu
-$ sudo pacman -S python-pip sqlite openssh upx
-$ python -V && pip --version
-$ git clone git@github.com:ncklinux/LocalPythonCMS.git
-$ cd LocalPythonCMS
-$ python -m venv .venv # Virtual environment (recommended)
-$ pip install python-i18n pandas country_converter black pyinstaller requests PyQt6 PyYAML mypy flake8 bandit
-$ git checkout -b YOUR_BRANCH_NAME
+sudo pacman -Syu
+sudo pacman -S python-pip sqlite openssh upx
+python -V && pip --version
+git clone git@github.com:ncklinux/LocalPythonCMS.git
+cd LocalPythonCMS
+python -m venv .venv # Virtual environment (recommended)
+pip install python-i18n pandas country_converter black pyinstaller requests PyQt6 PyYAML mypy flake8 bandit
+git checkout -b YOUR_BRANCH_NAME
 
 # Debian/Ubuntu setup and required packages
-$ sudo apt update
-$ sudo apt install python3-pip sqlite3 openssh-client upx python3.12-venv
-$ python3 -V && pip3 --version
-$ git clone git@github.com:ncklinux/LocalPythonCMS.git
-$ cd LocalPythonCMS
-$ python3 -m venv .venv # Virtual environment (recommended)
-$ source .venv/bin/activate
-$ pip3 install python-i18n pandas country_converter black pyinstaller requests PyQt6 PyYAML mypy flake8 bandit
-$ git checkout -b YOUR_BRANCH_NAME
+sudo apt update
+sudo apt install python3-pip sqlite3 openssh-client upx python3.12-venv
+python3 -V && pip3 --version
+git clone git@github.com:ncklinux/LocalPythonCMS.git
+cd LocalPythonCMS
+python3 -m venv .venv # Virtual environment (recommended)
+source .venv/bin/activate
+pip3 install python-i18n pandas country_converter black pyinstaller requests PyQt6 PyYAML mypy flake8 bandit
+git checkout -b YOUR_BRANCH_NAME
 
 # Deactivate and delete the virtual environment along with its packages to restart Ollover from scratch
-$ deactivate
-$ rm -rf build .venv
+deactivate
+rm -rf build .venv
 
 # Launch on Arch Linux
-$ python main.py
+python main.py
 
 # Launch on Debian/Ubuntu
-$ python3 main.py
+python3 main.py
 
 # Build for production
-$ wget https://github.com/konstantinstadler/country_converter/blob/master/country_converter/country_data.tsv
+wget https://github.com/konstantinstadler/country_converter/blob/master/country_converter/country_data.tsv
 # Another way it's to find the file and use the relative path to country_data.tsv e.g. --add-data '../.local/lib/python3.YOUR_VERSION/site-packages/country_converter/country_data.tsv' or, just copy country_data.tsv in LocalPythonCMS directory
 # find / -type f -name "country_data.tsv" 2>&1 | grep -v 'Permission denied'
-$ python -m PyInstaller --noconsole --onefile --windowed --exclude-module tkinter --add-data 'country_data.tsv:country_converter' main.py
+python -m PyInstaller --noconsole --onefile --windowed --exclude-module tkinter --add-data 'country_data.tsv:country_converter' main.py
 # There are also some other options, like fbs (based on PyInstaller) or Flatpak
 ```
 
@@ -73,7 +73,7 @@ This project uses [python-i18n](https://pypi.org/project/python-i18n/) for trans
 Start the [SQLite](https://sqlite.org/cli.html) program by typing `sqlite3` at the Terminal, followed by the name of the file that holds the database.
 
 ```bash
-$ sqlite3 assets/sqlite/localpythoncms.sqlite
+sqlite3 assets/sqlite/localpythoncms.sqlite
 
 # SQLite CLI
 sqlite> .tables
@@ -97,7 +97,7 @@ If you use PyCharm but for whatever reason you don't want to use the [BlackConne
 [Mypy](https://mypy-lang.org) is an optional static type checker for Python that aims to combine the benefits of dynamic (or "duck") typing and static typing. Mypy combines the expressive power and convenience of Python with a powerful type system and compile-time type checking. Mypy type checks standard Python programs; run them using any Python VM with basically no runtime overhead.
 
 ```bash
-$ mypy --ignore-missing-imports main.py
+mypy --ignore-missing-imports main.py
 # Success: no issues found in 1 source file
 ```
 
@@ -113,7 +113,7 @@ Python linting, also known as code linting or static code analysis, is the proce
 If you encountered the following module error, in fact, any similar module error `No module named 'pip'`, see below for more details:
 
 ```bash
-$ python main.py
+python main.py
 
 # Traceback (most recent call last):
 #   File ".venv/bin/pip", line 5, in <module>
@@ -124,11 +124,11 @@ $ python main.py
 It turns out that Virtualenv is not up to date, use the following commands to fix the problem:
 
 ```bash
-$ deactivate
-$ rm -rf .venv
-$ python -m venv .venv
-$ source .venv/bin/activate
-$ pip install ...
+deactivate
+rm -rf .venv
+python -m venv .venv
+source .venv/bin/activate
+pip install ...
 ```
 
 And reinstall all the PIP packages as you did at the [beginning](https://github.com/ncklinux/LocalPythonCMS?tab=readme-ov-file#build-setup) when you started with the program, then execute `python main.py` again, this time should work without module issues.
